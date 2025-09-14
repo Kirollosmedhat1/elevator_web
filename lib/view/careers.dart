@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:elevatorweb/widgets/footer.dart';
+
+class Careers extends StatelessWidget {
+  const Careers({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Center(
+                child: Text(
+                  'Careers Page',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            Footer(),
+          ],
+        ),
+      ),
+    );
+  }
+}
