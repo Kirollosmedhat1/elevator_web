@@ -11,30 +11,26 @@ class ImpAboutusSecController extends GetxController {
   // Track hover state for each card individually
   List<RxBool> cardHoverStates = [];
 
-  final List<Map<String, String>> aboutCards = [
+  List<Map<String, String>> get aboutCards => [
     {
       "image": "assets/images/7.png",
-      "title": "FULL ENGINEERING SUPERVISION",
-      "description":
-          "A specialized team of engineers and technicians with the highest degrees of efficiency and specialization performs installation, modernization and maintenance work for all types of elevators and escalators, which gives high accuracy in the implementation of works.",
+      "title": "full_engineering_supervision".tr,
+      "description": "full_engineering_supervision_desc".tr,
     },
     {
       "image": "assets/images/6.png",
-      "title": "5-YEAR WARRANTY",
-      "description":
-          "The company gives its customers a 3-year warranty on all types of elevators and escalators it offers against manufacturing defects and installation defects.",
+      "title": "five_year_warranty".tr,
+      "description": "five_year_warranty_desc".tr,
     },
     {
       "image": "assets/images/8.png",
-      "title": "AFTER SALES SERVICE",
-      "description":
-          "The company performs regular monthly maintenance by specialized technicians with the highest degree of skill and speed and under the supervision of engineers with a high degree of specialization and competence in maintenance work.",
+      "title": "after_sales_service".tr,
+      "description": "after_sales_service_desc".tr,
     },
     {
       "image": "assets/images/5.png",
-      "title": "WIDE VARIETY OF PRODUCTS",
-      "description":
-          "The wide variety of First Saudi products gives customers a lot of options that add to the beauty of the decorative form of the building and give a state of harmony and integration between them and the rest of the building components.",
+      "title": "wide_variety_of_products".tr,
+      "description": "wide_variety_of_products_desc".tr,
     },
   ];
 
@@ -137,7 +133,7 @@ class ImpAboutusSec extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Why us?\n",
+                    text: 'why_us'.tr + "\n",
                     style: TextStyle(
                       fontSize:
                           MediaQuery.of(context).size.width < 768 ? 12 : 15,
@@ -146,7 +142,7 @@ class ImpAboutusSec extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: "THE MOST IMPORTANT THING ABOUT US",
+                    text: 'the_most_important_thing_about_us'.tr,
                     style: TextStyle(
                       fontSize:
                           MediaQuery.of(context).size.width < 768 ? 24 : 40,
@@ -371,7 +367,7 @@ class ImpAboutusSec extends StatelessWidget {
               text: TextSpan(
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 13,
+                  fontSize: MediaQuery.of(context).size.width > 768 ? 11 : 14,
                   fontWeight: FontWeight.bold,
                 ),
                 children: [

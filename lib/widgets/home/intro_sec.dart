@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
 
 class IntroSec extends StatelessWidget {
   const IntroSec({super.key});
@@ -17,7 +18,7 @@ class IntroSec extends StatelessWidget {
           children: [
             // Text section
             Text(
-              "Saudi First Elevators",
+              'saudi_first_elevators'.tr,
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.black,
@@ -26,7 +27,7 @@ class IntroSec extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              "Saudi First Elevators Company is honored in the field of supplying, installing, maintaining and modernizing elevators and escalators of all types of electric elevators, including: Elevators that work with a two-speed system, elevators that work with a variable speed system, hydraulic elevators. Food elevators (for villas and restaurants) (VVVF) service elevators in buildings. Cargo elevators. Patient elevators (bed elevator) Elevators without a machine room. Escalators. Mobile walkers outdoor elevators with the construction of all types of outdoor towers",
+              'intro_desc'.tr,
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.black,
@@ -51,8 +52,8 @@ class IntroSec extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     onPressed: () {},
-                    child: const Text(
-                      "More about us",
+                    child: Text(
+                      'more_about_us'.tr,
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
@@ -69,8 +70,8 @@ class IntroSec extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     onPressed: () {},
-                    child: const Text(
-                      "Our Services",
+                    child: Text(
+                      'our_services'.tr,
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
@@ -87,8 +88,8 @@ class IntroSec extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     onPressed: () {},
-                    child: const Text(
-                      "Contact Us",
+                    child: Text(
+                      'contact_us'.tr,
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
@@ -152,7 +153,7 @@ class IntroSec extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Saudi First Elevators",
+                    'saudi_first_elevators'.tr,
                     style: TextStyle(
                       fontSize: 30,
                       color: Colors.black,
@@ -161,7 +162,7 @@ class IntroSec extends StatelessWidget {
                   ),
                   SizedBox(height: 30),
                   Text(
-                    "Saudi First Elevators Company is honored in the field of supplying, installing, maintaining \nand modernizing elevators and escalators of all types of electric elevators, \nincluding : Elevators that work with a two-speed system, elevators that work with a variable \nspeed system, hydraulic elevators. Food elevators (for villas and restaurants) (VVVF) service \nelevators in buildings. Cargo elevators. Patient elevators (bed elevator) Elevators without a\nmachine room. Escalators. Mobile walkers outdoor elevators with the construction of \nall types of outdoor towers",
+                    'intro_desc'.tr,
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
@@ -181,7 +182,7 @@ class IntroSec extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {},
-                        child: const Text("More about us"),
+                        child: Text('more_about_us'.tr),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -192,7 +193,7 @@ class IntroSec extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {},
-                        child: const Text("Our Services"),
+                        child: Text('our_services'.tr),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -203,7 +204,7 @@ class IntroSec extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {},
-                        child: const Text("Contact Us"),
+                        child: Text('contact_us'.tr),
                       ),
                     ],
                   ),

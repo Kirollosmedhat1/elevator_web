@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -58,7 +59,7 @@ class Footer extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  "SFE",
+                                  'sfe'.tr,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -69,7 +70,7 @@ class Footer extends StatelessWidget {
                             ),
                             SizedBox(width: 15),
                             Text(
-                              "SAUDI FIRST ELEVATORS",
+                              'saudi_first_elevators_caps'.tr,
                               style: TextStyle(
                                 color: Color(0xFF1A232F),
                                 fontSize: 18,
@@ -82,7 +83,7 @@ class Footer extends StatelessWidget {
 
                         // Company Description
                         Text(
-                          "Saudi First Elevators in the field of supply, installation, maintenance and modernization of elevators and escalators of all kinds. Electric elevators include: Elevators that work with a two-speed system, elevators that work with a variable speed system (VVVF), hydraulic elevators. Food elevators (for villas and restaurants), service elevators in buildings. Cargo elevators. Patient elevators (bed elevator).",
+                          'company_desc'.tr,
                           style: TextStyle(
                             color: Color(0xFF1A232F),
                             fontSize: 12,
@@ -133,7 +134,7 @@ class Footer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "IMPORTANT LINKS",
+                          'important_links'.tr,
                           style: TextStyle(
                             color: Color(0xFF1A232F),
                             fontSize: 16,
@@ -142,13 +143,13 @@ class Footer extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
 
-                        _buildLink("Home", true),
-                        _buildLink("About Company"),
-                        _buildLink("Products and Solutions"),
-                        _buildLink("Studio", false, true),
-                        _buildLink("Articles"),
-                        _buildLink("Careers"),
-                        _buildLink("Contact us"),
+                        _buildLink('home'.tr, true),
+                        _buildLink('about_company'.tr),
+                        _buildLink('products_and_solutions'.tr),
+                        _buildLink('studio'.tr, false, true),
+                        _buildLink('articles'.tr),
+                        _buildLink('careers'.tr),
+                        _buildLink('contact_us_caps'.tr),
 
                         SizedBox(height: 20),
 
@@ -197,7 +198,7 @@ class Footer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "PRODUCTS",
+                          'products_caps'.tr,
                           style: TextStyle(
                             color: Color(0xFF1A232F),
                             fontSize: 16,
@@ -207,7 +208,7 @@ class Footer extends StatelessWidget {
                         SizedBox(height: 20),
 
                         Text(
-                          "مصاعد",
+                          'elevators'.tr,
                           style: TextStyle(
                             color: Color(0xFF1A232F),
                             fontSize: 14,
@@ -226,7 +227,7 @@ class Footer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "HEADINGS",
+                          'headings'.tr,
                           style: TextStyle(
                             color: Color(0xFF1A232F),
                             fontSize: 16,
@@ -235,19 +236,13 @@ class Footer extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
 
-                        _buildBranchLocation(
-                          "The main branch: Nasr City _ 50 Ali Amin Street (Mustafa El Nahas Extension)",
-                        ),
+                        _buildBranchLocation('main_branch'.tr),
                         SizedBox(height: 15),
 
-                        _buildBranchLocation(
-                          "October branch: Building 421 Omar Ibn Al-Khattab Street, 6th of October City First Floor",
-                        ),
+                        _buildBranchLocation('october_branch'.tr),
                         SizedBox(height: 15),
 
-                        _buildBranchLocation(
-                          "Mansoura Branch: Suez Canal Street next to Al Ajami Pharmacy in Badr Tower",
-                        ),
+                        _buildBranchLocation('mansoura_branch'.tr),
                       ],
                     ),
                   ),
@@ -317,7 +312,7 @@ class Footer extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "SFE",
+                  'sfe'.tr,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -329,7 +324,7 @@ class Footer extends StatelessWidget {
             SizedBox(width: 10),
             Expanded(
               child: Text(
-                "SAUDI FIRST ELEVATORS",
+                'saudi_first_elevators_caps'.tr,
                 style: TextStyle(
                   color: Color(0xFF1A232F),
                   fontSize: 16,
@@ -341,7 +336,7 @@ class Footer extends StatelessWidget {
         ),
         SizedBox(height: 15),
         Text(
-          "Saudi First Elevators in the field of supply, installation, maintenance and modernization of elevators and escalators of all kinds.",
+          'company_desc'.tr,
           style: TextStyle(color: Color(0xFF1A232F), fontSize: 11, height: 1.4),
         ),
         SizedBox(height: 15),
@@ -374,7 +369,7 @@ class Footer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "LINKS",
+          'links'.tr,
           style: TextStyle(
             color: Color(0xFF1A232F),
             fontSize: 14,
@@ -382,12 +377,12 @@ class Footer extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        _buildLink("Home", true),
-        _buildLink("About Company"),
-        _buildLink("Products"),
-        _buildLink("Articles"),
-        _buildLink("Careers"),
-        _buildLink("Contact us"),
+        _buildLink('home'.tr, true),
+        _buildLink('about_company'.tr),
+        _buildLink('products_caps'.tr),
+        _buildLink('articles'.tr),
+        _buildLink('careers'.tr),
+        _buildLink('contact_us_caps'.tr),
       ],
     );
   }
@@ -397,7 +392,7 @@ class Footer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "PRODUCTS",
+          'products_caps'.tr,
           style: TextStyle(
             color: Color(0xFF1A232F),
             fontSize: 14,
@@ -405,7 +400,10 @@ class Footer extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        Text("مصاعد", style: TextStyle(color: Color(0xFF1A232F), fontSize: 12)),
+        Text(
+          'elevators'.tr,
+          style: TextStyle(color: Color(0xFF1A232F), fontSize: 12),
+        ),
         SizedBox(height: 15),
         Row(
           children: [
@@ -435,7 +433,7 @@ class Footer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "BRANCHES",
+          'branches'.tr,
           style: TextStyle(
             color: Color(0xFF1A232F),
             fontSize: 14,
@@ -443,11 +441,11 @@ class Footer extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        _buildBranchLocation("Main: Nasr City, 50 Ali Amin Street"),
+        _buildBranchLocation('main_branch_short'.tr),
         SizedBox(height: 8),
-        _buildBranchLocation("October: Building 421, 6th of October City"),
+        _buildBranchLocation('october_branch_short'.tr),
         SizedBox(height: 8),
-        _buildBranchLocation("Mansoura: Suez Canal Street, Badr Tower"),
+        _buildBranchLocation('mansoura_branch_short'.tr),
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ReviewData {
   final String review;
@@ -24,52 +25,44 @@ class _CustomerReviewsState extends State<CustomerReviews> {
 
   final List<ReviewData> reviews = [
     ReviewData(
-      review:
-          "The truth is decent people in everything. Commitment to appointments on the day and continuous response to any inquiry and very polite and tasteful in addition to professionalism and excellent craftsmanship, excellence in prices and speed of implementation, the elevator was completed in three months despite external obstacles, God willing, we renew dealing with them in other projects soon... Greetings.",
-      reviewerName: "Nasser Al-Sayed",
-      source: "Facebook",
+      review: 'review_1'.tr,
+      reviewerName: 'reviewer_1'.tr,
+      source: 'source_1'.tr,
     ),
     ReviewData(
-      review:
-          "Excellent service and professional team. The installation was completed on time and the quality is outstanding. Highly recommend for anyone looking for reliable elevator solutions.",
-      reviewerName: "Ahmed Hassan",
-      source: "Google",
+      review: 'review_2'.tr,
+      reviewerName: 'reviewer_2'.tr,
+      source: 'source_2'.tr,
     ),
     ReviewData(
-      review:
-          "Outstanding customer service and technical expertise. The maintenance team is always responsive and thorough. Our building's elevators have never run better.",
-      reviewerName: "Sarah Mohamed",
-      source: "Facebook",
+      review: 'review_3'.tr,
+      reviewerName: 'reviewer_3'.tr,
+      source: 'source_3'.tr,
     ),
     ReviewData(
-      review:
-          "Professional installation and excellent after-sales service. The team was punctual, clean, and efficient. The elevators are working perfectly.",
-      reviewerName: "Mohammed Al-Rashid",
-      source: "Google",
+      review: 'review_4'.tr,
+      reviewerName: 'reviewer_4'.tr,
+      source: 'source_4'.tr,
     ),
     ReviewData(
-      review:
-          "First Saudi Elevator Company carried out our work in Al Rehab in our building about a year ago, one of more than 100 pipes in Al Rehab... Although my opinion is just one of hundreds of customers in Al Rehab praising their work and professionalism, I would like to thank them very much.",
-      reviewerName: "Lydia Emil",
-      source: "Google",
+      review: 'review_5'.tr,
+      reviewerName: 'reviewer_5'.tr,
+      source: 'source_5'.tr,
     ),
     ReviewData(
-      review:
-          "Great experience from consultation to installation. The team was knowledgeable and provided excellent recommendations. Very satisfied with the final result.",
-      reviewerName: "Fatima Al-Zahra",
-      source: "Facebook",
+      review: 'review_6'.tr,
+      reviewerName: 'reviewer_6'.tr,
+      source: 'source_6'.tr,
     ),
     ReviewData(
-      review:
-          "Reliable company with skilled technicians. They handled our modernization project professionally and completed it ahead of schedule. Highly recommended.",
-      reviewerName: "Omar Abdullah",
-      source: "Google",
+      review: 'review_7'.tr,
+      reviewerName: 'reviewer_7'.tr,
+      source: 'source_7'.tr,
     ),
     ReviewData(
-      review:
-          "Excellent workmanship and attention to detail. The elevators are running smoothly and the maintenance service is top-notch. Thank you for your professionalism.",
-      reviewerName: "Aisha Khalid",
-      source: "Facebook",
+      review: 'review_8'.tr,
+      reviewerName: 'reviewer_8'.tr,
+      source: 'source_8'.tr,
     ),
   ];
 
@@ -89,7 +82,7 @@ class _CustomerReviewsState extends State<CustomerReviews> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.72,
+      height: MediaQuery.of(context).size.height * 0.75,
       child:
           MediaQuery.of(context).size.width < 1000
               ? Column(
@@ -114,7 +107,7 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                         children: [
                           // Title
                           Text(
-                            "Customer reviews",
+                            'customer_reviews'.tr,
                             style: TextStyle(
                               fontSize: 22,
                               color: Color(0xFF1A232F),
@@ -221,7 +214,9 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("assets/images/customer_review.png"),
+                          image: AssetImage(
+                            "assets/images/customer_review.png",
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -240,7 +235,7 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                         children: [
                           // Title
                           Text(
-                            "Customer reviews",
+                            'customer_reviews'.tr,
                             style: TextStyle(
                               fontSize: 28,
                               color: Color(0xFF1A232F),

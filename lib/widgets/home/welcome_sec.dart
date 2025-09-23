@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeSec extends StatelessWidget {
   const WelcomeSec({super.key});
@@ -23,7 +24,7 @@ class WelcomeSec extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Saudi First Elevators",
+                  'saudi_first_elevators'.tr,
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width < 768 ? 28 : 40,
                     color: Colors.white,
@@ -33,8 +34,8 @@ class WelcomeSec extends StatelessWidget {
                 SizedBox(height: 15),
                 Text(
                   MediaQuery.of(context).size.width < 768
-                      ? "We seek to be the best choice for our customers in the field of elevators and to extend our branches beyond the boundaries of the local market to reach all markets in the Middle East."
-                      : "We seek to be the best choice for our customers in the field of elevators and to extend our branches beyond the \nboundaries of the local market to reach all markets in the Middle East.",
+                      ? 'welcome_subtitle'.tr
+                      : 'welcome_subtitle'.tr,
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width < 768 ? 14 : 15,
                     color: Colors.white,
@@ -59,7 +60,7 @@ class WelcomeSec extends StatelessWidget {
                   ),
                   onPressed: () {},
                   child: Text(
-                    "More about us",
+                    'more_about_us'.tr,
                     style: TextStyle(
                       fontSize:
                           MediaQuery.of(context).size.width < 768 ? 14 : 16,
