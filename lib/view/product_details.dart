@@ -1,0 +1,229 @@
+import 'package:flutter/material.dart';
+import 'package:elevatorweb/widgets/footer.dart';
+import 'package:elevatorweb/widgets/page_name&photo.dart';
+import 'package:elevatorweb/models/product_model.dart';
+import 'package:get/get.dart';
+
+class ProductDetails extends StatelessWidget {
+  final ProductModel product;
+
+  const ProductDetails({super.key, required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            PageNamePhoto(pagename: product.title),
+
+            // Product Details Section
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Product Image and Basic Info
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        // Product Image
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                              image: AssetImage(product.image),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+
+                        // Product Title
+                        Text(
+                          product.title,
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff0B415A),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 20),
+
+                        // Product Description
+                        Text(
+                          product.description,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey[700],
+                            height: 1.6,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 30),
+
+                  // Additional Product Information
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Color(0xff0B415A).withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'product_features'.tr,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff0B415A),
+                          ),
+                        ),
+                        SizedBox(height: 15),
+
+                        // Feature List
+                        _buildFeatureList(),
+
+                        SizedBox(height: 20),
+
+                        // Contact Information
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: Color(0xff0B415A).withOpacity(0.2),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'interested_in_this_product'.tr,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff0B415A),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'contact_us_for_more_info'.tr,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              SizedBox(height: 15),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Navigate to contact page or show contact form
+                                  Get.snackbar(
+                                    'contact_us'.tr,
+                                    'we_will_contact_you_soon'.tr,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor: Color(0xff0B415A),
+                                    colorText: Colors.white,
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xff0B415A),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 30,
+                                    vertical: 12,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Text(
+                                  'contact_us'.tr,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Footer(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFeatureList() {
+    // You can customize this based on your product features
+    List<String> features = [
+      'high_quality_materials'.tr,
+      'advanced_technology'.tr,
+      'energy_efficient'.tr,
+      'easy_maintenance'.tr,
+      'safety_certified'.tr,
+      'customizable_options'.tr,
+    ];
+
+    return Column(
+      children:
+          features
+              .map(
+                (feature) => Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.check_circle,
+                        color: Color(0xff0B415A),
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          feature,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+              .toList(),
+    );
+  }
+}
+

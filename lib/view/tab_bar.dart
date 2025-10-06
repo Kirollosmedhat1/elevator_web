@@ -20,25 +20,25 @@ class Tab_Bar extends StatefulWidget {
 class _Tab_BarState extends State<Tab_Bar> {
   int _currentIndex = 0;
 
-  static final List<String> menuItems = [
+  List<String> get menuItems => [
     'home'.tr,
     'about'.tr,
-    'contact'.tr,
-    'careers'.tr,
-    'gallery'.tr,
     'products'.tr,
     'previous_work'.tr,
+    'gallery'.tr,
+    'contact'.tr,
+    'careers'.tr,
     'articles'.tr,
   ];
 
   static final List<Widget> tabViews = [
     Home(),
     AboutCombany(),
-    ContactUs(),
-    Careers(),
-    Gallery(),
     Products_solutions(),
     PreviusWork(),
+    Gallery(),
+    ContactUs(),
+    Careers(),
     Articles(),
   ];
 
@@ -129,7 +129,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           image: DecorationImage(
-                            image: AssetImage("assets/images/company_logo.png"),
+                            image: AssetImage("assets/images/beamslogo.png"),
                             fit: BoxFit.contain,
                           ),
                         ),
@@ -163,7 +163,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                       decoration: BoxDecoration(
                         color: Color(0xff89CFF0),
                         image: DecorationImage(
-                          image: AssetImage("assets/images/company_logo.png"),
+                          image: AssetImage("assets/images/beamslogo.png"),
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -324,9 +324,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/company_logo.png",
-                              ),
+                              image: AssetImage("assets/images/beamslogo.png"),
                               fit: BoxFit.contain,
                             ),
                           ),

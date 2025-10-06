@@ -111,7 +111,6 @@ class IntroSec extends StatelessWidget {
                 ),
                 items:
                     [
-                      "assets/images/stairs.jpeg",
                       "assets/images/elevator.png",
                       "assets/images/3.png",
                       "assets/images/4.png",
@@ -225,7 +224,6 @@ class IntroSec extends StatelessWidget {
                 ),
                 items:
                     [
-                      "assets/images/stairs.jpeg",
                       "assets/images/elevator.png",
                       "assets/images/3.png",
                       "assets/images/4.png",

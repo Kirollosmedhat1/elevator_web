@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:elevatorweb/controllers/animation_controller.dart';
+import 'package:elevatorweb/widgets/about_us_card.dart';
 import 'package:get/get.dart';
 
 class ImpAboutusSecController extends GetxController {
@@ -166,37 +167,41 @@ class ImpAboutusSec extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(width: 50),
-                            _buildAboutCard(
-                              context,
-                              impController.aboutCards[0]["image"]!,
-                              impController.aboutCards[0]["title"]!,
-                              impController.aboutCards[0]["description"]!,
-                              impController,
-                              0,
+                            AboutUsCard(
+                              context: context,
+                              image: impController.aboutCards[0]["image"]!,
+                              title: impController.aboutCards[0]["title"]!,
+                              description:
+                                  impController.aboutCards[0]["description"]!,
+                              controller: impController,
+                              cardIndex: 0,
                             ),
-                            _buildAboutCard(
-                              context,
-                              impController.aboutCards[1]["image"]!,
-                              impController.aboutCards[1]["title"]!,
-                              impController.aboutCards[1]["description"]!,
-                              impController,
-                              1,
+                            AboutUsCard(
+                              context: context,
+                              image: impController.aboutCards[1]["image"]!,
+                              title: impController.aboutCards[1]["title"]!,
+                              description:
+                                  impController.aboutCards[1]["description"]!,
+                              controller: impController,
+                              cardIndex: 1,
                             ),
-                            _buildAboutCard(
-                              context,
-                              impController.aboutCards[2]["image"]!,
-                              impController.aboutCards[2]["title"]!,
-                              impController.aboutCards[2]["description"]!,
-                              impController,
-                              2,
+                            AboutUsCard(
+                              context: context,
+                              image: impController.aboutCards[2]["image"]!,
+                              title: impController.aboutCards[2]["title"]!,
+                              description:
+                                  impController.aboutCards[2]["description"]!,
+                              controller: impController,
+                              cardIndex: 2,
                             ),
-                            _buildAboutCard(
-                              context,
-                              impController.aboutCards[3]["image"]!,
-                              impController.aboutCards[3]["title"]!,
-                              impController.aboutCards[3]["description"]!,
-                              impController,
-                              3,
+                            AboutUsCard(
+                              context: context,
+                              image: impController.aboutCards[3]["image"]!,
+                              title: impController.aboutCards[3]["title"]!,
+                              description:
+                                  impController.aboutCards[3]["description"]!,
+                              controller: impController,
+                              cardIndex: 3,
                             ),
                           ],
                         ),
@@ -216,7 +221,7 @@ class ImpAboutusSec extends StatelessWidget {
       children: [
         // Mobile slideshow container
         Container(
-          height: MediaQuery.of(context).size.height * 0.6,
+          height: MediaQuery.of(context).size.height * 0.45,
           child: Row(
             children: [
               // Left arrow
@@ -239,13 +244,13 @@ class ImpAboutusSec extends StatelessWidget {
                     final card = controller.aboutCards[index];
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: _buildAboutCard(
-                        context,
-                        card["image"]!,
-                        card["title"]!,
-                        card["description"]!,
-                        controller,
-                        index,
+                      child: AboutUsCard(
+                        context: context,
+                        image: card["image"]!,
+                        title: card["title"]!,
+                        description: card["description"]!,
+                        controller: controller,
+                        cardIndex: index,
                       ),
                     );
                   },
@@ -288,100 +293,6 @@ class ImpAboutusSec extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildAboutCard(
-    BuildContext context,
-    String image,
-    String title,
-    String description,
-    ImpAboutusSecController controller,
-    int cardIndex,
-  ) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.55,
-      width: MediaQuery.of(context).size.height * 0.365,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Color(0xff0B415A), width: 3),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MouseRegion(
-            onEnter: (_) => controller._onImageHover(true, cardIndex),
-            onExit: (_) => controller._onImageHover(false, cardIndex),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: MediaQuery.of(context).size.height * 1,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
-                border: Border(
-                  bottom: BorderSide(color: Color(0xff0B415A), width: 3),
-                ),
-              ),
-              clipBehavior: Clip.hardEdge,
-              child: Stack(
-                children: [
-                  Obx(
-                    () => AnimatedScale(
-                      duration: Duration(milliseconds: 600),
-                      scale:
-                          controller.cardHoverStates[cardIndex].value
-                              ? 1.2
-                              : 1.0,
-                      child: Image.asset(
-                        image,
-                        fit: BoxFit.cover,
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        width: MediaQuery.of(context).size.height * 1,
-                      ),
-                    ),
-                  ),
-                  Obx(
-                    () => AnimatedOpacity(
-                      duration: Duration(milliseconds: 600),
-                      opacity:
-                          controller.cardHoverStates[cardIndex].value
-                              ? 0.3
-                              : 0.0,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        width: MediaQuery.of(context).size.height * 1,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: MediaQuery.of(context).size.width > 768 ? 11 : 14,
-                  fontWeight: FontWeight.bold,
-                ),
-                children: [
-                  TextSpan(text: "$title\n\n"),
-                  TextSpan(
-                    text: description,
-                    style: TextStyle(fontWeight: FontWeight.w100, height: 2),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:elevatorweb/view/gallery.dart';
 import 'package:elevatorweb/view/home.dart';
 import 'package:elevatorweb/view/previus_work.dart';
 import 'package:elevatorweb/view/products&solutions.dart';
+import 'package:elevatorweb/view/product_details.dart';
 import 'package:elevatorweb/view/tab_bar.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,10 @@ class AppRoutes {
     GetPage(name: '/careers', page: () => Careers()),
     GetPage(name: '/gallery', page: () => Gallery()),
     GetPage(name: '/products', page: () => Products_solutions()),
+    GetPage(
+      name: '/product-details',
+      page: () => ProductDetails(product: Get.arguments),
+    ),
     GetPage(name: '/prevwork', page: () => PreviusWork()),
     GetPage(name: '/articles', page: () => Articles()),
   ];
