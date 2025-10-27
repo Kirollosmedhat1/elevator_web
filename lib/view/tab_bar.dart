@@ -78,7 +78,7 @@ class _Tab_BarState extends State<Tab_Bar> {
         isMobile
             ? Scaffold(
               appBar: AppBar(
-                backgroundColor: const Color(0xff89CFF0),
+                backgroundColor: const Color(0xFF5a9bd3),
                 leading: Builder(
                   builder:
                       (context) => IconButton(
@@ -161,7 +161,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                       height: 120,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color(0xff89CFF0),
+                        color: Color(0xFF5a9bd3),
                         image: DecorationImage(
                           image: AssetImage("assets/images/beamslogo.png"),
                           fit: BoxFit.contain,
@@ -258,7 +258,7 @@ class _Tab_BarState extends State<Tab_Bar> {
               length: menuItems.length,
               child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: const Color(0xff89CFF0),
+                  backgroundColor: const Color(0xFF5a9bd3),
                   leadingWidth: 120,
                   leading: Row(
                     children: [
