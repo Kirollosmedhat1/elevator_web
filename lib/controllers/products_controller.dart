@@ -17,61 +17,7 @@ class ProductsController extends GetxController {
   RxBool isLoading = false.obs;
   RxString errorMessage = ''.obs;
 
-  List<ProductModel> get products => productsList.isEmpty ? _getFallbackProducts() : productsList;
-
-  /// Get fallback products for when Supabase is not available
-  List<ProductModel> _getFallbackProducts() => [
-    ProductModel(
-      image: "assets/images/5.png",
-      title: "escalator".tr,
-      description: "escalator_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/3.png",
-      title: "home_elevators".tr,
-      description: "home_elevators_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/8.png",
-      title: "external_elevator".tr,
-      description: "external_elevator_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/5.png",
-      title: "freight_elevators".tr,
-      description: "freight_elevators_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/5.png",
-      title: "hydraulic_elevators".tr,
-      description: "hydraulic_elevators_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/5.png",
-      title: "panoramic_elevators".tr,
-      description: "panoramic_elevators_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/5.png",
-      title: 'patient_elevators'.tr,
-      description: "patient_elevators_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/5.png",
-      title: "moving_walkways".tr,
-      description: "moving_walkways_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/5.png",
-      title: "dumbwaiters".tr,
-      description: "dumbwaiters_desc".tr,
-    ),
-    ProductModel(
-      image: "assets/images/5.png",
-      title: "passenger_elevators".tr,
-      description: "passenger_elevators_desc".tr,
-    ),
-  ];
+  List<ProductModel> get products => productsList;
 
   @override
   void onInit() {
@@ -89,38 +35,35 @@ class ProductsController extends GetxController {
       // Get current language (default to 'en')
       final String currentLang = Get.locale?.languageCode ?? 'en';
 
-      // Fetch products for the current language
+      // Fetch products for the current language from Supabase
       final response = await SupabaseService.client
           .from('products')
           .select()
           .eq('lang', currentLang)
           .order('id', ascending: true);
 
-      if (response.isNotEmpty) {
-        productsList.value = (response as List)
-            .map((item) => ProductModel.fromMap(item as Map<String, dynamic>))
-            .toList();
-      } else {
-        // Fallback to English if current language has no data
-        final fallbackResponse = await SupabaseService.client
-            .from('products')
-            .select()
-            .eq('lang', 'en')
-            .order('id', ascending: true);
-
-        productsList.value = (fallbackResponse as List)
-            .map((item) => ProductModel.fromMap(item as Map<String, dynamic>))
-            .toList();
-      }
+      // Map the response to ProductModel list
+      productsList.value = (response as List)
+          .map(
+            (item) => ProductModel.fromMap(item as Map<String, dynamic>),
+          )
+          .toList();
 
       // Initialize hover states for each product
-      cardHoverStates = List.generate(productsList.length, (index) => false.obs);
+      cardHoverStates = List.generate(
+        productsList.length,
+        (index) => false.obs,
+      );
+
+      if (productsList.isEmpty) {
+        errorMessage.value =
+            'No products found for language: $currentLang';
+      }
     } catch (e) {
       print('Error fetching products: $e');
-      errorMessage.value = 'Failed to load products';
-      // Use fallback products on error
-      productsList.value = _getFallbackProducts();
-      cardHoverStates = List.generate(productsList.length, (index) => false.obs);
+      errorMessage.value = 'Error: ${e.toString()}';
+      productsList.value = [];
+      cardHoverStates = [];
     } finally {
       isLoading.value = false;
     }

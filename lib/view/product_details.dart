@@ -51,58 +51,80 @@ class ProductDetails extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: product.image.startsWith('http')
-                                ? Image.network(
-                                    product.image,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        color: Colors.grey[300],
-                                        child: Center(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.image_not_supported,
+                            child:
+                                product.image.startsWith('http')
+                                    ? Image.network(
+                                      product.image,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (
+                                        context,
+                                        error,
+                                        stackTrace,
+                                      ) {
+                                        return Container(
+                                          color: Colors.grey[300],
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.image_not_supported,
                                                   size: 48,
-                                                  color: Colors.grey),
-                                              SizedBox(height: 10),
-                                              Text('Image not available',
+                                                  color: Colors.grey,
+                                                ),
+                                                SizedBox(height: 10),
+                                                Text(
+                                                  'Image not available',
                                                   style: TextStyle(
-                                                      color: Colors.grey)),
-                                            ],
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                    loadingBuilder: (context, child,
-                                        loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return Center(
-                                        child: CircularProgressIndicator(
-                                          value: loadingProgress
-                                                      .expectedTotalBytes !=
-                                                  null
-                                              ? loadingProgress
-                                                      .cumulativeBytesLoaded /
-                                                  loadingProgress
-                                                      .expectedTotalBytes!
-                                              : null,
-                                        ),
-                                      );
-                                    },
-                                  )
-                                : Image.asset(
-                                    product.image,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        color: Colors.grey[300],
-                                        child: Icon(Icons.image_not_supported,
-                                            size: 48, color: Colors.grey),
-                                      );
-                                    },
-                                  ),
+                                        );
+                                      },
+                                      loadingBuilder: (
+                                        context,
+                                        child,
+                                        loadingProgress,
+                                      ) {
+                                        if (loadingProgress == null)
+                                          return child;
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value:
+                                                loadingProgress
+                                                            .expectedTotalBytes !=
+                                                        null
+                                                    ? loadingProgress
+                                                            .cumulativeBytesLoaded /
+                                                        loadingProgress
+                                                            .expectedTotalBytes!
+                                                    : null,
+                                          ),
+                                        );
+                                      },
+                                    )
+                                    : Image.asset(
+                                      product.image,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (
+                                        context,
+                                        error,
+                                        stackTrace,
+                                      ) {
+                                        return Container(
+                                          color: Colors.grey[300],
+                                          child: Icon(
+                                            Icons.image_not_supported,
+                                            size: 48,
+                                            color: Colors.grey,
+                                          ),
+                                        );
+                                      },
+                                    ),
                           ),
                         ),
                         SizedBox(height: 20),
@@ -279,4 +301,3 @@ class ProductDetails extends StatelessWidget {
     );
   }
 }
-

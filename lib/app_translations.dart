@@ -37,47 +37,47 @@ class AppTranslations extends Translations {
       'wide_variety_of_products': 'WIDE VARIETY OF PRODUCTS',
       'wide_variety_of_products_desc':
           'The wide variety of Beams Elevators products gives customers a lot of options that add to the beauty of the decorative form of the building and give a state of harmony and integration between them and the rest of the building components.',
-      // products sec
-      'our products': 'Our Products',
-      'escalator': 'Escalator',
-      'escalator_desc':
-          'An escalator is one of the innovative engineering solutions that has contributed to improving human convenience. It allows safe, fast, and effortless movement between floors. If you own a service facility or plan to equip your building with an electric escalator to serve individuals, you need to know what an escalator is, what it consists of, and the best escalator companies for sale in Egypt. In the following lines, we will highlight the specifications of electric escalators, their advantages, estimated prices, and more.',
+      // // products sec
+      // 'our products': 'Our Products',
+      // 'escalator': 'Escalator',
+      // 'escalator_desc':
+      //     'An escalator is one of the innovative engineering solutions that has contributed to improving human convenience. It allows safe, fast, and effortless movement between floors. If you own a service facility or plan to equip your building with an electric escalator to serve individuals, you need to know what an escalator is, what it consists of, and the best escalator companies for sale in Egypt. In the following lines, we will highlight the specifications of electric escalators, their advantages, estimated prices, and more.',
 
-      'external_elevator': 'External Elevator',
-      'external_elevator_desc':
-          'No one can deny the important role elevators play in multi-story buildings, as they make vertical movement effortless. With the significant advancements in elevator technology in recent years, many designs and models have emerged, offering architects more creative and aesthetic choices. Among the best results of this development is the panoramic external elevator, which combines elegance with functionality and easy maintenance. Whether you are a property owner or an engineer supervising construction, if you are interested in installing an external or internal elevator and want to know the best installation methods and companies, continue reading.',
+      // 'external_elevator': 'External Elevator',
+      // 'external_elevator_desc':
+      //     'No one can deny the important role elevators play in multi-story buildings, as they make vertical movement effortless. With the significant advancements in elevator technology in recent years, many designs and models have emerged, offering architects more creative and aesthetic choices. Among the best results of this development is the panoramic external elevator, which combines elegance with functionality and easy maintenance. Whether you are a property owner or an engineer supervising construction, if you are interested in installing an external or internal elevator and want to know the best installation methods and companies, continue reading.',
 
-      'home_elevators': 'Home Elevators',
-      'home_elevators_desc':
-          'Was your property designed without an elevator shaft? Do you want to install a small lift in your villa to add comfort and luxury? Beams Elevators Company provides small residential elevators without the need for foundation work, as well as indoor lifts for villas. But when should you consider installing a small indoor lift? What designs are available? What are home elevator prices in Egypt? Is there a budget-friendly option? What are the types of electric elevators and their costs? And how can you choose the best model? The following lines will answer all these questions.',
+      // 'home_elevators': 'Home Elevators',
+      // 'home_elevators_desc':
+      //     'Was your property designed without an elevator shaft? Do you want to install a small lift in your villa to add comfort and luxury? Beams Elevators Company provides small residential elevators without the need for foundation work, as well as indoor lifts for villas. But when should you consider installing a small indoor lift? What designs are available? What are home elevator prices in Egypt? Is there a budget-friendly option? What are the types of electric elevators and their costs? And how can you choose the best model? The following lines will answer all these questions.',
 
-      'freight_elevators': 'Freight Elevators',
-      'freight_elevators_desc':
-          'Freight elevators are no longer optional in large companies and factories with multiple floors. They have become a cornerstone for transporting goods and products. Unlike passenger elevators, they are designed specifically for industrial needs. Their main role is to transport goods of different sizes between floors safely, efficiently, and without damage. Beams Elevators Company supplies freight elevators based on the nature of the facility and the type of goods to be moved, selecting the right size and flooring accordingly.',
+      // 'freight_elevators': 'Freight Elevators',
+      // 'freight_elevators_desc':
+      //     'Freight elevators are no longer optional in large companies and factories with multiple floors. They have become a cornerstone for transporting goods and products. Unlike passenger elevators, they are designed specifically for industrial needs. Their main role is to transport goods of different sizes between floors safely, efficiently, and without damage. Beams Elevators Company supplies freight elevators based on the nature of the facility and the type of goods to be moved, selecting the right size and flooring accordingly.',
 
-      'hydraulic_elevators': 'Hydraulic Elevators',
-      'hydraulic_elevators_desc':
-          'Have you ever heard of hydraulic elevators? If you are considering installing an elevator and were told that hydraulic lifts are the right choice, you may wonder how they work and what their benefits are. Hydraulic elevators operate using a piston located beneath the cabin. In this article, we will explore how they function, their features, and their price range.',
+      // 'hydraulic_elevators': 'Hydraulic Elevators',
+      // 'hydraulic_elevators_desc':
+      //     'Have you ever heard of hydraulic elevators? If you are considering installing an elevator and were told that hydraulic lifts are the right choice, you may wonder how they work and what their benefits are. Hydraulic elevators operate using a piston located beneath the cabin. In this article, we will explore how they function, their features, and their price range.',
 
-      'panoramic_elevators': 'Panoramic Elevators',
-      'panoramic_elevators_desc':
-          'Some buildings require elevators not only as a transportation tool but also as an element of elegance and beauty. This is where panoramic elevators come in. They are designed with glass structures that blend with the architectural style of the building, adding aesthetic value while serving as passenger elevators.',
+      // 'panoramic_elevators': 'Panoramic Elevators',
+      // 'panoramic_elevators_desc':
+      //     'Some buildings require elevators not only as a transportation tool but also as an element of elegance and beauty. This is where panoramic elevators come in. They are designed with glass structures that blend with the architectural style of the building, adding aesthetic value while serving as passenger elevators.',
 
-      'patient_elevators': 'Patient & Hospital Elevators',
-      'patient_elevators_desc':
-          'There is no doubt that elevators play a vital role in multi-story buildings, making movement effortless. They come in many forms and serve various purposes, widely used in residential, commercial, and public facilities. Patient elevators, in particular, are essential in hospitals, allowing the safe and easy transport of patients on stretchers or wheelchairs between floors.',
+      // 'patient_elevators': 'Patient & Hospital Elevators',
+      // 'patient_elevators_desc':
+      //     'There is no doubt that elevators play a vital role in multi-story buildings, making movement effortless. They come in many forms and serve various purposes, widely used in residential, commercial, and public facilities. Patient elevators, in particular, are essential in hospitals, allowing the safe and easy transport of patients on stretchers or wheelchairs between floors.',
 
-      'moving_walkways': 'Moving Walkways',
-      'moving_walkways_desc':
-          'Do you own a mall, a large retail store, or a supermarket with multiple floors? To provide convenience for your visitors, moving walkways are one of the best solutions. In this article, we will introduce the types of moving walkways, their features, and how they improve customer experience. Also known as travelators, they ensure smooth and comfortable navigation inside large spaces.',
+      // 'moving_walkways': 'Moving Walkways',
+      // 'moving_walkways_desc':
+      //     'Do you own a mall, a large retail store, or a supermarket with multiple floors? To provide convenience for your visitors, moving walkways are one of the best solutions. In this article, we will introduce the types of moving walkways, their features, and how they improve customer experience. Also known as travelators, they ensure smooth and comfortable navigation inside large spaces.',
 
-      'dumbwaiters': 'Restaurant Dumbwaiters',
-      'dumbwaiters_desc':
-          'Some people mistakenly think that restaurant food lifts are small passenger elevators, but this is not true. Dumbwaiters are compact elevators specifically designed to transport food and kitchen items between floors. They cannot carry people but are an essential part of restaurant operations, making service faster and easier.',
+      // 'dumbwaiters': 'Restaurant Dumbwaiters',
+      // 'dumbwaiters_desc':
+      //     'Some people mistakenly think that restaurant food lifts are small passenger elevators, but this is not true. Dumbwaiters are compact elevators specifically designed to transport food and kitchen items between floors. They cannot carry people but are an essential part of restaurant operations, making service faster and easier.',
 
-      'passenger_elevators': 'Passenger Elevators',
-      'passenger_elevators_desc':
-          'Electric passenger elevators are an integral part of modern multi-story buildings. They make vertical mobility quick and effortless, saving time and energy. If you are a property owner seeking a reliable elevator company, continue reading to learn everything about passenger elevators, their features, and how to choose the right one for your building.',
+      // 'passenger_elevators': 'Passenger Elevators',
+      // 'passenger_elevators_desc':
+      //     'Electric passenger elevators are an integral part of modern multi-story buildings. They make vertical mobility quick and effortless, saving time and energy. If you are a property owner seeking a reliable elevator company, continue reading to learn everything about passenger elevators, their features, and how to choose the right one for your building.',
 
       // Footer
       'sfe': 'SFE',
@@ -225,47 +225,47 @@ class AppTranslations extends Translations {
       'wide_variety_of_products': 'تنوع كبير في المنتجات',
       'wide_variety_of_products_desc':
           'يمنح التنوع الكبير في منتجات السعودية الأولى العملاء الكثير من الخيارات التي تضيف إلى جمال الشكل الديكوري للمبنى وتعطي حالة من الانسجام والتكامل بينها وبين باقي مكونات المبنى.',
-      //products sec
-      'our products': 'منتجاتنا',
-      'escalator': 'السلم الكهربائي',
-      'escalator_desc':
-          'يُعتبر السلم الكهربائي واحدًا من الحلول الهندسية المبتكرة التي ساهمت في تحسين راحة الإنسان، حيث يتيح التنقل بين الطوابق بشكل آمن وسريع ودون أي عناء. وإذا كنت تمتلك مؤسسة خدمية أو تخطط لتجهيز المبنى الخاص بك بتركيب سلم كهربائي لخدمة الأفراد وتسهيل الحركة، عليك معرفة ما هو السلم الكهربائي ومم يتكون، وأفضل شركات السلالم الكهربائية للبيع في مصر. من خلال السطور التالية سنتعرف على مواصفات السلالم الكهربائية ومميزاتها وأسعارها التقديرية وغير ذلك.',
+      // //products sec
+      // 'our products': 'منتجاتنا',
+      // 'escalator': 'السلم الكهربائي',
+      // 'escalator_desc':
+      //     'يُعتبر السلم الكهربائي واحدًا من الحلول الهندسية المبتكرة التي ساهمت في تحسين راحة الإنسان، حيث يتيح التنقل بين الطوابق بشكل آمن وسريع ودون أي عناء. وإذا كنت تمتلك مؤسسة خدمية أو تخطط لتجهيز المبنى الخاص بك بتركيب سلم كهربائي لخدمة الأفراد وتسهيل الحركة، عليك معرفة ما هو السلم الكهربائي ومم يتكون، وأفضل شركات السلالم الكهربائية للبيع في مصر. من خلال السطور التالية سنتعرف على مواصفات السلالم الكهربائية ومميزاتها وأسعارها التقديرية وغير ذلك.',
 
-      'external_elevator': 'الأسانسير الخارجي',
-      'external_elevator_desc':
-          'لا يمكن لأحد إنكار الدور الهام الذي تلعبه المصاعد في المباني متعددة الطوابق، حيث تجعل التنقل العمودي سهلاً ودون عناء. ومع التطور الكبير في تكنولوجيا المصاعد خلال السنوات الأخيرة ظهرت العديد من التصاميم والنماذج المختلفة، مما أتاح للمهندسين خيارات أكثر إبداعًا وجمالية. ويُعد الأسانسير الخارجي البانورامي أحد أفضل نتائج هذا التطور، حيث يجمع بين الأناقة والكفاءة وسهولة الصيانة. سواءً كنت مالكًا لعقار أو مهندسًا مشرفًا على البناء، إذا كنت مهتمًا بتركيب اسانسير خارجي أو داخلي وترغب في معرفة أفضل طرق التركيب وأفضل الشركات، تابع القراءة.',
+      // 'external_elevator': 'الأسانسير الخارجي',
+      // 'external_elevator_desc':
+      //     'لا يمكن لأحد إنكار الدور الهام الذي تلعبه المصاعد في المباني متعددة الطوابق، حيث تجعل التنقل العمودي سهلاً ودون عناء. ومع التطور الكبير في تكنولوجيا المصاعد خلال السنوات الأخيرة ظهرت العديد من التصاميم والنماذج المختلفة، مما أتاح للمهندسين خيارات أكثر إبداعًا وجمالية. ويُعد الأسانسير الخارجي البانورامي أحد أفضل نتائج هذا التطور، حيث يجمع بين الأناقة والكفاءة وسهولة الصيانة. سواءً كنت مالكًا لعقار أو مهندسًا مشرفًا على البناء، إذا كنت مهتمًا بتركيب اسانسير خارجي أو داخلي وترغب في معرفة أفضل طرق التركيب وأفضل الشركات، تابع القراءة.',
 
-      'home_elevators': 'المصاعد المنزلية',
-      'home_elevators_desc':
-          'هل صُمم عقارك دون تأسيس لمكان المصعد؟ هل ترغب في تركيب مصعد صغير في الفيلا الخاصة بك ليمنحك الراحة والرفاهية؟ تقدم شركة بيمز للمصاعد مصاعد منزلية صغيرة بدون الحاجة إلى أعمال تأسيس، بالإضافة إلى مصاعد داخلية للفلل. لكن متى نلجأ لتركيب مصعد داخلي صغير؟ وما هي التصاميم المتوفرة؟ وما هي أسعار المصاعد المنزلية في مصر؟ وهل يوجد خيار اقتصادي؟ وما هي أنواع المصاعد الكهربائية وأسعارها؟ وكيف تختار الأنسب منها؟ سنجيب على هذه التساؤلات في السطور التالية.',
+      // 'home_elevators': 'المصاعد المنزلية',
+      // 'home_elevators_desc':
+      //     'هل صُمم عقارك دون تأسيس لمكان المصعد؟ هل ترغب في تركيب مصعد صغير في الفيلا الخاصة بك ليمنحك الراحة والرفاهية؟ تقدم شركة بيمز للمصاعد مصاعد منزلية صغيرة بدون الحاجة إلى أعمال تأسيس، بالإضافة إلى مصاعد داخلية للفلل. لكن متى نلجأ لتركيب مصعد داخلي صغير؟ وما هي التصاميم المتوفرة؟ وما هي أسعار المصاعد المنزلية في مصر؟ وهل يوجد خيار اقتصادي؟ وما هي أنواع المصاعد الكهربائية وأسعارها؟ وكيف تختار الأنسب منها؟ سنجيب على هذه التساؤلات في السطور التالية.',
 
-      'freight_elevators': 'مصاعد البضائع',
-      'freight_elevators_desc':
-          'لم تعد مصاعد البضائع أمرًا اختياريًا في الشركات والمصانع الكبرى متعددة الطوابق، بل أصبحت ركيزة أساسية لنقل البضائع والمنتجات. وتختلف عن مصاعد الركاب نظرًا لطبيعة عملها الصناعي. يتمثل دورها الأساسي في نقل البضائع بمختلف أحجامها بين الطوابق بسهولة وأمان ودون تلف. وتوفر شركة بيمز للمصاعد مصاعد بضائع وفقًا لطبيعة المنشأة ونوع البضائع المراد نقلها، مع اختيار الحجم والأرضيات المناسبة.',
+      // 'freight_elevators': 'مصاعد البضائع',
+      // 'freight_elevators_desc':
+      //     'لم تعد مصاعد البضائع أمرًا اختياريًا في الشركات والمصانع الكبرى متعددة الطوابق، بل أصبحت ركيزة أساسية لنقل البضائع والمنتجات. وتختلف عن مصاعد الركاب نظرًا لطبيعة عملها الصناعي. يتمثل دورها الأساسي في نقل البضائع بمختلف أحجامها بين الطوابق بسهولة وأمان ودون تلف. وتوفر شركة بيمز للمصاعد مصاعد بضائع وفقًا لطبيعة المنشأة ونوع البضائع المراد نقلها، مع اختيار الحجم والأرضيات المناسبة.',
 
-      'hydraulic_elevators': 'المصاعد الهيدروليكية',
-      'hydraulic_elevators_desc':
-          'هل سمعت من قبل عن المصاعد الهيدروليكية؟ إذا كنت تفكر في تركيب مصعد وأخبرك المختصون أن المصاعد الهيدروليكية هي الخيار المناسب، قد تتساءل كيف تعمل وما هي مميزاتها. تعمل هذه المصاعد عن طريق مكبس هيدروليكي يوجد أسفل الكابينة. في هذا المقال سنتعرف على آلية عملها، ومميزاتها، ونطاق أسعارها.',
+      // 'hydraulic_elevators': 'المصاعد الهيدروليكية',
+      // 'hydraulic_elevators_desc':
+      //     'هل سمعت من قبل عن المصاعد الهيدروليكية؟ إذا كنت تفكر في تركيب مصعد وأخبرك المختصون أن المصاعد الهيدروليكية هي الخيار المناسب، قد تتساءل كيف تعمل وما هي مميزاتها. تعمل هذه المصاعد عن طريق مكبس هيدروليكي يوجد أسفل الكابينة. في هذا المقال سنتعرف على آلية عملها، ومميزاتها، ونطاق أسعارها.',
 
-      'panoramic_elevators': 'مصاعد بانوراما',
-      'panoramic_elevators_desc':
-          'بعض المباني لا تحتاج المصاعد فقط كوسيلة للتنقل، بل تبحث أيضًا عن عنصر يضفي لمسة من الأناقة والجمال. هنا يأتي دور مصاعد البانوراما، حيث تُصمم بهياكل زجاجية تتناغم مع الطراز المعماري للمبنى، مما يضيف قيمة جمالية مع الحفاظ على وظيفتها كمصاعد للركاب.',
+      // 'panoramic_elevators': 'مصاعد بانوراما',
+      // 'panoramic_elevators_desc':
+      //     'بعض المباني لا تحتاج المصاعد فقط كوسيلة للتنقل، بل تبحث أيضًا عن عنصر يضفي لمسة من الأناقة والجمال. هنا يأتي دور مصاعد البانوراما، حيث تُصمم بهياكل زجاجية تتناغم مع الطراز المعماري للمبنى، مما يضيف قيمة جمالية مع الحفاظ على وظيفتها كمصاعد للركاب.',
 
-      'patient_elevators': 'مصاعد المرضى والمستشفيات',
-      'patient_elevators_desc':
-          'لا شك أن المصاعد تلعب دورًا حيويًا في المباني متعددة الطوابق، حيث تجعل التنقل سهلاً ودون عناء. وتتوفر المصاعد بأشكال متعددة وتخدم أغراضًا مختلفة في المباني السكنية والتجارية والعامة. وتُعد مصاعد المرضى ضرورية بشكل خاص في المستشفيات، حيث تتيح نقل المرضى على الأسرة أو الكراسي المتحركة بين الطوابق بسهولة وأمان.',
+      // 'patient_elevators': 'مصاعد المرضى والمستشفيات',
+      // 'patient_elevators_desc':
+      //     'لا شك أن المصاعد تلعب دورًا حيويًا في المباني متعددة الطوابق، حيث تجعل التنقل سهلاً ودون عناء. وتتوفر المصاعد بأشكال متعددة وتخدم أغراضًا مختلفة في المباني السكنية والتجارية والعامة. وتُعد مصاعد المرضى ضرورية بشكل خاص في المستشفيات، حيث تتيح نقل المرضى على الأسرة أو الكراسي المتحركة بين الطوابق بسهولة وأمان.',
 
-      'moving_walkways': 'المشايات المتحركة',
-      'moving_walkways_desc':
-          'هل تمتلك مولًا أو متجرًا كبيرًا أو سوبرماركت متعدد الطوابق؟ لتوفير الراحة للزوار، تُعتبر المشايات المتحركة واحدة من أفضل الحلول. في هذا المقال سنتعرف على أنواع المشايات المتحركة ومميزاتها وكيفية تحسينها لتجربة العملاء. وتُعرف أيضًا باسم "الترافلاتور"، حيث تتيح التنقل السلس والمريح داخل المساحات الكبيرة.',
+      // 'moving_walkways': 'المشايات المتحركة',
+      // 'moving_walkways_desc':
+      //     'هل تمتلك مولًا أو متجرًا كبيرًا أو سوبرماركت متعدد الطوابق؟ لتوفير الراحة للزوار، تُعتبر المشايات المتحركة واحدة من أفضل الحلول. في هذا المقال سنتعرف على أنواع المشايات المتحركة ومميزاتها وكيفية تحسينها لتجربة العملاء. وتُعرف أيضًا باسم "الترافلاتور"، حيث تتيح التنقل السلس والمريح داخل المساحات الكبيرة.',
 
-      'dumbwaiters': 'مصاعد الطعام للمطاعم',
-      'dumbwaiters_desc':
-          'قد يعتقد البعض أن مصاعد الطعام في المطاعم هي مجرد مصاعد صغيرة للركاب، لكن هذا غير صحيح. فمصاعد الطعام (Dumbwaiters) هي مصاعد مدمجة صُممت خصيصًا لنقل الطعام والأدوات بين الطوابق. لا يمكن استخدامها لنقل الأشخاص، لكنها جزء أساسي من عمليات المطاعم حيث تسرّع الخدمة وتسهّلها.',
+      // 'dumbwaiters': 'مصاعد الطعام للمطاعم',
+      // 'dumbwaiters_desc':
+      //     'قد يعتقد البعض أن مصاعد الطعام في المطاعم هي مجرد مصاعد صغيرة للركاب، لكن هذا غير صحيح. فمصاعد الطعام (Dumbwaiters) هي مصاعد مدمجة صُممت خصيصًا لنقل الطعام والأدوات بين الطوابق. لا يمكن استخدامها لنقل الأشخاص، لكنها جزء أساسي من عمليات المطاعم حيث تسرّع الخدمة وتسهّلها.',
 
-      'passenger_elevators': 'المصاعد الكهربائية للركاب',
-      'passenger_elevators_desc':
-          'تُعد المصاعد الكهربائية للركاب جزءًا لا يتجزأ من المباني الحديثة، وخاصة متعددة الطوابق، حيث تسهل الحركة العمودية بسرعة وسهولة وتوفر الوقت والجهد. إذا كنت مالكًا لمبنى وتبحث عن شركة موثوقة للمصاعد، تابع القراءة لتتعرف على كل ما يخص مصاعد الركاب، مميزاتها، وكيفية اختيار الأنسب منها لمبناك.',
+      // 'passenger_elevators': 'المصاعد الكهربائية للركاب',
+      // 'passenger_elevators_desc':
+      //     'تُعد المصاعد الكهربائية للركاب جزءًا لا يتجزأ من المباني الحديثة، وخاصة متعددة الطوابق، حيث تسهل الحركة العمودية بسرعة وسهولة وتوفر الوقت والجهد. إذا كنت مالكًا لمبنى وتبحث عن شركة موثوقة للمصاعد، تابع القراءة لتتعرف على كل ما يخص مصاعد الركاب، مميزاتها، وكيفية اختيار الأنسب منها لمبناك.',
 
       // Footer
       'sfe': 'س.ف.إ',
