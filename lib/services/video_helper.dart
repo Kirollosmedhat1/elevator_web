@@ -6,7 +6,7 @@ class VideoHelper {
   /// Adds CORS proxy if needed for cross-origin videos
   static String getWebFriendlyUrl(String videoUrl) {
     // If it's already a local asset or data URL, return as-is
-    if (videoUrl.startsWith('asset://') || 
+    if (videoUrl.startsWith('asset://') ||
         videoUrl.startsWith('data:') ||
         videoUrl.startsWith('blob:')) {
       return videoUrl;
@@ -25,7 +25,7 @@ class VideoHelper {
   static bool likelyHasCorsIssues(String videoUrl) {
     // Supabase storage URLs typically support CORS
     if (videoUrl.contains('supabase.co')) return false;
-    
+
     // YouTube videos require specific handling
     if (videoUrl.contains('youtube.com') || videoUrl.contains('youtu.be')) {
       return true; // YouTube blocks direct video_player access
@@ -33,8 +33,8 @@ class VideoHelper {
 
     // Assume other origins might have CORS issues on web
     if (kIsWeb) {
-      return !videoUrl.contains('supabase.co') && 
-             !videoUrl.contains('localhost');
+      return !videoUrl.contains('supabase.co') &&
+          !videoUrl.contains('localhost');
     }
 
     return false;
@@ -55,7 +55,7 @@ class VideoHelper {
     if (url.startsWith('asset://')) return true;
     if (url.startsWith('data:')) return true;
     if (url.startsWith('blob:')) return true;
-    
+
     return uri.hasScheme && (uri.scheme == 'http' || uri.scheme == 'https');
   }
 }

@@ -91,3 +91,4 @@ CREATE INDEX IF NOT EXISTS idx_career_applications_career ON career_applications
 
 
 
+

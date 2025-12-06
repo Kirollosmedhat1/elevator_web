@@ -514,7 +514,7 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
   void _initializeController() {
     // Validate and prepare the video URL
     final videoUrl = widget.videoUrl.trim();
-    
+
     if (!VideoHelper.isValidVideoUrl(videoUrl)) {
       if (mounted) {
         setState(() {
@@ -525,7 +525,7 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
     }
 
     final webFriendlyUrl = VideoHelper.getWebFriendlyUrl(videoUrl);
-    
+
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(webFriendlyUrl),
       httpHeaders: {
@@ -534,7 +534,7 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
         'User-Agent': 'flutter-video-player/1.0',
       },
     )..setLooping(true);
-    
+
     _initialize();
   }
 

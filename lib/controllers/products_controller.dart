@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elevatorweb/models/product_model.dart';
+import 'package:elevatorweb/services/supabase_service.dart';
 
 class ProductsController extends GetxController {
   RxInt currentCardIndex = 0.obs;
@@ -11,7 +12,15 @@ class ProductsController extends GetxController {
   // Track hover state for each card individually
   List<RxBool> cardHoverStates = [];
 
-  List<ProductModel> get products => [
+  // Reactive products list from Supabase
+  RxList<ProductModel> productsList = <ProductModel>[].obs;
+  RxBool isLoading = false.obs;
+  RxString errorMessage = ''.obs;
+
+  List<ProductModel> get products => productsList.isEmpty ? _getFallbackProducts() : productsList;
+
+  /// Get fallback products for when Supabase is not available
+  List<ProductModel> _getFallbackProducts() => [
     ProductModel(
       image: "assets/images/5.png",
       title: "escalator".tr,
@@ -42,7 +51,7 @@ class ProductsController extends GetxController {
       title: "panoramic_elevators".tr,
       description: "panoramic_elevators_desc".tr,
     ),
-     ProductModel(
+    ProductModel(
       image: "assets/images/5.png",
       title: 'patient_elevators'.tr,
       description: "patient_elevators_desc".tr,
@@ -68,9 +77,58 @@ class ProductsController extends GetxController {
   void onInit() {
     super.onInit();
     pageController = PageController();
-    // Initialize hover states for each card
-    cardHoverStates = List.generate(products.length, (index) => false.obs);
-    startAutoSlide();
+    fetchProducts();
+  }
+
+  /// Fetch products from Supabase with language filter
+  Future<void> fetchProducts() async {
+    try {
+      isLoading.value = true;
+      errorMessage.value = '';
+
+      // Get current language (default to 'en')
+      final String currentLang = Get.locale?.languageCode ?? 'en';
+
+      // Fetch products for the current language
+      final response = await SupabaseService.client
+          .from('products')
+          .select()
+          .eq('lang', currentLang)
+          .order('id', ascending: true);
+
+      if (response.isNotEmpty) {
+        productsList.value = (response as List)
+            .map((item) => ProductModel.fromMap(item as Map<String, dynamic>))
+            .toList();
+      } else {
+        // Fallback to English if current language has no data
+        final fallbackResponse = await SupabaseService.client
+            .from('products')
+            .select()
+            .eq('lang', 'en')
+            .order('id', ascending: true);
+
+        productsList.value = (fallbackResponse as List)
+            .map((item) => ProductModel.fromMap(item as Map<String, dynamic>))
+            .toList();
+      }
+
+      // Initialize hover states for each product
+      cardHoverStates = List.generate(productsList.length, (index) => false.obs);
+    } catch (e) {
+      print('Error fetching products: $e');
+      errorMessage.value = 'Failed to load products';
+      // Use fallback products on error
+      productsList.value = _getFallbackProducts();
+      cardHoverStates = List.generate(productsList.length, (index) => false.obs);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  /// Refresh products when language changes
+  void onLanguageChange() {
+    fetchProducts();
   }
 
   void startAutoSlide() {
