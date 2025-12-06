@@ -18,6 +18,7 @@ class Home extends StatelessWidget {
     );
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: NotificationListener<ScrollNotification>(
         onNotification: (ScrollNotification scrollInfo) {
           animationController.checkScrollTrigger(

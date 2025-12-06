@@ -14,14 +14,14 @@ class AppTranslations extends Translations {
       'previous_work': 'Previous Work',
       'articles': 'Articles',
       // Home page
-      'saudi_first_elevators': 'Saudi First Elevators',
+      'saudi_first_elevators': 'Beams Elevators',
       'welcome_subtitle':
           'We seek to be the best choice for our customers in the field of elevators and to extend our branches beyond the boundaries of the local market to reach all markets in the Middle East.',
       'more_about_us': 'More about us',
       'our_services': 'Our Services',
       'contact_us': 'Contact Us',
       'intro_desc':
-          'Saudi First Elevators Company is honored in the field of supplying, installing, maintaining and modernizing elevators and escalators of all types of electric elevators, including: Elevators that work with a two-speed system, elevators that work with a variable speed system, hydraulic elevators. Food elevators (for villas and restaurants) (VVVF) service elevators in buildings. Cargo elevators. Patient elevators (bed elevator) Elevators without a machine room. Escalators. Mobile walkers outdoor elevators with the construction of all types of outdoor towers',
+          'Beams Elevators Company is honored in the field of supplying, installing, maintaining and modernizing elevators and escalators of all types of electric elevators, including: Elevators that work with a two-speed system, elevators that work with a variable speed system, hydraulic elevators. Food elevators (for villas and restaurants) (VVVF) service elevators in buildings. Cargo elevators. Patient elevators (bed elevator) Elevators without a machine room. Escalators. Mobile walkers outdoor elevators with the construction of all types of outdoor towers',
       // About us section
       'why_us': 'Why us?',
       'the_most_important_thing_about_us': 'THE MOST IMPORTANT THING ABOUT US',
@@ -36,7 +36,7 @@ class AppTranslations extends Translations {
           'The company performs regular monthly maintenance by specialized technicians with the highest degree of skill and speed and under the supervision of engineers with a high degree of specialization and competence in maintenance work.',
       'wide_variety_of_products': 'WIDE VARIETY OF PRODUCTS',
       'wide_variety_of_products_desc':
-          'The wide variety of First Saudi products gives customers a lot of options that add to the beauty of the decorative form of the building and give a state of harmony and integration between them and the rest of the building components.',
+          'The wide variety of Beams Elevators products gives customers a lot of options that add to the beauty of the decorative form of the building and give a state of harmony and integration between them and the rest of the building components.',
       // products sec
       'our products': 'Our Products',
       'escalator': 'Escalator',
@@ -49,11 +49,11 @@ class AppTranslations extends Translations {
 
       'home_elevators': 'Home Elevators',
       'home_elevators_desc':
-          'Was your property designed without an elevator shaft? Do you want to install a small lift in your villa to add comfort and luxury? First Saudi Company provides small residential elevators without the need for foundation work, as well as indoor lifts for villas. But when should you consider installing a small indoor lift? What designs are available? What are home elevator prices in Egypt? Is there a budget-friendly option? What are the types of electric elevators and their costs? And how can you choose the best model? The following lines will answer all these questions.',
+          'Was your property designed without an elevator shaft? Do you want to install a small lift in your villa to add comfort and luxury? Beams Elevators Company provides small residential elevators without the need for foundation work, as well as indoor lifts for villas. But when should you consider installing a small indoor lift? What designs are available? What are home elevator prices in Egypt? Is there a budget-friendly option? What are the types of electric elevators and their costs? And how can you choose the best model? The following lines will answer all these questions.',
 
       'freight_elevators': 'Freight Elevators',
       'freight_elevators_desc':
-          'Freight elevators are no longer optional in large companies and factories with multiple floors. They have become a cornerstone for transporting goods and products. Unlike passenger elevators, they are designed specifically for industrial needs. Their main role is to transport goods of different sizes between floors safely, efficiently, and without damage. First Saudi Company supplies freight elevators based on the nature of the facility and the type of goods to be moved, selecting the right size and flooring accordingly.',
+          'Freight elevators are no longer optional in large companies and factories with multiple floors. They have become a cornerstone for transporting goods and products. Unlike passenger elevators, they are designed specifically for industrial needs. Their main role is to transport goods of different sizes between floors safely, efficiently, and without damage. Beams Elevators Company supplies freight elevators based on the nature of the facility and the type of goods to be moved, selecting the right size and flooring accordingly.',
 
       'hydraulic_elevators': 'Hydraulic Elevators',
       'hydraulic_elevators_desc':
@@ -81,9 +81,9 @@ class AppTranslations extends Translations {
 
       // Footer
       'sfe': 'SFE',
-      'saudi_first_elevators_caps': 'SAUDI FIRST ELEVATORS',
+      'saudi_first_elevators_caps': 'BEAMS ELEVATORS',
       'company_desc':
-          'Saudi First Elevators in the field of supply, installation, maintenance and modernization of elevators and escalators of all kinds. Electric elevators include: Elevators that work with a two-speed system, elevators that work with a variable speed system (VVVF), hydraulic elevators. Food elevators (for villas and restaurants), service elevators in buildings. Cargo elevators. Patient elevators (bed elevator).',
+          'Beams Elevators in the field of supply, installation, maintenance and modernization of elevators and escalators of all kinds. Electric elevators include: Elevators that work with a two-speed system, elevators that work with a variable speed system (VVVF), hydraulic elevators. Food elevators (for villas and restaurants), service elevators in buildings. Cargo elevators. Patient elevators (bed elevator).',
       'important_links': 'IMPORTANT LINKS',
       'home': 'Home',
       'about_company': 'About Company',
@@ -124,7 +124,7 @@ class AppTranslations extends Translations {
       'reviewer_4': 'Mohammed Al-Rashid',
       'source_4': 'Google',
       'review_5':
-          'First Saudi Elevator Company carried out our work in Al Rehab in our building about a year ago, one of more than 100 pipes in Al Rehab... Although my opinion is just one of hundreds of customers in Al Rehab praising their work and professionalism, I would like to thank them very much.',
+          'Beams Elevators Company carried out our work in Al Rehab in our building about a year ago, one of more than 100 pipes in Al Rehab... Although my opinion is just one of hundreds of customers in Al Rehab praising their work and professionalism, I would like to thank them very much.',
       'reviewer_5': 'Lydia Emil',
       'source_5': 'Google',
       'review_6':
@@ -202,14 +202,14 @@ class AppTranslations extends Translations {
       'previous_work': 'الأعمال السابقة',
       'articles': 'المقالات',
       // Home page
-      'saudi_first_elevators': 'مصاعد السعودية الأولى',
+      'saudi_first_elevators': 'بيمز للمصاعد',
       'welcome_subtitle':
           'نسعى لأن نكون الخيار الأفضل لعملائنا في مجال المصاعد وأن نمد فروعنا خارج حدود السوق المحلي لنصل إلى جميع أسواق الشرق الأوسط.',
       'more_about_us': 'المزيد عنا',
       'our_services': 'خدماتنا',
       'contact_us': 'اتصل بنا',
       'intro_desc':
-          'تتشرف شركة مصاعد السعودية الأولى في مجال توريد وتركيب وصيانة وتحديث المصاعد والسلالم الكهربائية من جميع أنواع المصاعد الكهربائية، بما في ذلك: المصاعد التي تعمل بنظام السرعتين، المصاعد التي تعمل بنظام السرعة المتغيرة، المصاعد الهيدروليكية. مصاعد الطعام (للفلل والمطاعم) مصاعد الخدمة (VVVF) في المباني. مصاعد البضائع. مصاعد المرضى (مصعد سرير) مصاعد بدون غرفة ماكينات. السلالم الكهربائية. المشايات المتحركة المصاعد الخارجية مع إنشاء جميع أنواع الأبراج الخارجية.',
+          'تتشرف شركة بيمز للمصاعد في مجال توريد وتركيب وصيانة وتحديث المصاعد والسلالم الكهربائية من جميع أنواع المصاعد الكهربائية، بما في ذلك: المصاعد التي تعمل بنظام السرعتين، المصاعد التي تعمل بنظام السرعة المتغيرة، المصاعد الهيدروليكية. مصاعد الطعام (للفلل والمطاعم) مصاعد الخدمة (VVVF) في المباني. مصاعد البضائع. مصاعد المرضى (مصعد سرير) مصاعد بدون غرفة ماكينات. السلالم الكهربائية. المشايات المتحركة المصاعد الخارجية مع إنشاء جميع أنواع الأبراج الخارجية.',
       // About us section
       'why_us': 'لماذا نحن؟',
       'the_most_important_thing_about_us': 'أهم ما يميزنا',
@@ -237,11 +237,11 @@ class AppTranslations extends Translations {
 
       'home_elevators': 'المصاعد المنزلية',
       'home_elevators_desc':
-          'هل صُمم عقارك دون تأسيس لمكان المصعد؟ هل ترغب في تركيب مصعد صغير في الفيلا الخاصة بك ليمنحك الراحة والرفاهية؟ تقدم شركة فرست السعودية مصاعد منزلية صغيرة بدون الحاجة إلى أعمال تأسيس، بالإضافة إلى مصاعد داخلية للفلل. لكن متى نلجأ لتركيب مصعد داخلي صغير؟ وما هي التصاميم المتوفرة؟ وما هي أسعار المصاعد المنزلية في مصر؟ وهل يوجد خيار اقتصادي؟ وما هي أنواع المصاعد الكهربائية وأسعارها؟ وكيف تختار الأنسب منها؟ سنجيب على هذه التساؤلات في السطور التالية.',
+          'هل صُمم عقارك دون تأسيس لمكان المصعد؟ هل ترغب في تركيب مصعد صغير في الفيلا الخاصة بك ليمنحك الراحة والرفاهية؟ تقدم شركة بيمز للمصاعد مصاعد منزلية صغيرة بدون الحاجة إلى أعمال تأسيس، بالإضافة إلى مصاعد داخلية للفلل. لكن متى نلجأ لتركيب مصعد داخلي صغير؟ وما هي التصاميم المتوفرة؟ وما هي أسعار المصاعد المنزلية في مصر؟ وهل يوجد خيار اقتصادي؟ وما هي أنواع المصاعد الكهربائية وأسعارها؟ وكيف تختار الأنسب منها؟ سنجيب على هذه التساؤلات في السطور التالية.',
 
       'freight_elevators': 'مصاعد البضائع',
       'freight_elevators_desc':
-          'لم تعد مصاعد البضائع أمرًا اختياريًا في الشركات والمصانع الكبرى متعددة الطوابق، بل أصبحت ركيزة أساسية لنقل البضائع والمنتجات. وتختلف عن مصاعد الركاب نظرًا لطبيعة عملها الصناعي. يتمثل دورها الأساسي في نقل البضائع بمختلف أحجامها بين الطوابق بسهولة وأمان ودون تلف. وتوفر شركة فرست السعودية مصاعد بضائع وفقًا لطبيعة المنشأة ونوع البضائع المراد نقلها، مع اختيار الحجم والأرضيات المناسبة.',
+          'لم تعد مصاعد البضائع أمرًا اختياريًا في الشركات والمصانع الكبرى متعددة الطوابق، بل أصبحت ركيزة أساسية لنقل البضائع والمنتجات. وتختلف عن مصاعد الركاب نظرًا لطبيعة عملها الصناعي. يتمثل دورها الأساسي في نقل البضائع بمختلف أحجامها بين الطوابق بسهولة وأمان ودون تلف. وتوفر شركة بيمز للمصاعد مصاعد بضائع وفقًا لطبيعة المنشأة ونوع البضائع المراد نقلها، مع اختيار الحجم والأرضيات المناسبة.',
 
       'hydraulic_elevators': 'المصاعد الهيدروليكية',
       'hydraulic_elevators_desc':
@@ -269,9 +269,9 @@ class AppTranslations extends Translations {
 
       // Footer
       'sfe': 'س.ف.إ',
-      'saudi_first_elevators_caps': 'مصاعد السعودية الأولى',
+      'saudi_first_elevators_caps': 'بيمز للمصاعد',
       'company_desc':
-          'مصاعد السعودية الأولى في مجال التوريد والتركيب والصيانة وتحديث المصاعد والسلالم الكهربائية من جميع الأنواع. تشمل المصاعد الكهربائية: المصاعد التي تعمل بنظام السرعتين، المصاعد التي تعمل بنظام السرعة المتغيرة (VVVF)، المصاعد الهيدروليكية. مصاعد الطعام (للفلل والمطاعم)، مصاعد الخدمة في المباني. مصاعد البضائع. مصاعد المرضى (مصعد سرير).',
+          'بيمز للمصاعد في مجال التوريد والتركيب والصيانة وتحديث المصاعد والسلالم الكهربائية من جميع الأنواع. تشمل المصاعد الكهربائية: المصاعد التي تعمل بنظام السرعتين، المصاعد التي تعمل بنظام السرعة المتغيرة (VVVF)، المصاعد الهيدروليكية. مصاعد الطعام (للفلل والمطاعم)، مصاعد الخدمة في المباني. مصاعد البضائع. مصاعد المرضى (مصعد سرير).',
       'important_links': 'روابط هامة',
       'home': 'الرئيسية',
       'about_company': 'عن الشركة',
@@ -312,7 +312,7 @@ class AppTranslations extends Translations {
       'reviewer_4': 'محمد الراشد',
       'source_4': 'جوجل',
       'review_5':
-          'قامت شركة مصاعد السعودية الأولى بأعمالنا في الرحاب في مبنانا منذ حوالي عام، أحد أكثر من 100 عميل في الرحاب... رغم أن رأيي مجرد واحد من مئات العملاء في الرحاب الذين يثنون على عملهم واحترافيتهم، أود أن أشكرهم جدًا.',
+          'قامت شركة بيمز للمصاعد بأعمالنا في الرحاب في مبنانا منذ حوالي عام، أحد أكثر من 100 عميل في الرحاب... رغم أن رأيي مجرد واحد من مئات العملاء في الرحاب الذين يثنون على عملهم واحترافيتهم، أود أن أشكرهم جدًا.',
       'reviewer_5': 'ليديا إميل',
       'source_5': 'جوجل',
       'review_6':

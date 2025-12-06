@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:elevatorweb/view/home.dart';
 import 'package:elevatorweb/view/about_combany.dart';
 import 'package:elevatorweb/view/contact_us.dart';
-import 'package:elevatorweb/view/careers.dart';
 import 'package:elevatorweb/view/gallery.dart';
 import 'package:elevatorweb/view/products&solutions.dart';
 import 'package:elevatorweb/view/previus_work.dart';
-import 'package:elevatorweb/view/articles.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,8 +25,6 @@ class _Tab_BarState extends State<Tab_Bar> {
     'previous_work'.tr,
     'gallery'.tr,
     'contact'.tr,
-    'careers'.tr,
-    'articles'.tr,
   ];
 
   static final List<Widget> tabViews = [
@@ -38,8 +34,6 @@ class _Tab_BarState extends State<Tab_Bar> {
     PreviusWork(),
     Gallery(),
     ContactUs(),
-    Careers(),
-    Articles(),
   ];
 
   void _navigateToPage(int index) {
@@ -77,8 +71,9 @@ class _Tab_BarState extends State<Tab_Bar> {
       children: [
         isMobile
             ? Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
-                backgroundColor: const Color(0xFF5a9bd3),
+                backgroundColor: const Color(0xFFbdd7ee),
                 leading: Builder(
                   builder:
                       (context) => IconButton(
@@ -161,7 +156,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                       height: 120,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color(0xFF5a9bd3),
+                        color: Color(0xFFbdd7ee),
                         image: DecorationImage(
                           image: AssetImage("assets/images/beamslogo.png"),
                           fit: BoxFit.contain,
@@ -258,7 +253,7 @@ class _Tab_BarState extends State<Tab_Bar> {
               length: menuItems.length,
               child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: const Color(0xFF5a9bd3),
+                  backgroundColor: const Color(0xFFbdd7ee),
                   leadingWidth: 120,
                   leading: Row(
                     children: [
@@ -460,10 +455,6 @@ class _Tab_BarState extends State<Tab_Bar> {
         return Icons.photo_library;
       case 5:
         return Icons.inventory;
-      case 6:
-        return Icons.history;
-      case 7:
-        return Icons.article;
       default:
         return Icons.help;
     }

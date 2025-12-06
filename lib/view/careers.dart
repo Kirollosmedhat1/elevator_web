@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:elevatorweb/widgets/footer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:elevatorweb/services/supabase_service.dart';
 
 class Careers extends StatefulWidget {
   const Careers({super.key});
@@ -63,7 +64,7 @@ class _CareersState extends State<Careers> {
     }
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     final FormState? currentState = _formKey.currentState;
     if (currentState == null) return;
     if (!currentState.validate()) return;
@@ -75,28 +76,41 @@ class _CareersState extends State<Careers> {
       return;
     }
 
-    // Collect data (currently for demonstration; integrate with backend/email as needed)
-    final Map<String, dynamic> formData = {
-      'name': _nameController.text.trim(),
-      'phone': _phoneController.text.trim(),
-      'email': _emailController.text.trim(),
-      'career': _selectedCareer,
-      'governorate': _selectedGovernorate,
-      'message': _messageController.text.trim(),
-      'cvFileName': _cvFile?.name,
-      'cvMimeType': _cvFile?.extension,
-      'cvBytesLength': _cvFile?.bytes?.length,
-    };
+    // Show loading indicator
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
 
-    // TODO: send to backend or email service
+    try {
+      // Submit to Supabase
+      await SupabaseService().submitCareerApplication(
+        name: _nameController.text.trim(),
+        phone: _phoneController.text.trim(),
+        email: _emailController.text.trim(),
+        career: _selectedCareer!,
+        governorate: _selectedGovernorate!,
+        message: _messageController.text.trim(),
+        cvFileName: _cvFile?.name,
+        cvMimeType: _cvFile?.extension,
+        cvBytes: _cvFile?.bytes,
+      );
 
-    debugPrint('Submitting application: ' + formData.toString());
+      // Close loading indicator
+      Navigator.of(context).pop();
 
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('application_submitted'.tr)));
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('application_submitted'.tr),
+          backgroundColor: Colors.green,
+        ),
+      );
 
-    // Optionally clear form
+      // Clear form
     _formKey.currentState!.reset();
     setState(() {
       _selectedCareer = null;
@@ -107,6 +121,18 @@ class _CareersState extends State<Careers> {
     _phoneController.clear();
     _emailController.clear();
     _messageController.clear();
+    } catch (e) {
+      // Close loading indicator
+      Navigator.of(context).pop();
+
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error submitting application: ${e.toString()}'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override

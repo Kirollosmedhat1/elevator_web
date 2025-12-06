@@ -3,8 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:elevatorweb/app_translations.dart';
+import 'package:elevatorweb/services/supabase_service.dart';
+import 'package:elevatorweb/config/supabase_config.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Supabase
+  try {
+    await SupabaseService.initialize(
+      supabaseUrl: SupabaseConfig.supabaseUrl,
+      supabaseAnonKey: SupabaseConfig.supabaseAnonKey,
+    );
+  } catch (e) {
+    debugPrint('Error initializing Supabase: $e');
+    // App will still run, but Supabase features won't work
+  }
+
   runApp(ElevatorApp());
 }
 
@@ -12,7 +27,7 @@ class ElevatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Saudi First Elevators',
+      title: 'Beams Elevators',
       initialRoute: '/tabbar',
       getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,

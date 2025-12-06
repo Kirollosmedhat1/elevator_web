@@ -13,6 +13,7 @@ class Products_solutions extends StatelessWidget {
     final ProductsController productsController = Get.put(ProductsController());
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [

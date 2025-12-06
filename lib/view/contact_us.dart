@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:elevatorweb/widgets/footer.dart';
 import 'package:get/get.dart';
+import 'package:elevatorweb/services/supabase_service.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
@@ -47,31 +48,44 @@ class _ContactUsState extends State<ContactUs> {
     super.dispose();
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     final FormState? currentState = _formKey.currentState;
     if (currentState == null) return;
     if (!currentState.validate()) return;
 
-    // Collect data (currently for demonstration; integrate with backend/email as needed)
-    final Map<String, dynamic> formData = {
-      'name': _nameController.text.trim(),
-      'phone': _phoneController.text.trim(),
-      'email': _emailController.text.trim(),
-      'governorate': _selectedGovernorate,
-      'city': _cityController.text.trim(),
-      'contactTime': _selectedContactTime,
-      'message': _messageController.text.trim(),
-    };
+    // Show loading indicator
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
 
-    // TODO: send to backend or email service
+    try {
+      // Submit to Supabase
+      await SupabaseService().submitContactForm(
+        name: _nameController.text.trim(),
+        phone: _phoneController.text.trim(),
+        email: _emailController.text.trim(),
+        governorate: _selectedGovernorate,
+        city: _cityController.text.trim(),
+        contactTime: _selectedContactTime,
+        message: _messageController.text.trim(),
+      );
 
-    debugPrint('Submitting contact form: ' + formData.toString());
+      // Close loading indicator
+      Navigator.of(context).pop();
 
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('application_submitted'.tr)));
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('application_submitted'.tr),
+          backgroundColor: Colors.green,
+        ),
+      );
 
-    // Optionally clear form
+      // Clear form
     _formKey.currentState!.reset();
     setState(() {
       _selectedGovernorate = null;
@@ -82,12 +96,25 @@ class _ContactUsState extends State<ContactUs> {
     _emailController.clear();
     _cityController.clear();
     _messageController.clear();
+    } catch (e) {
+      // Close loading indicator
+      Navigator.of(context).pop();
+
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error submitting form: ${e.toString()}'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final double maxFormWidth = 800;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [

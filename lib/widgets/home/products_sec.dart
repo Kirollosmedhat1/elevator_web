@@ -32,16 +32,7 @@ class ProductsSec extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: 'why_us'.tr + "\n",
-                    style: TextStyle(
-                      fontSize:
-                          MediaQuery.of(context).size.width < 768 ? 12 : 15,
-                      color: Color(0xff0B415A),
-                      fontWeight: FontWeight.w100,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'the_most_important_thing_about_us'.tr,
+                    text: 'products'.tr,
                     style: TextStyle(
                       fontSize:
                           MediaQuery.of(context).size.width < 768 ? 24 : 40,
@@ -93,7 +84,7 @@ class ProductsSec extends StatelessWidget {
                                                 ),
                                               );
                                             })
-                                            .toList(),
+                                            .toList(), 
                                   ),
                                 ),
                               ),
