@@ -19,7 +19,7 @@ class ProductModel {
 
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
-      id: map['id'] as String?,
+      id: map['id'] != null ? map['id'].toString() : null,
       image: (map['photo'] ?? map['image'] ?? '') as String,
       title: (map['name'] ?? map['title'] ?? '') as String,
       description: (map['intro'] ?? map['description'] ?? '') as String,

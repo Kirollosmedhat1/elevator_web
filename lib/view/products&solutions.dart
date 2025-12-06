@@ -21,57 +21,58 @@ class Products_solutions extends StatelessWidget {
 
             // Products Grid Section
             Obx(
-              () => productsController.isLoading.value
-                  ? Container(
-                      height: 400,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: Color(0xff1438de),
+              () =>
+                  productsController.isLoading.value
+                      ? Container(
+                        height: 400,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xff1438de),
+                          ),
                         ),
-                      ),
-                    )
-                  : productsController.errorMessage.value.isNotEmpty &&
+                      )
+                      : productsController.errorMessage.value.isNotEmpty &&
                           productsController.products.isEmpty
                       ? Container(
-                          height: 400,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.error_outline,
-                                  size: 48,
+                        height: 400,
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.error_outline,
+                                size: 48,
+                                color: Colors.red,
+                              ),
+                              SizedBox(height: 16),
+                              Text(
+                                productsController.errorMessage.value,
+                                style: TextStyle(
                                   color: Colors.red,
+                                  fontSize: 16,
                                 ),
-                                SizedBox(height: 16),
-                                Text(
-                                  productsController.errorMessage.value,
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 16,
-                                  ),
-                                  textAlign: TextAlign.center,
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 16),
+                              ElevatedButton(
+                                onPressed: () {
+                                  productsController.fetchProducts();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xff1438de),
                                 ),
-                                SizedBox(height: 16),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    productsController.fetchProducts();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color(0xff1438de),
-                                  ),
-                                  child: Text(
-                                    'Retry',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                child: Text(
+                                  'Retry',
+                                  style: TextStyle(color: Colors.white),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        )
+                        ),
+                      )
                       : Container(
-                          padding: EdgeInsets.all(20),
-                          child: GridView.builder(
+                        padding: EdgeInsets.all(20),
+                        child: GridView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           gridDelegate:

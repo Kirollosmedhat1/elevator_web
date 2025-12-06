@@ -43,11 +43,10 @@ class ProductsController extends GetxController {
           .order('id', ascending: true);
 
       // Map the response to ProductModel list
-      productsList.value = (response as List)
-          .map(
-            (item) => ProductModel.fromMap(item as Map<String, dynamic>),
-          )
-          .toList();
+      productsList.value =
+          (response as List)
+              .map((item) => ProductModel.fromMap(item as Map<String, dynamic>))
+              .toList();
 
       // Initialize hover states for each product
       cardHoverStates = List.generate(
@@ -56,8 +55,7 @@ class ProductsController extends GetxController {
       );
 
       if (productsList.isEmpty) {
-        errorMessage.value =
-            'No products found for language: $currentLang';
+        errorMessage.value = 'No products found for language: $currentLang';
       }
     } catch (e) {
       print('Error fetching products: $e');
