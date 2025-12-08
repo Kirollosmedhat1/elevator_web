@@ -40,7 +40,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_vision".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 24,
-                                      color: Color(0xff0B415A),
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -92,7 +92,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_vision".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 30,
-                                      color: Color(0xff0B415A),
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -100,7 +100,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_vision_desc".tr,
                                     style: TextStyle(
                                       fontSize: 15,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.w100,
                                       height: 1.5,
                                     ),
@@ -132,7 +132,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_message".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 24,
-                                      color: Color(0xff0B415A),
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -176,7 +176,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_message".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 30,
-                                      color: Color(0xff0B415A),
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -184,7 +184,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_message_desc".tr,
                                     style: TextStyle(
                                       fontSize: 15,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.w100,
                                       height: 1.5,
                                     ),

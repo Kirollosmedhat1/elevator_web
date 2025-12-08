@@ -53,7 +53,7 @@ class _Tab_BarState extends State<Tab_Bar> {
     Widget languageDropdown() {
       return DropdownButton<Locale>(
         value: Get.locale ?? const Locale('ar'),
-        icon: const Icon(Icons.language, color: Color(0xff0B415A)),
+        icon: const Icon(Icons.language, color: Colors.white),
         underline: SizedBox(),
         items: const [
           DropdownMenuItem(value: Locale('en'), child: Text('English')),
@@ -73,11 +73,11 @@ class _Tab_BarState extends State<Tab_Bar> {
             ? Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                backgroundColor: const Color(0xFFbdd7ee),
+                backgroundColor: Colors.black,
                 leading: Builder(
                   builder:
                       (context) => IconButton(
-                        icon: const Icon(Icons.menu, color: Color(0xff0B415A)),
+                        icon: const Icon(Icons.menu, color: Colors.white),
                         onPressed: () => Scaffold.of(context).openDrawer(),
                       ),
                 ),
@@ -87,7 +87,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                       'assets/images/icon-youtube.png',
                       width: 20,
                       height: 20,
-                      color: Color(0xff0B415A),
+                      color: Colors.white,
                     ),
                     onPressed: () {},
                     tooltip: 'YouTube',
@@ -97,7 +97,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                       'assets/images/icon-linkedin.png',
                       width: 20,
                       height: 20,
-                      color: Color(0xff0B415A),
+                      color: Colors.white,
                     ),
                     onPressed: () {},
                     tooltip: 'LinkedIn',
@@ -107,7 +107,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                       'assets/images/icon-facebook.png',
                       width: 20,
                       height: 20,
-                      color: Color(0xff0B415A),
+                      color: Colors.white,
                     ),
                     onPressed: () {},
                     tooltip: 'Facebook',
@@ -150,13 +150,14 @@ class _Tab_BarState extends State<Tab_Bar> {
                 ),
               ),
               drawer: Drawer(
+                backgroundColor: Colors.white,
                 child: Column(
                   children: [
                     Container(
                       height: 120,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color(0xFFbdd7ee),
+                        color: Colors.white,
                         image: DecorationImage(
                           image: AssetImage("assets/images/beamslogo.png"),
                           fit: BoxFit.contain,
@@ -169,14 +170,12 @@ class _Tab_BarState extends State<Tab_Bar> {
                         itemBuilder: (context, index) {
                           return ListTile(
                             selected: index == _currentIndex,
-                            selectedTileColor: Color(
-                              0xff89CFF0,
-                            ).withOpacity(0.3),
+                            selectedTileColor: Colors.white.withOpacity(0.3),
                             leading: Icon(
                               _getIconForMenuItem(index),
                               color:
                                   index == _currentIndex
-                                      ? Color(0xff0B415A)
+                                      ? Colors.white
                                       : Colors.grey,
                             ),
                             title: Text(
@@ -184,7 +183,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                               style: TextStyle(
                                 color:
                                     index == _currentIndex
-                                        ? Color(0xff0B415A)
+                                        ? Colors.white
                                         : Colors.black,
                                 fontWeight:
                                     index == _currentIndex
@@ -210,14 +209,14 @@ class _Tab_BarState extends State<Tab_Bar> {
                             children: [
                               Icon(
                                 Icons.phone,
-                                color: Color(0xff0B415A),
+                                color: Colors.white,
                                 size: 16,
                               ),
                               SizedBox(width: 8),
                               Text(
                                 "0223824776",
                                 style: TextStyle(
-                                  color: Color(0xff0B415A),
+                                  color: Colors.white,
                                   fontSize: 12,
                                 ),
                               ),
@@ -228,14 +227,14 @@ class _Tab_BarState extends State<Tab_Bar> {
                             children: [
                               Icon(
                                 Icons.email_rounded,
-                                color: Color(0xff0B415A),
+                                color: Colors.white,
                                 size: 16,
                               ),
                               SizedBox(width: 8),
                               Text(
                                 "info@saudifirstelevators.com",
                                 style: TextStyle(
-                                  color: Color(0xff0B415A),
+                                  color: Colors.white,
                                   fontSize: 12,
                                 ),
                               ),
@@ -253,23 +252,23 @@ class _Tab_BarState extends State<Tab_Bar> {
               length: menuItems.length,
               child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: const Color(0xFFbdd7ee),
+                  backgroundColor: Colors.black,
                   leadingWidth: 120,
                   leading: Row(
                     children: [
                       const SizedBox(width: 30),
-                      const Icon(Icons.phone, color: Color(0xff0B415A)),
+                      const Icon(Icons.phone, color: Colors.white),
                       const SizedBox(width: 10),
                       const Text(
                         "0223824776",
-                        style: TextStyle(color: Color(0xff0B415A)),
+                        style: TextStyle(color: Colors.white),
                       ),
                       const SizedBox(width: 30),
-                      const Icon(Icons.email_rounded, color: Color(0xff0B415A)),
+                      const Icon(Icons.email_rounded, color: Colors.white),
                       const SizedBox(width: 10),
                       const Text(
                         "info@saudifirstelevators.com",
-                        style: TextStyle(color: Color(0xff0B415A)),
+                        style: TextStyle(color: Colors.white),
                       ),
                       const SizedBox(width: 30),
                       // Removed languageDropdown from here
@@ -344,8 +343,8 @@ class _Tab_BarState extends State<Tab_Bar> {
                                     .map((item) => Tab(text: item))
                                     .toList(),
                             labelColor: Color(0xFF89CFF0),
-                            unselectedLabelColor: const Color(0xff0B415A),
-                            indicatorColor: Color(0xff0B415A),
+                            unselectedLabelColor: Colors.white,
+                            indicatorColor: Colors.white,
                             labelStyle: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,

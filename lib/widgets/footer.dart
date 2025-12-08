@@ -6,22 +6,23 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Container(
-      color: Color(0xFF5a9bd3),
+      color: Colors.black,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * 0.05,
-        vertical: MediaQuery.of(context).size.height * 0.04,
+        horizontal: width * 0.05,
+        vertical: height * 0.04,
       ),
       child: Column(
         children: [
-          MediaQuery.of(context).size.width < 768
+          width < 768
               ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Mobile: Company info
                   _buildMobileCompanyInfo(context),
                   SizedBox(height: 30),
-                  // Mobile: Links and Products in one row
                   Row(
                     children: [
                       Expanded(child: _buildMobileLinks(context)),
@@ -30,7 +31,6 @@ class Footer extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 30),
-                  // Mobile: Branch locations
                   _buildMobileBranches(context),
                 ],
               )
@@ -51,9 +51,9 @@ class Footer extends StatelessWidget {
                               height: 50,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFF1A232F),
+                                color: Colors.white,
                                 border: Border.all(
-                                  color: Color(0xFF89CFF0),
+                                  color: Colors.white,
                                   width: 2,
                                 ),
                               ),
@@ -61,7 +61,7 @@ class Footer extends StatelessWidget {
                                 child: Text(
                                   'sfe'.tr,
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
                                   ),
@@ -72,7 +72,7 @@ class Footer extends StatelessWidget {
                             Text(
                               'saudi_first_elevators_caps'.tr,
                               style: TextStyle(
-                                color: Color(0xFF1A232F),
+                                color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -85,7 +85,7 @@ class Footer extends StatelessWidget {
                         Text(
                           'company_desc'.tr,
                           style: TextStyle(
-                            color: Color(0xFF1A232F),
+                            color: Colors.white,
                             fontSize: 12,
                             height: 1.4,
                           ),
@@ -99,7 +99,7 @@ class Footer extends StatelessWidget {
                               onPressed: () {},
                               icon: Icon(
                                 Icons.play_circle_fill,
-                                color: Color(0xFF1A232F),
+                                color: Colors.white,
                                 size: 30,
                               ),
                             ),
@@ -107,7 +107,7 @@ class Footer extends StatelessWidget {
                               onPressed: () {},
                               icon: Icon(
                                 Icons.business,
-                                color: Color(0xFF1A232F),
+                                color: Colors.white,
                                 size: 30,
                               ),
                             ),
@@ -115,7 +115,7 @@ class Footer extends StatelessWidget {
                               onPressed: () {},
                               icon: Icon(
                                 Icons.facebook,
-                                color: Color(0xFF1A232F),
+                                color: Colors.white,
                                 size: 30,
                               ),
                             ),
@@ -136,7 +136,7 @@ class Footer extends StatelessWidget {
                         Text(
                           'important_links'.tr,
                           style: TextStyle(
-                            color: Color(0xFF1A232F),
+                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -160,7 +160,7 @@ class Footer extends StatelessWidget {
                               width: 20,
                               height: 15,
                               decoration: BoxDecoration(
-                                color: Color(0xFF1A232F),
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(2),
                               ),
                               child: Center(
@@ -174,13 +174,13 @@ class Footer extends StatelessWidget {
                             Text(
                               "EN",
                               style: TextStyle(
-                                color: Color(0xFF1A232F),
+                                color: Colors.white,
                                 fontSize: 14,
                               ),
                             ),
                             Icon(
                               Icons.arrow_drop_down,
-                              color: Color(0xFF1A232F),
+                              color: Colors.white,
                               size: 16,
                             ),
                           ],
@@ -200,7 +200,7 @@ class Footer extends StatelessWidget {
                         Text(
                           'products_caps'.tr,
                           style: TextStyle(
-                            color: Color(0xFF1A232F),
+                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -209,10 +209,7 @@ class Footer extends StatelessWidget {
 
                         Text(
                           'elevators'.tr,
-                          style: TextStyle(
-                            color: Color(0xFF1A232F),
-                            fontSize: 14,
-                          ),
+                          style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                       ],
                     ),
@@ -229,7 +226,7 @@ class Footer extends StatelessWidget {
                         Text(
                           'headings'.tr,
                           style: TextStyle(
-                            color: Color(0xFF1A232F),
+                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -265,12 +262,12 @@ class Footer extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-              color: isHighlighted ? Color(0xFF1A232F) : Color(0xFF1A232F),
+              color: isHighlighted ? Colors.white : Colors.white,
               fontSize: 14,
             ),
           ),
           if (hasDropdown)
-            Icon(Icons.arrow_drop_down, color: Color(0xFF1A232F), size: 16),
+            Icon(Icons.arrow_drop_down, color: Colors.white, size: 16),
         ],
       ),
     );
@@ -280,16 +277,12 @@ class Footer extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(Icons.location_on, color: Color(0xFF1A232F), size: 16),
+        Icon(Icons.location_on, color: Colors.white, size: 16),
         SizedBox(width: 8),
         Expanded(
           child: Text(
             address,
-            style: TextStyle(
-              color: Color(0xFF1A232F),
-              fontSize: 12,
-              height: 1.3,
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
           ),
         ),
       ],
@@ -307,14 +300,14 @@ class Footer extends StatelessWidget {
               height: 40,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFF1A232F),
-                border: Border.all(color: Color(0xFF89CFF0), width: 2),
+                color: Colors.white,
+                border: Border.all(color: Colors.white, width: 2),
               ),
               child: Center(
                 child: Text(
                   'sfe'.tr,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
@@ -326,7 +319,7 @@ class Footer extends StatelessWidget {
               child: Text(
                 'saudi_first_elevators_caps'.tr,
                 style: TextStyle(
-                  color: Color(0xFF1A232F),
+                  color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -337,26 +330,22 @@ class Footer extends StatelessWidget {
         SizedBox(height: 15),
         Text(
           'company_desc'.tr,
-          style: TextStyle(color: Color(0xFF1A232F), fontSize: 11, height: 1.4),
+          style: TextStyle(color: Colors.white, fontSize: 11, height: 1.4),
         ),
         SizedBox(height: 15),
         Row(
           children: [
             IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.play_circle_fill,
-                color: Color(0xFF1A232F),
-                size: 25,
-              ),
+              icon: Icon(Icons.play_circle_fill, color: Colors.white, size: 25),
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.business, color: Color(0xFF1A232F), size: 25),
+              icon: Icon(Icons.business, color: Colors.white, size: 25),
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.facebook, color: Color(0xFF1A232F), size: 25),
+              icon: Icon(Icons.facebook, color: Colors.white, size: 25),
             ),
           ],
         ),
@@ -371,7 +360,7 @@ class Footer extends StatelessWidget {
         Text(
           'links'.tr,
           style: TextStyle(
-            color: Color(0xFF1A232F),
+            color: Colors.white,
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
@@ -394,7 +383,7 @@ class Footer extends StatelessWidget {
         Text(
           'products_caps'.tr,
           style: TextStyle(
-            color: Color(0xFF1A232F),
+            color: Colors.white,
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
@@ -402,7 +391,7 @@ class Footer extends StatelessWidget {
         SizedBox(height: 10),
         Text(
           'elevators'.tr,
-          style: TextStyle(color: Color(0xFF1A232F), fontSize: 12),
+          style: TextStyle(color: Colors.white, fontSize: 12),
         ),
         SizedBox(height: 15),
         Row(
@@ -411,17 +400,14 @@ class Footer extends StatelessWidget {
               width: 18,
               height: 12,
               decoration: BoxDecoration(
-                color: Color(0xFF1A232F),
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(2),
               ),
               child: Center(child: Text("🇬🇧", style: TextStyle(fontSize: 8))),
             ),
             SizedBox(width: 6),
-            Text(
-              "EN",
-              style: TextStyle(color: Color(0xFF1A232F), fontSize: 12),
-            ),
-            Icon(Icons.arrow_drop_down, color: Color(0xFF1A232F), size: 14),
+            Text("EN", style: TextStyle(color: Colors.white, fontSize: 12)),
+            Icon(Icons.arrow_drop_down, color: Colors.white, size: 14),
           ],
         ),
       ],
@@ -435,7 +421,7 @@ class Footer extends StatelessWidget {
         Text(
           'branches'.tr,
           style: TextStyle(
-            color: Color(0xFF1A232F),
+            color: Colors.white,
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),

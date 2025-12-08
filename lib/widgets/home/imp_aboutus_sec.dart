@@ -121,7 +121,7 @@ class ImpAboutusSec extends StatelessWidget {
         vertical: MediaQuery.of(context).size.height * 0.05,
       ),
       height: MediaQuery.of(context).size.height * 0.8,
-      color: Color(0xFFbdd7ee),
+      color: Colors.black,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -138,7 +138,7 @@ class ImpAboutusSec extends StatelessWidget {
                     style: TextStyle(
                       fontSize:
                           MediaQuery.of(context).size.width < 768 ? 12 : 15,
-                      color: Color(0xff0B415A),
+                      color: Colors.white,
                       fontWeight: FontWeight.w100,
                     ),
                   ),
@@ -286,7 +286,7 @@ class ImpAboutusSec extends StatelessWidget {
                   color:
                       index == controller.currentCardIndex.value
                           ? Colors.white
-                          : Color(0xff0B415A),
+                          : Colors.white54,
                 ),
               );
             }),

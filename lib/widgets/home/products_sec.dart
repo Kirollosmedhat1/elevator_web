@@ -173,7 +173,7 @@ class ProductsSec extends StatelessWidget {
                   color:
                       index == controller.currentCardIndex.value
                           ? Colors.white
-                          : Color(0xff0B415A),
+                          : Colors.white,
                 ),
               );
             }),

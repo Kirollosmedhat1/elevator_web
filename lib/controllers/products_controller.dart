@@ -16,6 +16,8 @@ class ProductsController extends GetxController {
   RxList<ProductModel> productsList = <ProductModel>[].obs;
   RxBool isLoading = false.obs;
   RxString errorMessage = ''.obs;
+  // Keep track of which language was last used to fetch products
+  RxString lastFetchedLang = ''.obs;
 
   List<ProductModel> get products => productsList;
 
@@ -57,6 +59,8 @@ class ProductsController extends GetxController {
       if (productsList.isEmpty) {
         errorMessage.value = 'No products found for language: $currentLang';
       }
+      // remember the language we fetched for
+      lastFetchedLang.value = currentLang;
     } catch (e) {
       print('Error fetching products: $e');
       errorMessage.value = 'Error: ${e.toString()}';
@@ -64,6 +68,13 @@ class ProductsController extends GetxController {
       cardHoverStates = [];
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  /// Ensure products are loaded for given language; fetch if different
+  void ensureProductsForLang(String lang) {
+    if (lastFetchedLang.value != lang) {
+      fetchProducts();
     }
   }
 

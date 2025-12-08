@@ -37,7 +37,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
       width: MediaQuery.of(context).size.height * 0.365,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Color(0xff0B415A), width: 3),
+        border: Border.all(color: Colors.white, width: 3),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
                   topRight: Radius.circular(12),
                 ),
                 border: Border(
-                  bottom: BorderSide(color: Color(0xff0B415A), width: 3),
+                  bottom: BorderSide(color: Colors.white, width: 3),
                 ),
               ),
               clipBehavior: Clip.hardEdge,

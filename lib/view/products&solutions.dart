@@ -11,6 +11,11 @@ class Products_solutions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductsController productsController = Get.put(ProductsController());
+    // Ensure products are refreshed when locale changes.
+    final String currentLang = Localizations.localeOf(context).languageCode;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      productsController.ensureProductsForLang(currentLang);
+    });
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -187,7 +192,7 @@ class Products_solutions extends StatelessWidget {
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,
-                                                color: Color(0xff0B415A),
+                                                color: Colors.white,
                                               ),
                                               textAlign: TextAlign.center,
                                               maxLines: 1,

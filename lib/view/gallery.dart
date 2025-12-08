@@ -209,10 +209,10 @@ class _GalleryState extends State<Gallery> {
           _selectedType = selected ? type : null;
         });
       },
-      selectedColor: Color(0xFFbdd7ee),
-      checkmarkColor: Color(0xff0B415A),
+      selectedColor: Colors.black,
+      checkmarkColor: Colors.white,
       labelStyle: TextStyle(
-        color: isSelected ? Color(0xff0B415A) : Colors.black87,
+        color: isSelected ? Colors.white : Colors.black87,
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
       ),
     );
@@ -737,7 +737,7 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
                   _controller,
                   allowScrubbing: true,
                   colors: VideoProgressColors(
-                    playedColor: Color(0xFFbdd7ee),
+                    playedColor: Colors.black,
                     bufferedColor: Colors.white24,
                     backgroundColor: Colors.white24,
                   ),
