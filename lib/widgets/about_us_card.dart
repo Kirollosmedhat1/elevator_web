@@ -115,7 +115,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
                   widget.description,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize:14,
+                    fontSize: 14,
                     fontWeight: FontWeight.w100,
                     height: 1.5,
                   ),

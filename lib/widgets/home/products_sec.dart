@@ -36,7 +36,7 @@ class ProductsSec extends StatelessWidget {
                     style: TextStyle(
                       fontSize:
                           MediaQuery.of(context).size.width < 768 ? 24 : 40,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -116,7 +116,7 @@ class ProductsSec extends StatelessWidget {
                 width: 50,
                 child: IconButton(
                   onPressed: controller.previousCard,
-                  icon: Icon(Icons.chevron_left, color: Colors.white, size: 32),
+                  icon: Icon(Icons.chevron_left, color: Colors.black, size: 32),
                 ),
               ),
               // PageView
@@ -150,7 +150,7 @@ class ProductsSec extends StatelessWidget {
                   onPressed: controller.nextCard,
                   icon: Icon(
                     Icons.chevron_right,
-                    color: Colors.white,
+                    color: Colors.black,
                     size: 32,
                   ),
                 ),
@@ -173,7 +173,7 @@ class ProductsSec extends StatelessWidget {
                   color:
                       index == controller.currentCardIndex.value
                           ? Colors.white
-                          : Colors.white,
+                          : Colors.black,
                 ),
               );
             }),

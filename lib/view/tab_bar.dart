@@ -207,14 +207,10 @@ class _Tab_BarState extends State<Tab_Bar> {
                         children: [
                           Row(
                             children: [
-                              Icon(
-                                Icons.phone,
-                                color: Colors.white,
-                                size: 16,
-                              ),
+                              Icon(Icons.phone, color: Colors.white, size: 16),
                               SizedBox(width: 8),
                               Text(
-                                "0223824776",
+                                "01201424777",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -232,7 +228,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                               ),
                               SizedBox(width: 8),
                               Text(
-                                "info@saudifirstelevators.com",
+                                "Beams.Elevators@gmail.com",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -260,14 +256,14 @@ class _Tab_BarState extends State<Tab_Bar> {
                       const Icon(Icons.phone, color: Colors.white),
                       const SizedBox(width: 10),
                       const Text(
-                        "0223824776",
+                        "01201424777",
                         style: TextStyle(color: Colors.white),
                       ),
                       const SizedBox(width: 30),
                       const Icon(Icons.email_rounded, color: Colors.white),
                       const SizedBox(width: 10),
                       const Text(
-                        "info@saudifirstelevators.com",
+                        "Beams.Elevators@gmail.com",
                         style: TextStyle(color: Colors.white),
                       ),
                       const SizedBox(width: 30),
@@ -281,7 +277,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                         'assets/images/icon-youtube.png',
                         width: 20,
                         height: 20,
-                        color: Color(0xff0B415A),
+                        color: Colors.white,
                       ),
                       onPressed: () {},
                       tooltip: 'YouTube',
@@ -291,7 +287,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                         'assets/images/icon-linkedin.png',
                         width: 20,
                         height: 20,
-                        color: Color(0xff0B415A),
+                        color: Colors.white,
                       ),
                       onPressed: () {},
                       tooltip: 'LinkedIn',
@@ -301,7 +297,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                         'assets/images/icon-facebook.png',
                         width: 20,
                         height: 20,
-                        color: Color(0xff0B415A),
+                        color: Colors.white,
                       ),
                       onPressed: () {},
                       tooltip: 'Facebook',
@@ -342,9 +338,9 @@ class _Tab_BarState extends State<Tab_Bar> {
                                 menuItems
                                     .map((item) => Tab(text: item))
                                     .toList(),
-                            labelColor: Color(0xFF89CFF0),
-                            unselectedLabelColor: Colors.white,
-                            indicatorColor: Colors.white,
+                            labelColor: Colors.grey[400],
+                            unselectedLabelColor: Colors.black,
+                            indicatorColor: Colors.grey[400],
                             labelStyle: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -382,8 +378,8 @@ class _Tab_BarState extends State<Tab_Bar> {
                             icon: Icon(Icons.chat, color: Colors.green),
                             onPressed: () async {
                               final url = Uri.parse(
-                                'https://wa.me/966XXXXXXXXX',
-                              ); // Replace with your WhatsApp number
+                                'https://wa.me/01204611333',
+                              );
                               if (await canLaunchUrl(url)) {
                                 await launchUrl(
                                   url,
@@ -397,8 +393,8 @@ class _Tab_BarState extends State<Tab_Bar> {
                             icon: Icon(Icons.phone, color: Colors.blue),
                             onPressed: () async {
                               final url = Uri.parse(
-                                'tel:0223824776',
-                              ); // Replace with your phone number
+                                'tel:01201424777',
+                              );
                               if (await canLaunchUrl(url)) {
                                 await launchUrl(url);
                               }

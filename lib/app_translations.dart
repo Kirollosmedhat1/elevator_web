@@ -139,6 +139,7 @@ class AppTranslations extends Translations {
           'Excellent workmanship and attention to detail. The elevators are running smoothly and the maintenance service is top-notch. Thank you for your professionalism.',
       'reviewer_8': 'Aisha Khalid',
       'source_8': 'Facebook',
+      
       "Our_vision": "Our vision",
       "Our_vision_desc":
           "Our aim is to become the preferred partner for customers in the elevator industry, expanding our presence beyond the local market to serve clients across the Middle East.",
@@ -327,6 +328,7 @@ class AppTranslations extends Translations {
           'جودة عمل ممتازة واهتمام بالتفاصيل. المصاعد تعمل بسلاسة وخدمة الصيانة من الدرجة الأولى. شكرًا لاحترافيتكم.',
       'reviewer_8': 'عائشة خالد',
       'source_8': 'فيسبوك',
+
       "Our_vision": "رؤيتنا",
       "Our_vision_desc":
           "نسعى لأن نكون الشريك المفضل لعملائنا في مجال المصاعد، مع توسيع وجودنا خارج حدود السوق المحلية للوصول إلى العملاء في جميع أنحاء الشرق الأوسط.",

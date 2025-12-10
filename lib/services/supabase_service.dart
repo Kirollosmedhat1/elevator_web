@@ -146,4 +146,17 @@ class SupabaseService {
       throw Exception('Failed to fetch gallery items: $e');
     }
   }
+
+  // Customer Reviews Methods
+  Future<List<Map<String, dynamic>>> getCustomerReviews() async {
+    try {
+      final response = await client
+          .from('customer_reviews')
+          .select()
+          .order('created_at', ascending: false);
+      return List<Map<String, dynamic>>.from(response);
+    } catch (e) {
+      throw Exception('Failed to fetch customer reviews: $e');
+    }
+  }
 }
