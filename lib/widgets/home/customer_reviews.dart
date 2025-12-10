@@ -35,15 +35,16 @@ class _CustomerReviewsState extends State<CustomerReviews> {
     super.initState();
     _currentLang = Get.locale?.languageCode ?? 'en';
     _fetchReviews();
-    
-    // Listen for locale changes
-    ever(Get.locale as dynamic, (_) {
-      final newLang = Get.locale?.languageCode ?? 'en';
-      if (newLang != _currentLang) {
-        _currentLang = newLang;
-        _fetchReviews(); // Re-fetch reviews when language changes
-      }
-    });
+  }
+
+  @override
+  void didUpdateWidget(CustomerReviews oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final newLang = Get.locale?.languageCode ?? 'en';
+    if (newLang != _currentLang) {
+      _currentLang = newLang;
+      _fetchReviews(); // Re-fetch reviews when language changes
+    }
   }
 
   Future<void> _fetchReviews() async {
@@ -116,15 +117,14 @@ class _CustomerReviewsState extends State<CustomerReviews> {
 
     if (isLoading) {
       return Container(
-        height: MediaQuery.of(context).size.height * 0.75,
+        padding: EdgeInsets.symmetric(vertical: 40),
         child: Center(child: CircularProgressIndicator()),
       );
     }
 
     if (errorMessage != null) {
       return Container(
-        height: MediaQuery.of(context).size.height * 0.75,
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(40),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -141,7 +141,6 @@ class _CustomerReviewsState extends State<CustomerReviews> {
     }
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.75,
       child:
           MediaQuery.of(context).size.width < 1000
               ? Column(
@@ -300,8 +299,6 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      width: MediaQuery.of(context).size.height * 1,
                       color: Colors.white,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

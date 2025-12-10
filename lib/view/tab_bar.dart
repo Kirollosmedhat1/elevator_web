@@ -249,26 +249,29 @@ class _Tab_BarState extends State<Tab_Bar> {
               child: Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.black,
-                  leadingWidth: 120,
-                  leading: Row(
-                    children: [
-                      const SizedBox(width: 30),
-                      const Icon(Icons.phone, color: Colors.white),
-                      const SizedBox(width: 10),
-                      const Text(
-                        "01201424777",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      const SizedBox(width: 30),
-                      const Icon(Icons.email_rounded, color: Colors.white),
-                      const SizedBox(width: 10),
-                      const Text(
-                        "Beams.Elevators@gmail.com",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      const SizedBox(width: 30),
-                      // Removed languageDropdown from here
-                    ],
+                  leadingWidth: double.infinity,
+                  leading: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 30),
+                        const Icon(Icons.phone, color: Colors.white),
+                        const SizedBox(width: 10),
+                        const Text(
+                          "01201424777",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(width: 30),
+                        const Icon(Icons.email_rounded, color: Colors.white),
+                        const SizedBox(width: 10),
+                        const Text(
+                          "Beams.Elevators@gmail.com",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(width: 30),
+                        // Removed languageDropdown from here
+                      ],
+                    ),
                   ),
                   actions: [
                     // Removed languageDropdown from here
