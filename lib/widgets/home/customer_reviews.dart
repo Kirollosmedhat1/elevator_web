@@ -22,16 +22,28 @@ class CustomerReviews extends StatefulWidget {
 }
 
 class _CustomerReviewsState extends State<CustomerReviews> {
-  int currentReviewIndex = 4; // preferred start index (will be adjusted after fetch)
+  int currentReviewIndex =
+      4; // preferred start index (will be adjusted after fetch)
 
   List<ReviewData> reviews = [];
   bool isLoading = true;
   String? errorMessage;
+  late String _currentLang;
 
   @override
   void initState() {
     super.initState();
+    _currentLang = Get.locale?.languageCode ?? 'en';
     _fetchReviews();
+    
+    // Listen for locale changes
+    ever(Get.locale as dynamic, (_) {
+      final newLang = Get.locale?.languageCode ?? 'en';
+      if (newLang != _currentLang) {
+        _currentLang = newLang;
+        _fetchReviews(); // Re-fetch reviews when language changes
+      }
+    });
   }
 
   Future<void> _fetchReviews() async {
@@ -46,22 +58,26 @@ class _CustomerReviewsState extends State<CustomerReviews> {
 
       final lang = Get.locale?.languageCode ?? 'en';
 
-      final mapped = rows.map((r) {
-        final review = (lang == 'ar')
-            ? (r['review_ar'] ?? r['review_en'] ?? '')
-            : (r['review_en'] ?? r['review_ar'] ?? '');
-        final reviewer = (lang == 'ar')
-            ? (r['reviewer_ar'] ?? r['reviewer_en'] ?? '')
-            : (r['reviewer_en'] ?? r['reviewer_ar'] ?? '');
-        final source = (lang == 'ar')
-            ? (r['source_ar'] ?? r['source_en'] ?? '')
-            : (r['source_en'] ?? r['source_ar'] ?? '');
-        return ReviewData(
-          review: review.toString(),
-          reviewerName: reviewer.toString(),
-          source: source.toString(),
-        );
-      }).toList();
+      final mapped =
+          rows.map((r) {
+            final review =
+                (lang == 'ar')
+                    ? (r['review_ar'] ?? r['review_en'] ?? '')
+                    : (r['review_en'] ?? r['review_ar'] ?? '');
+            final reviewer =
+                (lang == 'ar')
+                    ? (r['reviewer_ar'] ?? r['reviewer_en'] ?? '')
+                    : (r['reviewer_en'] ?? r['reviewer_ar'] ?? '');
+            final source =
+                (lang == 'ar')
+                    ? (r['source_ar'] ?? r['source_en'] ?? '')
+                    : (r['source_en'] ?? r['source_ar'] ?? '');
+            return ReviewData(
+              review: review.toString(),
+              reviewerName: reviewer.toString(),
+              source: source.toString(),
+            );
+          }).toList();
 
       setState(() {
         reviews = mapped;
@@ -101,9 +117,7 @@ class _CustomerReviewsState extends State<CustomerReviews> {
     if (isLoading) {
       return Container(
         height: MediaQuery.of(context).size.height * 0.75,
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
+        child: Center(child: CircularProgressIndicator()),
       );
     }
 
@@ -119,10 +133,7 @@ class _CustomerReviewsState extends State<CustomerReviews> {
               SizedBox(height: 8),
               Text(errorMessage ?? '', textAlign: TextAlign.center),
               SizedBox(height: 12),
-              ElevatedButton(
-                onPressed: _fetchReviews,
-                child: Text('retry'.tr),
-              ),
+              ElevatedButton(onPressed: _fetchReviews, child: Text('retry'.tr)),
             ],
           ),
         ),
@@ -171,7 +182,9 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                               Text(
                                 hasReviews
                                     ? '"${reviews[currentReviewIndex].review}"'
-                                    : (isLoading ? '' : 'no_customer_reviews'.tr),
+                                    : (isLoading
+                                        ? ''
+                                        : 'no_customer_reviews'.tr),
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Color(0xFF1A232F),
@@ -184,7 +197,9 @@ class _CustomerReviewsState extends State<CustomerReviews> {
 
                               // Reviewer name and source
                               Text(
-                                hasReviews ? reviews[currentReviewIndex].reviewerName : '',
+                                hasReviews
+                                    ? reviews[currentReviewIndex].reviewerName
+                                    : '',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Color(0xFF1A232F),
@@ -193,7 +208,9 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                               ),
                               SizedBox(height: 5),
                               Text(
-                                hasReviews ? reviews[currentReviewIndex].source : '',
+                                hasReviews
+                                    ? reviews[currentReviewIndex].source
+                                    : '',
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Color(0xFF89CFF0),
@@ -209,7 +226,10 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               IconButton(
-                                onPressed: (hasReviews && !isLoading) ? _previousReview : null,
+                                onPressed:
+                                    (hasReviews && !isLoading)
+                                        ? _previousReview
+                                        : null,
                                 icon: Icon(
                                   Icons.chevron_left,
                                   color: Color(0xFF1A232F),
@@ -241,7 +261,10 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                               }),
                               SizedBox(width: 20),
                               IconButton(
-                                onPressed: (hasReviews && !isLoading) ? _nextReview : null,
+                                onPressed:
+                                    (hasReviews && !isLoading)
+                                        ? _nextReview
+                                        : null,
                                 icon: Icon(
                                   Icons.chevron_right,
                                   color: Color(0xFF1A232F),
@@ -300,7 +323,10 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
-                                onPressed: (hasReviews && !isLoading) ? _previousReview : null,
+                                onPressed:
+                                    (hasReviews && !isLoading)
+                                        ? _previousReview
+                                        : null,
                                 icon: Icon(
                                   Icons.chevron_left,
                                   color: Color(0xFF1A232F),
@@ -316,7 +342,9 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                                     Text(
                                       hasReviews
                                           ? '"${reviews[currentReviewIndex].review}"'
-                                          : (isLoading ? '' : 'no_customer_reviews'.tr),
+                                          : (isLoading
+                                              ? ''
+                                              : 'no_customer_reviews'.tr),
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Color(0xFF1A232F),
@@ -329,7 +357,10 @@ class _CustomerReviewsState extends State<CustomerReviews> {
 
                                     // Reviewer name and source
                                     Text(
-                                      hasReviews ? reviews[currentReviewIndex].reviewerName : '',
+                                      hasReviews
+                                          ? reviews[currentReviewIndex]
+                                              .reviewerName
+                                          : '',
                                       style: TextStyle(
                                         fontSize: 18,
                                         color: Color(0xFF1A232F),
@@ -338,7 +369,9 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                                     ),
                                     SizedBox(height: 8),
                                     Text(
-                                      hasReviews ? reviews[currentReviewIndex].source : '',
+                                      hasReviews
+                                          ? reviews[currentReviewIndex].source
+                                          : '',
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xFF89CFF0),
@@ -350,7 +383,10 @@ class _CustomerReviewsState extends State<CustomerReviews> {
 
                               SizedBox(width: 20),
                               IconButton(
-                                onPressed: (hasReviews && !isLoading) ? _nextReview : null,
+                                onPressed:
+                                    (hasReviews && !isLoading)
+                                        ? _nextReview
+                                        : null,
                                 icon: Icon(
                                   Icons.chevron_right,
                                   color: Color(0xFF1A232F),

@@ -107,22 +107,22 @@ class SupabaseService {
   Future<List<Map<String, dynamic>>> getGalleryItems() async {
     try {
       print('🔍 Attempting to fetch gallery items...');
-      
+
       // First try without ordering to see if we can read at all
       final response = await client.from('gallery').select();
-      
+
       print('✅ Raw response received: $response');
       print('✅ Response type: ${response.runtimeType}');
-      
+
       // Convert to list and handle ordering
       final items = List<Map<String, dynamic>>.from(response);
-      
+
       print('✅ Converted to list: ${items.length} items');
       if (items.isNotEmpty) {
         print('✅ First item structure: ${items.first}');
         print('✅ First item keys: ${items.first.keys.toList()}');
       }
-      
+
       // Try to sort by created_at if it exists, otherwise by id
       items.sort((a, b) {
         if (a.containsKey('created_at') && b.containsKey('created_at')) {
@@ -137,7 +137,7 @@ class SupabaseService {
         final bId = b['id']?.toString() ?? '';
         return bId.compareTo(aId);
       });
-      
+
       print('✅ Returning ${items.length} items');
       return items;
     } catch (e, stackTrace) {
