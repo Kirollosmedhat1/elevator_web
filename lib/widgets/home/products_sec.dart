@@ -69,46 +69,7 @@ class ProductsSec extends StatelessWidget {
                   // Display products
                   return MediaQuery.of(context).size.width < 1000
                       ? _buildMobileSlideshow(context, impController)
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(width: 50),
-                          Expanded(
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.55,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children:
-                                      impController.products
-                                          .asMap()
-                                          .entries
-                                          .map((entry) {
-                                            final index = entry.key;
-                                            final card = entry.value;
-                                            return Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: 8.0,
-                                              ),
-                                              child: AboutUsCard(
-                                                context: context,
-                                                image: card.image,
-                                                title: card.title,
-                                                description: card.description,
-                                                controller: impController,
-                                                cardIndex: index,
-                                              ),
-                                            );
-                                          })
-                                          .toList(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 50),
-                        ],
-                      );
+                      : _buildDesktopProducts(context, impController);
                 }),
               );
             },
@@ -182,6 +143,115 @@ class ProductsSec extends StatelessWidget {
           () => Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(controller.products.length, (index) {
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 4),
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color:
+                      index == controller.currentCardIndex.value
+                          ? Colors.white
+                          : Colors.black,
+                ),
+              );
+            }),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDesktopProducts(
+    BuildContext context,
+    ProductsController controller,
+  ) {
+    const int productsPerPage = 4;
+    final totalPages = (controller.products.length / productsPerPage).ceil();
+
+    return Column(
+      children: [
+        // Desktop products container with navigation
+        Container(
+          height: MediaQuery.of(context).size.height * 0.55,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Left arrow
+              Container(
+                width: 50,
+                child: IconButton(
+                  onPressed: controller.previousCard,
+                  icon: Icon(Icons.chevron_left, color: Colors.black, size: 40),
+                ),
+              ),
+              // Products grid (4 per page)
+              Expanded(
+                child: PageView.builder(
+                  controller: controller.pageController,
+                  onPageChanged: (index) {
+                    controller.currentCardIndex.value = index;
+                  },
+                  itemCount: totalPages,
+                  itemBuilder: (context, pageIndex) {
+                    final startIdx = pageIndex * productsPerPage;
+                    final endIdx = (startIdx + productsPerPage)
+                        .clamp(0, controller.products.length);
+                    final pageProducts =
+                        controller.products.sublist(startIdx, endIdx);
+
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:
+                          pageProducts
+                              .asMap()
+                              .entries
+                              .map((entry) {
+                                final card = entry.value;
+                                final cardIndex = startIdx + entry.key;
+                                return Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 8.0,
+                                    ),
+                                    child: AboutUsCard(
+                                      context: context,
+                                      image: card.image,
+                                      title: card.title,
+                                      description: card.description,
+                                      controller: controller,
+                                      cardIndex: cardIndex,
+                                    ),
+                                  ),
+                                );
+                              })
+                              .toList(),
+                    );
+                  },
+                ),
+              ),
+              // Right arrow
+              Container(
+                width: 50,
+                child: IconButton(
+                  onPressed: controller.nextCard,
+                  icon: Icon(
+                    Icons.chevron_right,
+                    color: Colors.black,
+                    size: 40,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 20),
+        // Pagination dots
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(totalPages, (index) {
               return Container(
                 margin: EdgeInsets.symmetric(horizontal: 4),
                 width: 8,
