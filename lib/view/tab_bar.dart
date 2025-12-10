@@ -395,9 +395,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                           IconButton(
                             icon: Icon(Icons.phone, color: Colors.blue),
                             onPressed: () async {
-                              final url = Uri.parse(
-                                'tel:01201424777',
-                              );
+                              final url = Uri.parse('tel:01201424777');
                               if (await canLaunchUrl(url)) {
                                 await launchUrl(url);
                               }

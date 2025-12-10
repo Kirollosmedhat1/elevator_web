@@ -48,50 +48,68 @@ class ProductsSec extends StatelessWidget {
             builder: (controller) {
               return SlideTransition(
                 position: controller.slideAnimation,
-                child:
-                    MediaQuery.of(context).size.width < 1000
-                        ? _buildMobileSlideshow(context, impController)
-                        : Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(width: 50),
-                            Expanded(
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.55,
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    children:
-                                        impController.products
-                                            .asMap()
-                                            .entries
-                                            .map((entry) {
-                                              final index = entry.key;
-                                              final card = entry.value;
-                                              return Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0,
-                                                ),
-                                                child: AboutUsCard(
-                                                  context: context,
-                                                  image: card.image,
-                                                  title: card.title,
-                                                  description: card.description,
-                                                  controller: impController,
-                                                  cardIndex: index,
-                                                ),
-                                              );
-                                            })
-                                            .toList(), 
-                                  ),
+                child: Obx(() {
+                  // Show loading indicator
+                  if (impController.isLoading.value) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+
+                  // Show error message if products failed to load
+                  if (impController.errorMessage.isNotEmpty) {
+                    return Center(
+                      child: Text(impController.errorMessage.value),
+                    );
+                  }
+
+                  // Show message if no products available
+                  if (impController.products.isEmpty) {
+                    return Center(child: Text('no_products'.tr));
+                  }
+
+                  // Display products
+                  return MediaQuery.of(context).size.width < 1000
+                      ? _buildMobileSlideshow(context, impController)
+                      : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(width: 50),
+                          Expanded(
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.55,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children:
+                                      impController.products
+                                          .asMap()
+                                          .entries
+                                          .map((entry) {
+                                            final index = entry.key;
+                                            final card = entry.value;
+                                            return Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                              ),
+                                              child: AboutUsCard(
+                                                context: context,
+                                                image: card.image,
+                                                title: card.title,
+                                                description: card.description,
+                                                controller: impController,
+                                                cardIndex: index,
+                                              ),
+                                            );
+                                          })
+                                          .toList(),
                                 ),
                               ),
                             ),
-                            SizedBox(width: 50),
-                          ],
-                        ),
+                          ),
+                          SizedBox(width: 50),
+                        ],
+                      );
+                }),
               );
             },
           ),
