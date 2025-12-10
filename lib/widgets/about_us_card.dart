@@ -68,15 +68,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
                   AnimatedScale(
                     duration: Duration(milliseconds: 300),
                     scale: isHovered ? 1.1 : 1.0,
-                    child: Image.asset(
-                      widget.image,
-                      fit: BoxFit.cover,
-                      height:
-                          MediaQuery.of(context).size.width < 1000
-                              ? MediaQuery.of(context).size.height * 0.18
-                              : MediaQuery.of(context).size.height * 0.25,
-                      width: MediaQuery.of(context).size.height * 1,
-                    ),
+                    child: _buildImage(context),
                   ),
                   AnimatedOpacity(
                     duration: Duration(milliseconds: 300),
@@ -128,5 +120,70 @@ class _AboutUsCardState extends State<AboutUsCard> {
         ],
       ),
     );
+  }
+
+  Widget _buildImage(BuildContext context) {
+    final imageHeight =
+        MediaQuery.of(context).size.width < 1000
+            ? MediaQuery.of(context).size.height * 0.18
+            : MediaQuery.of(context).size.height * 0.25;
+    final imageWidth = MediaQuery.of(context).size.height * 1;
+
+    // Check if image is a network URL or local asset
+    if (widget.image.startsWith('http') ||
+        widget.image.startsWith('https') ||
+        widget.image.startsWith('/')) {
+      // Network image
+      return Image.network(
+        widget.image,
+        fit: BoxFit.cover,
+        height: imageHeight,
+        width: imageWidth,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            height: imageHeight,
+            width: imageWidth,
+            color: Colors.grey[300],
+            child: Center(
+              child: Icon(Icons.broken_image, color: Colors.grey),
+            ),
+          );
+        },
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Container(
+            height: imageHeight,
+            width: imageWidth,
+            color: Colors.grey[200],
+            child: Center(
+              child: CircularProgressIndicator(
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      // Local asset
+      return Image.asset(
+        widget.image,
+        fit: BoxFit.cover,
+        height: imageHeight,
+        width: imageWidth,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            height: imageHeight,
+            width: imageWidth,
+            color: Colors.grey[300],
+            child: Center(
+              child: Icon(Icons.broken_image, color: Colors.grey),
+            ),
+          );
+        },
+      );
+    }
   }
 }
