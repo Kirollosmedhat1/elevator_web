@@ -148,11 +148,21 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                   // Mobile: Image on top
                   Container(
                     height: MediaQuery.of(context).size.height * 0.3,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/customer_review.png"),
-                        fit: BoxFit.cover,
-                      ),
+                    width: double.infinity,
+                    child: Image.asset(
+                      "assets/images/customer_review.png",
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey[300],
+                          child: Center(
+                            child: Icon(
+                              Icons.image_not_supported,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   // Mobile: Reviews section below
@@ -283,15 +293,20 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                   // Left side - Shopping mall image
                   Expanded(
                     flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/customer_review.png",
+                    child: Image.asset(
+                      "assets/images/customer_review.png",
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey[300],
+                          child: Center(
+                            child: Icon(
+                              Icons.image_not_supported,
+                              color: Colors.grey,
+                            ),
                           ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                   ),
 

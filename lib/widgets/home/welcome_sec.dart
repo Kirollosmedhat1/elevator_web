@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:elevatorweb/utils/section_keys.dart';
+import 'package:flutter/animation.dart';
 
 class WelcomeSec extends StatelessWidget {
   const WelcomeSec({super.key});
@@ -58,7 +60,17 @@ class WelcomeSec extends StatelessWidget {
                       vertical: 15,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    final ctx = introSectionKey.currentContext;
+                    if (ctx != null) {
+                      Scrollable.ensureVisible(
+                        ctx,
+                        duration: Duration(milliseconds: 600),
+                        curve: Curves.easeInOut,
+                        alignment: 0.0,
+                      );
+                    }
+                  },
                   child: Text(
                     'more_about_us'.tr,
                     style: TextStyle(

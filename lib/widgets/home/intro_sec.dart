@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
+import 'package:elevatorweb/controllers/navigation_controller.dart';
 
 class IntroSec extends StatelessWidget {
   const IntroSec({super.key});
@@ -44,14 +45,16 @@ class IntroSec extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
+                      backgroundColor: Colors.black, 
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.find<NavigationController>().currentIndex.value = 1;
+                    },
                     child: Text(
                       'more_about_us'.tr,
                       style: TextStyle(fontSize: 12),
@@ -180,7 +183,9 @@ class IntroSec extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.find<NavigationController>().currentIndex.value = 1;
+                        },
                         child: Text('more_about_us'.tr),
                       ),
                       ElevatedButton(

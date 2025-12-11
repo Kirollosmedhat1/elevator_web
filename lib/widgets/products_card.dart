@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class AboutUsCard extends StatefulWidget {
+class ProductsCard extends StatefulWidget {
   final BuildContext context;
   final String image;
   final String title;
@@ -8,7 +9,7 @@ class AboutUsCard extends StatefulWidget {
   final dynamic controller;
   final int cardIndex;
 
-  const AboutUsCard({
+  const ProductsCard({
     super.key,
     required this.context,
     required this.image,
@@ -19,10 +20,10 @@ class AboutUsCard extends StatefulWidget {
   });
 
   @override
-  State<AboutUsCard> createState() => _AboutUsCardState();
+  State<ProductsCard> createState() => _ProductsCardState();
 }
 
-class _AboutUsCardState extends State<AboutUsCard> {
+class _ProductsCardState extends State<ProductsCard> {
   bool isHovered = false;
 
   @override
@@ -37,7 +38,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
       width: MediaQuery.of(context).size.height * 0.365,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.white, width: 3),
+        border: Border.all(color: Colors.black, width: 3),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +60,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
                   topRight: Radius.circular(12),
                 ),
                 border: Border(
-                  bottom: BorderSide(color: Colors.white, width: 3),
+                  bottom: BorderSide(color: Colors.black, width: 3),
                 ),
               ),
               clipBehavior: Clip.hardEdge,
@@ -95,7 +96,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
                 Text(
                   widget.title,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: MediaQuery.of(context).size.width > 768 ? 11 : 14,
                     fontWeight: FontWeight.bold,
                   ),
@@ -106,7 +107,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
                 Text(
                   widget.description,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 14,
                     fontWeight: FontWeight.w100,
                     height: 1.5,
@@ -133,37 +134,32 @@ class _AboutUsCardState extends State<AboutUsCard> {
     if (widget.image.startsWith('http') ||
         widget.image.startsWith('https') ||
         widget.image.startsWith('/')) {
-      // Network image
-      return Image.network(
-        widget.image,
+      // Network image with caching
+      return CachedNetworkImage(
+        imageUrl: widget.image,
         fit: BoxFit.cover,
         height: imageHeight,
         width: imageWidth,
-        errorBuilder: (context, error, stackTrace) {
-          return Container(
-            height: imageHeight,
-            width: imageWidth,
-            color: Colors.grey[300],
-            child: Center(child: Icon(Icons.broken_image, color: Colors.grey)),
-          );
-        },
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Container(
-            height: imageHeight,
-            width: imageWidth,
-            color: Colors.grey[200],
-            child: Center(
-              child: CircularProgressIndicator(
-                value:
-                    loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-              ),
+        placeholder: (context, url) => Container(
+          height: imageHeight,
+          width: imageWidth,
+          color: Colors.black,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
             ),
-          );
-        },
+          ),
+        ),
+        errorWidget: (context, url, error) => Container(
+          height: imageHeight,
+          width: imageWidth,
+          color: Colors.black,
+          child: Center(child: Icon(Icons.broken_image, color: Colors.grey)),
+        ),
+        fadeInDuration: Duration(milliseconds: 300),
+        fadeOutDuration: Duration(milliseconds: 100),
+        memCacheWidth: imageWidth.toInt(),
+        memCacheHeight: imageHeight.toInt(),
       );
     } else {
       // Local asset
@@ -176,7 +172,7 @@ class _AboutUsCardState extends State<AboutUsCard> {
           return Container(
             height: imageHeight,
             width: imageWidth,
-            color: Colors.grey[300],
+            color: Colors.black,
             child: Center(child: Icon(Icons.broken_image, color: Colors.grey)),
           );
         },

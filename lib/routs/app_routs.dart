@@ -1,5 +1,4 @@
 import 'package:elevatorweb/view/about_combany.dart';
-import 'package:elevatorweb/view/articles.dart';
 import 'package:elevatorweb/view/careers.dart';
 import 'package:elevatorweb/view/contact_us.dart';
 import 'package:elevatorweb/view/gallery.dart';
@@ -24,6 +23,5 @@ class AppRoutes {
       page: () => ProductDetails(product: Get.arguments),
     ),
     GetPage(name: '/prevwork', page: () => PreviusWork()),
-    GetPage(name: '/articles', page: () => Articles()),
   ];
 }

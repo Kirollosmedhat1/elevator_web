@@ -4,6 +4,8 @@ import 'package:elevatorweb/services/supabase_service.dart';
 import 'package:elevatorweb/services/video_helper.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
+import 'package:elevatorweb/widgets/page_name&photo.dart';
+import 'package:get/get.dart';
 
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
@@ -87,7 +89,8 @@ class _GalleryState extends State<Gallery> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header Section
+             PageNamePhoto(pagename: 'gallery'.tr),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
             Container(
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.05,
@@ -96,15 +99,6 @@ class _GalleryState extends State<Gallery> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Gallery',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  SizedBox(height: 16),
                   // Type Filter
                   if (_availableTypes.isNotEmpty) ...[
                     Wrap(

@@ -57,9 +57,7 @@ class _ContactUsState extends State<ContactUs> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(
-        child: CircularProgressIndicator(),
-      ),
+      builder: (context) => Center(child: CircularProgressIndicator()),
     );
 
     try {
@@ -86,16 +84,16 @@ class _ContactUsState extends State<ContactUs> {
       );
 
       // Clear form
-    _formKey.currentState!.reset();
-    setState(() {
-      _selectedGovernorate = null;
-      _selectedContactTime = null;
-    });
-    _nameController.clear();
-    _phoneController.clear();
-    _emailController.clear();
-    _cityController.clear();
-    _messageController.clear();
+      _formKey.currentState!.reset();
+      setState(() {
+        _selectedGovernorate = null;
+        _selectedContactTime = null;
+      });
+      _nameController.clear();
+      _phoneController.clear();
+      _emailController.clear();
+      _cityController.clear();
+      _messageController.clear();
     } catch (e) {
       // Close loading indicator
       Navigator.of(context).pop();

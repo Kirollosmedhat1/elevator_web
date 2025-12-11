@@ -1,6 +1,7 @@
 import 'package:elevatorweb/widgets/home/products_sec.dart';
 import 'package:elevatorweb/widgets/home/welcome_sec.dart';
 import 'package:elevatorweb/widgets/home/intro_sec.dart';
+import 'package:elevatorweb/utils/section_keys.dart';
 import 'package:elevatorweb/widgets/home/imp_aboutus_sec.dart';
 import 'package:elevatorweb/controllers/animation_controller.dart';
 import 'package:elevatorweb/widgets/home/customer_reviews.dart';
@@ -31,7 +32,7 @@ class Home extends StatelessWidget {
           children: [
             WelcomeSec(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            IntroSec(),
+            IntroSec(key: introSectionKey),
             SizedBox(height: MediaQuery.of(context).size.height * 0.04),
             ImpAboutusSec(),
             ProductsSec(),

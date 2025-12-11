@@ -4,6 +4,7 @@ import 'package:elevatorweb/widgets/page_name&photo.dart';
 import 'package:elevatorweb/controllers/products_controller.dart';
 import 'package:elevatorweb/view/product_details.dart';
 import 'package:get/get.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Products_solutions extends StatelessWidget {
   const Products_solutions({super.key});
@@ -124,13 +125,29 @@ class Products_solutions extends StatelessWidget {
                                           ),
                                           child:
                                               product.image.isNotEmpty
-                                                  ? Image.network(
-                                                    product.image,
+                                                  ? CachedNetworkImage(
+                                                    imageUrl: product.image,
                                                     fit: BoxFit.cover,
-                                                    errorBuilder: (
+                                                    placeholder:
+                                                        (
+                                                          context,
+                                                          url,
+                                                        ) => Container(
+                                                          color:
+                                                              Colors.grey[300],
+                                                          child: Center(
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                                  color: Color(
+                                                                    0xff1438de,
+                                                                  ),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                    errorWidget: (
                                                       context,
+                                                      url,
                                                       error,
-                                                      stackTrace,
                                                     ) {
                                                       return Container(
                                                         color: Colors.grey[300],
@@ -143,28 +160,12 @@ class Products_solutions extends StatelessWidget {
                                                         ),
                                                       );
                                                     },
-                                                    loadingBuilder: (
-                                                      context,
-                                                      child,
-                                                      loadingProgress,
-                                                    ) {
-                                                      if (loadingProgress ==
-                                                          null)
-                                                        return child;
-                                                      return Center(
-                                                        child: CircularProgressIndicator(
-                                                          value:
-                                                              loadingProgress
-                                                                          .expectedTotalBytes !=
-                                                                      null
-                                                                  ? loadingProgress
-                                                                          .cumulativeBytesLoaded /
-                                                                      loadingProgress
-                                                                          .expectedTotalBytes!
-                                                                  : null,
-                                                        ),
-                                                      );
-                                                    },
+                                                    fadeInDuration: Duration(
+                                                      milliseconds: 300,
+                                                    ),
+                                                    fadeOutDuration: Duration(
+                                                      milliseconds: 100,
+                                                    ),
                                                   )
                                                   : Container(
                                                     color: Colors.grey[300],

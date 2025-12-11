@@ -6,6 +6,7 @@ import 'package:elevatorweb/view/gallery.dart';
 import 'package:elevatorweb/view/products&solutions.dart';
 import 'package:elevatorweb/view/previus_work.dart';
 import 'package:get/get.dart';
+import 'package:elevatorweb/controllers/navigation_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Tab_Bar extends StatefulWidget {
@@ -16,7 +17,7 @@ class Tab_Bar extends StatefulWidget {
 }
 
 class _Tab_BarState extends State<Tab_Bar> {
-  int _currentIndex = 0;
+  final NavigationController navController = Get.put(NavigationController());
 
   List<String> get menuItems => [
     'home'.tr,
@@ -37,9 +38,7 @@ class _Tab_BarState extends State<Tab_Bar> {
   ];
 
   void _navigateToPage(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+    navController.currentIndex.value = index;
     Navigator.pop(context); // Close drawer after selection
   }
 
@@ -70,7 +69,7 @@ class _Tab_BarState extends State<Tab_Bar> {
     return Stack(
       children: [
         isMobile
-            ? Scaffold(
+          ? Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
                 backgroundColor: Colors.black,
@@ -134,14 +133,14 @@ class _Tab_BarState extends State<Tab_Bar> {
                           height: 90,
                           color: Colors.white,
                           child: Center(
-                            child: Text(
-                              menuItems[_currentIndex],
+                            child: Obx(() => Text(
+                              menuItems[navController.currentIndex.value],
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xff0B415A),
                               ),
-                            ),
+                            )),
                           ),
                         ),
                       ),
@@ -165,36 +164,28 @@ class _Tab_BarState extends State<Tab_Bar> {
                       ),
                     ),
                     Expanded(
-                      child: ListView.builder(
+                      child: Obx(() => ListView.builder(
                         itemCount: menuItems.length,
                         itemBuilder: (context, index) {
+                          final selected = index == navController.currentIndex.value;
                           return ListTile(
-                            selected: index == _currentIndex,
+                            selected: selected,
                             selectedTileColor: Colors.white.withOpacity(0.3),
                             leading: Icon(
                               _getIconForMenuItem(index),
-                              color:
-                                  index == _currentIndex
-                                      ? Colors.white
-                                      : Colors.grey,
+                              color: selected ? Colors.white : Colors.grey,
                             ),
                             title: Text(
                               menuItems[index],
                               style: TextStyle(
-                                color:
-                                    index == _currentIndex
-                                        ? Colors.white
-                                        : Colors.black,
-                                fontWeight:
-                                    index == _currentIndex
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
+                                color: selected ? Colors.white : Colors.black,
+                                fontWeight: selected ? FontWeight.bold : FontWeight.normal,
                               ),
                             ),
                             onTap: () => _navigateToPage(index),
                           );
                         },
-                      ),
+                      )),
                     ),
                     // Add language dropdown at the bottom of the drawer
                     Padding(
@@ -242,11 +233,9 @@ class _Tab_BarState extends State<Tab_Bar> {
                   ],
                 ),
               ),
-              body: tabViews[_currentIndex],
+              body: Obx(() => tabViews[navController.currentIndex.value]),
             )
-            : DefaultTabController(
-              length: menuItems.length,
-              child: Scaffold(
+            : Obx(() => Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.black,
                   leadingWidth: double.infinity,
@@ -269,12 +258,10 @@ class _Tab_BarState extends State<Tab_Bar> {
                           style: TextStyle(color: Colors.white),
                         ),
                         const SizedBox(width: 30),
-                        // Removed languageDropdown from here
                       ],
                     ),
                   ),
                   actions: [
-                    // Removed languageDropdown from here
                     IconButton(
                       icon: Image.asset(
                         'assets/images/icon-youtube.png',
@@ -322,7 +309,6 @@ class _Tab_BarState extends State<Tab_Bar> {
                             ),
                           ),
                         ),
-                        // Insert language dropdown here
                         Container(
                           color: Colors.white,
                           height: 90,
@@ -334,13 +320,11 @@ class _Tab_BarState extends State<Tab_Bar> {
                           width:
                               MediaQuery.of(context).size.width -
                               120 -
-                              120, // adjust for logo and dropdown
+                              120,
                           color: Colors.white,
                           child: TabBar(
-                            tabs:
-                                menuItems
-                                    .map((item) => Tab(text: item))
-                                    .toList(),
+                            onTap: (index) => navController.currentIndex.value = index,
+                            tabs: menuItems.map((item) => Tab(text: item)).toList(),
                             labelColor: Colors.grey[400],
                             unselectedLabelColor: Colors.black,
                             indicatorColor: Colors.grey[400],
@@ -355,9 +339,8 @@ class _Tab_BarState extends State<Tab_Bar> {
                     ),
                   ),
                 ),
-                body: TabBarView(children: tabViews),
-              ),
-            ),
+                body: tabViews[navController.currentIndex.value],
+              )),
         Obx(
           () =>
               contactController.isVisible.value
@@ -378,10 +361,15 @@ class _Tab_BarState extends State<Tab_Bar> {
                       child: Column(
                         children: [
                           IconButton(
-                            icon: Icon(Icons.chat, color: Colors.green),
+                            icon: Image.asset(
+                              'assets/images/whatsapp.png',
+                              width: 20,
+                              height: 20,
+                              // color: Colors.white,
+                            ),
                             onPressed: () async {
                               final url = Uri.parse(
-                                'https://wa.me/01204611333',
+                                'https://wa.me/201204611333',
                               );
                               if (await canLaunchUrl(url)) {
                                 await launchUrl(
@@ -395,7 +383,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                           IconButton(
                             icon: Icon(Icons.phone, color: Colors.blue),
                             onPressed: () async {
-                              final url = Uri.parse('tel:01201424777');
+                              final url = Uri.parse('tel:201201424777');
                               if (await canLaunchUrl(url)) {
                                 await launchUrl(url);
                               }

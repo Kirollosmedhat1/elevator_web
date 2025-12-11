@@ -21,12 +21,12 @@ class GalleryController extends GetxController {
   Future<void> loadGalleryItems() async {
     isLoading.value = true;
     errorMessage.value = '';
-    
+
     try {
       final items = await SupabaseService().getGalleryItems();
       galleryItems.value = items;
       isLoading.value = false;
-      
+
       // Start auto-slide if we have items
       if (items.isNotEmpty) {
         startAutoSlide();
@@ -41,7 +41,8 @@ class GalleryController extends GetxController {
     if (galleryItems.isEmpty) return;
     autoSlideTimer?.cancel();
     autoSlideTimer = Timer.periodic(Duration(seconds: 3), (timer) {
-      currentCardIndex.value = (currentCardIndex.value + 1) % galleryItems.length;
+      currentCardIndex.value =
+          (currentCardIndex.value + 1) % galleryItems.length;
       if (pageController.hasClients) {
         pageController.animateToPage(
           currentCardIndex.value,
@@ -65,7 +66,8 @@ class GalleryController extends GetxController {
     if (galleryItems.isEmpty) return;
     restartAutoSlide();
     currentCardIndex.value =
-        (currentCardIndex.value - 1 + galleryItems.length) % galleryItems.length;
+        (currentCardIndex.value - 1 + galleryItems.length) %
+        galleryItems.length;
     if (pageController.hasClients) {
       pageController.animateToPage(
         currentCardIndex.value,
@@ -95,10 +97,3 @@ class GalleryController extends GetxController {
     super.onClose();
   }
 }
-
-
-
-
-
-
-

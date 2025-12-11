@@ -1,7 +1,7 @@
+import 'package:elevatorweb/widgets/products_card.dart';
 import 'package:flutter/material.dart';
 import 'package:elevatorweb/controllers/animation_controller.dart';
 import 'package:elevatorweb/controllers/products_controller.dart';
-import 'package:elevatorweb/widgets/about_us_card.dart';
 import 'package:get/get.dart';
 
 class ProductsSec extends StatelessWidget {
@@ -110,7 +110,7 @@ class ProductsSec extends StatelessWidget {
                     final card = controller.products[index];
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: AboutUsCard(
+                      child: ProductsCard(
                         context: context,
                         image: card.image,
                         title: card.title,
@@ -196,37 +196,35 @@ class ProductsSec extends StatelessWidget {
                   itemCount: totalPages,
                   itemBuilder: (context, pageIndex) {
                     final startIdx = pageIndex * productsPerPage;
-                    final endIdx = (startIdx + productsPerPage)
-                        .clamp(0, controller.products.length);
-                    final pageProducts =
-                        controller.products.sublist(startIdx, endIdx);
+                    final endIdx = (startIdx + productsPerPage).clamp(
+                      0,
+                      controller.products.length,
+                    );
+                    final pageProducts = controller.products.sublist(
+                      startIdx,
+                      endIdx,
+                    );
 
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children:
-                          pageProducts
-                              .asMap()
-                              .entries
-                              .map((entry) {
-                                final card = entry.value;
-                                final cardIndex = startIdx + entry.key;
-                                return Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 8.0,
-                                    ),
-                                    child: AboutUsCard(
-                                      context: context,
-                                      image: card.image,
-                                      title: card.title,
-                                      description: card.description,
-                                      controller: controller,
-                                      cardIndex: cardIndex,
-                                    ),
-                                  ),
-                                );
-                              })
-                              .toList(),
+                          pageProducts.asMap().entries.map((entry) {
+                            final card = entry.value;
+                            final cardIndex = startIdx + entry.key;
+                            return Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: ProductsCard(
+                                  context: context,
+                                  image: card.image,
+                                  title: card.title,
+                                  description: card.description,
+                                  controller: controller,
+                                  cardIndex: cardIndex,
+                                ),
+                              ),
+                            );
+                          }).toList(),
                     );
                   },
                 ),
