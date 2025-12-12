@@ -1,5 +1,4 @@
 import 'package:elevatorweb/view/about_combany.dart';
-import 'package:elevatorweb/view/careers.dart';
 import 'package:elevatorweb/view/contact_us.dart';
 import 'package:elevatorweb/view/gallery.dart';
 import 'package:elevatorweb/view/home.dart';
@@ -15,7 +14,6 @@ class AppRoutes {
     GetPage(name: '/home', page: () => Home()),
     GetPage(name: '/about', page: () => AboutCombany()),
     GetPage(name: '/contact', page: () => ContactUs()),
-    GetPage(name: '/careers', page: () => Careers()),
     GetPage(name: '/gallery', page: () => Gallery()),
     GetPage(name: '/products', page: () => Products_solutions()),
     GetPage(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
-import 'package:elevatorweb/controllers/navigation_controller.dart';
+import 'package:elevatorweb/controllers/tab_navigation_controller.dart';
 
 class IntroSec extends StatelessWidget {
   const IntroSec({super.key});
@@ -9,6 +9,8 @@ class IntroSec extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 768;
+    final TabNavigationController tabNavController =
+        Get.find<TabNavigationController>();
 
     if (isMobile) {
       // Mobile view: Column layout (text, buttons, slideshow)
@@ -45,7 +47,7 @@ class IntroSec extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black, 
+                      backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -53,7 +55,7 @@ class IntroSec extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     onPressed: () {
-                      Get.find<NavigationController>().currentIndex.value = 1;
+                      tabNavController.navigateToAbout();
                     },
                     child: Text(
                       'more_about_us'.tr,
@@ -72,7 +74,9 @@ class IntroSec extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      tabNavController.navigateToProducts();
+                    },
                     child: Text(
                       'our_services'.tr,
                       style: TextStyle(fontSize: 12),
@@ -90,7 +94,9 @@ class IntroSec extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      tabNavController.navigateToContact();
+                    },
                     child: Text(
                       'contact_us'.tr,
                       style: TextStyle(fontSize: 12),
@@ -184,7 +190,7 @@ class IntroSec extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Get.find<NavigationController>().currentIndex.value = 1;
+                          tabNavController.navigateToAbout();
                         },
                         child: Text('more_about_us'.tr),
                       ),
@@ -196,7 +202,9 @@ class IntroSec extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          tabNavController.navigateToProducts();
+                        },
                         child: Text('our_services'.tr),
                       ),
                       ElevatedButton(
@@ -207,7 +215,9 @@ class IntroSec extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          tabNavController.navigateToContact();
+                        },
                         child: Text('contact_us'.tr),
                       ),
                     ],

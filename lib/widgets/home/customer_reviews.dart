@@ -166,124 +166,121 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                     ),
                   ),
                   // Mobile: Reviews section below
-                  Expanded(
-                    child: Container(
-                      color: Colors.white,
-                      padding: EdgeInsets.all(20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Title
-                          Text(
-                            'customer_reviews'.tr,
-                            style: TextStyle(
-                              fontSize: 22,
-                              color: Color(0xFF1A232F),
-                              fontWeight: FontWeight.bold,
+                  Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Title
+                        Text(
+                          'customer_reviews'.tr,
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Color(0xFF1A232F),
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 30),
+
+                        // Review content
+                        Column(
+                          children: [
+                            Text(
+                              hasReviews
+                                  ? '"${reviews[currentReviewIndex].review}"'
+                                  : (isLoading ? '' : 'no_customer_reviews'.tr),
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF1A232F),
+                                fontStyle: FontStyle.italic,
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 30),
+                            SizedBox(height: 20),
 
-                          // Review content
-                          Column(
-                            children: [
-                              Text(
-                                hasReviews
-                                    ? '"${reviews[currentReviewIndex].review}"'
-                                    : (isLoading
-                                        ? ''
-                                        : 'no_customer_reviews'.tr),
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF1A232F),
-                                  fontStyle: FontStyle.italic,
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.center,
+                            // Reviewer name and source
+                            Text(
+                              hasReviews
+                                  ? reviews[currentReviewIndex].reviewerName
+                                  : '',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF1A232F),
+                                fontWeight: FontWeight.bold,
                               ),
-                              SizedBox(height: 20),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              hasReviews
+                                  ? reviews[currentReviewIndex].source
+                                  : '',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF89CFF0),
+                              ),
+                            ),
+                          ],
+                        ),
 
-                              // Reviewer name and source
-                              Text(
-                                hasReviews
-                                    ? reviews[currentReviewIndex].reviewerName
-                                    : '',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Color(0xFF1A232F),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                hasReviews
-                                    ? reviews[currentReviewIndex].source
-                                    : '',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xFF89CFF0),
-                                ),
-                              ),
-                            ],
-                          ),
+                        SizedBox(height: 30),
 
-                          SizedBox(height: 30),
-
-                          // Navigation arrows and dots
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed:
-                                    (hasReviews && !isLoading)
-                                        ? _previousReview
-                                        : null,
-                                icon: Icon(
-                                  Icons.chevron_left,
-                                  color: Color(0xFF1A232F),
-                                  size: 28,
-                                ),
+                        // Navigation arrows and dots
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              onPressed:
+                                  (hasReviews && !isLoading)
+                                      ? _previousReview
+                                      : null,
+                              icon: Icon(
+                                Icons.chevron_left,
+                                color: Color(0xFF1A232F),
+                                size: 28,
                               ),
-                              SizedBox(width: 20),
-                              // Pagination dots
-                              ...List.generate(reviews.length, (index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      currentReviewIndex = index;
-                                    });
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 3),
-                                    width: 6,
-                                    height: 6,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color:
-                                          index == currentReviewIndex
-                                              ? Color(0xFF1A232F)
-                                              : Color(0xFF89CFF0),
-                                    ),
+                            ),
+                            SizedBox(width: 20),
+                            // Pagination dots
+                            ...List.generate(reviews.length, (index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    currentReviewIndex = index;
+                                  });
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 3),
+                                  width: 6,
+                                  height: 6,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color:
+                                        index == currentReviewIndex
+                                            ? Color(0xFF1A232F)
+                                            : Color(0xFF89CFF0),
                                   ),
-                                );
-                              }),
-                              SizedBox(width: 20),
-                              IconButton(
-                                onPressed:
-                                    (hasReviews && !isLoading)
-                                        ? _nextReview
-                                        : null,
-                                icon: Icon(
-                                  Icons.chevron_right,
-                                  color: Color(0xFF1A232F),
-                                  size: 28,
                                 ),
+                              );
+                            }),
+                            SizedBox(width: 20),
+                            IconButton(
+                              onPressed:
+                                  (hasReviews && !isLoading)
+                                      ? _nextReview
+                                      : null,
+                              icon: Icon(
+                                Icons.chevron_right,
+                                color: Color(0xFF1A232F),
+                                size: 28,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -428,8 +425,8 @@ class _CustomerReviewsState extends State<CustomerReviews> {
                                     shape: BoxShape.circle,
                                     color:
                                         index == currentReviewIndex
-                                            ? Color(0xFF1A232F)
-                                            : Color(0xFF89CFF0),
+                                            ? Colors.black
+                                            : Colors.grey,
                                   ),
                                 ),
                               );

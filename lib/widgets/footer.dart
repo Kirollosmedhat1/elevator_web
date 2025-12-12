@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:elevatorweb/controllers/tab_navigation_controller.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -8,6 +9,8 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final TabNavigationController tabNavController =
+        Get.find<TabNavigationController>();
 
     return Container(
       color: Colors.black,
@@ -143,13 +146,36 @@ class Footer extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
 
-                        _buildLink('home'.tr, true),
-                        _buildLink('about_company'.tr),
-                        _buildLink('products_and_solutions'.tr),
-                        _buildLink('studio'.tr, false, true),
-                        _buildLink('articles'.tr),
-                        _buildLink('careers'.tr),
-                        _buildLink('contact_us_caps'.tr),
+                        _buildLink(
+                          'home'.tr,
+                          true,
+                          false,
+                          () => tabNavController.navigateToTab(0),
+                        ),
+                        _buildLink(
+                          'about_company'.tr,
+                          false,
+                          false,
+                          () => tabNavController.navigateToTab(1),
+                        ),
+                        _buildLink(
+                          'products_and_solutions'.tr,
+                          false,
+                          false,
+                          () => tabNavController.navigateToTab(2),
+                        ),
+                        _buildLink(
+                          'studio'.tr,
+                          false,
+                          true,
+                          () => tabNavController.navigateToTab(4),
+                        ),
+                        _buildLink(
+                          'contact_us_caps'.tr,
+                          false,
+                          false,
+                          () => tabNavController.navigateToTab(5),
+                        ),
 
                         SizedBox(height: 20),
 
@@ -254,21 +280,25 @@ class Footer extends StatelessWidget {
     String text, [
     bool isHighlighted = false,
     bool hasDropdown = false,
+    VoidCallback? onTap,
   ]) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-              color: isHighlighted ? Colors.white : Colors.white,
-              fontSize: 14,
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 8),
+        child: Row(
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                color: isHighlighted ? Colors.white : Colors.white,
+                fontSize: 14,
+              ),
             ),
-          ),
-          if (hasDropdown)
-            Icon(Icons.arrow_drop_down, color: Colors.white, size: 16),
-        ],
+            if (hasDropdown)
+              Icon(Icons.arrow_drop_down, color: Colors.white, size: 16),
+          ],
+        ),
       ),
     );
   }
@@ -354,6 +384,8 @@ class Footer extends StatelessWidget {
   }
 
   Widget _buildMobileLinks(BuildContext context) {
+    final TabNavigationController tabNavController =
+        Get.find<TabNavigationController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -366,12 +398,30 @@ class Footer extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        _buildLink('home'.tr, true),
-        _buildLink('about_company'.tr),
-        _buildLink('products_caps'.tr),
-        _buildLink('articles'.tr),
-        _buildLink('careers'.tr),
-        _buildLink('contact_us_caps'.tr),
+        _buildLink(
+          'home'.tr,
+          true,
+          false,
+          () => tabNavController.navigateToTab(0),
+        ),
+        _buildLink(
+          'about_company'.tr,
+          false,
+          false,
+          () => tabNavController.navigateToTab(1),
+        ),
+        _buildLink(
+          'products_caps'.tr,
+          false,
+          false,
+          () => tabNavController.navigateToTab(2),
+        ),
+        _buildLink(
+          'contact_us_caps'.tr,
+          false,
+          false,
+          () => tabNavController.navigateToTab(5),
+        ),
       ],
     );
   }

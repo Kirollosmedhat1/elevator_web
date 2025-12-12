@@ -5,9 +5,12 @@ import 'package:elevatorweb/view/contact_us.dart';
 import 'package:elevatorweb/view/gallery.dart';
 import 'package:elevatorweb/view/products&solutions.dart';
 import 'package:elevatorweb/view/previus_work.dart';
+import 'package:elevatorweb/controllers/tab_navigation_controller.dart';
 import 'package:get/get.dart';
-import 'package:elevatorweb/controllers/navigation_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+// Ignore the old navigation_controller import if it exists
+// Using only TabNavigationController from now on
 
 class Tab_Bar extends StatefulWidget {
   const Tab_Bar({super.key});
@@ -17,7 +20,9 @@ class Tab_Bar extends StatefulWidget {
 }
 
 class _Tab_BarState extends State<Tab_Bar> {
-  final NavigationController navController = Get.put(NavigationController());
+  final TabNavigationController tabNavController = Get.put(
+    TabNavigationController(),
+  );
 
   List<String> get menuItems => [
     'home'.tr,
@@ -37,8 +42,18 @@ class _Tab_BarState extends State<Tab_Bar> {
     ContactUs(),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void _navigateToPage(int index) {
-    navController.currentIndex.value = index;
+    tabNavController.navigateToTab(index);
     Navigator.pop(context); // Close drawer after selection
   }
 
@@ -69,7 +84,7 @@ class _Tab_BarState extends State<Tab_Bar> {
     return Stack(
       children: [
         isMobile
-          ? Scaffold(
+            ? Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
                 backgroundColor: Colors.black,
@@ -88,7 +103,17 @@ class _Tab_BarState extends State<Tab_Bar> {
                       height: 20,
                       color: Colors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      final url = Uri.parse(
+                        'https://youtube.com/@beamselevators1951?si=OlAsD9XdgCptTnBK',
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
                     tooltip: 'YouTube',
                   ),
                   IconButton(
@@ -98,7 +123,17 @@ class _Tab_BarState extends State<Tab_Bar> {
                       height: 20,
                       color: Colors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      final url = Uri.parse(
+                        'https://www.linkedin.com/in/beams-elevators-35a286386/',
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
                     tooltip: 'LinkedIn',
                   ),
                   IconButton(
@@ -108,7 +143,17 @@ class _Tab_BarState extends State<Tab_Bar> {
                       height: 20,
                       color: Colors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      final url = Uri.parse(
+                        'https://www.facebook.com/share/1A93QjvLvx/?mibextid=wwXIfr',
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
                     tooltip: 'Facebook',
                   ),
                   const SizedBox(width: 20),
@@ -133,14 +178,18 @@ class _Tab_BarState extends State<Tab_Bar> {
                           height: 90,
                           color: Colors.white,
                           child: Center(
-                            child: Obx(() => Text(
-                              menuItems[navController.currentIndex.value],
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff0B415A),
+                            child: Obx(
+                              () => Text(
+                                menuItems[tabNavController
+                                    .currentTabIndex
+                                    .value],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff0B415A),
+                                ),
                               ),
-                            )),
+                            ),
                           ),
                         ),
                       ),
@@ -164,28 +213,35 @@ class _Tab_BarState extends State<Tab_Bar> {
                       ),
                     ),
                     Expanded(
-                      child: Obx(() => ListView.builder(
+                      child: ListView.builder(
                         itemCount: menuItems.length,
                         itemBuilder: (context, index) {
-                          final selected = index == navController.currentIndex.value;
-                          return ListTile(
-                            selected: selected,
-                            selectedTileColor: Colors.white.withOpacity(0.3),
-                            leading: Icon(
-                              _getIconForMenuItem(index),
-                              color: selected ? Colors.white : Colors.grey,
-                            ),
-                            title: Text(
-                              menuItems[index],
-                              style: TextStyle(
-                                color: selected ? Colors.white : Colors.black,
-                                fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+                          return Obx(() {
+                            final isSelected =
+                                index == tabNavController.currentTabIndex.value;
+                            return ListTile(
+                              selected: isSelected,
+                              selectedTileColor: Colors.white.withOpacity(0.3),
+                              leading: Icon(
+                                _getIconForMenuItem(index),
+                                color: isSelected ? Colors.white : Colors.grey,
                               ),
-                            ),
-                            onTap: () => _navigateToPage(index),
-                          );
+                              title: Text(
+                                menuItems[index],
+                                style: TextStyle(
+                                  color:
+                                      isSelected ? Colors.white : Colors.black,
+                                  fontWeight:
+                                      isSelected
+                                          ? FontWeight.bold
+                                          : FontWeight.normal,
+                                ),
+                              ),
+                              onTap: () => _navigateToPage(index),
+                            );
+                          });
                         },
-                      )),
+                      ),
                     ),
                     // Add language dropdown at the bottom of the drawer
                     Padding(
@@ -233,114 +289,194 @@ class _Tab_BarState extends State<Tab_Bar> {
                   ],
                 ),
               ),
-              body: Obx(() => tabViews[navController.currentIndex.value]),
+              body: Obx(() => tabViews[tabNavController.currentTabIndex.value]),
             )
-            : Obx(() => Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.black,
-                  leadingWidth: double.infinity,
-                  leading: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 30),
-                        const Icon(Icons.phone, color: Colors.white),
-                        const SizedBox(width: 10),
-                        const Text(
+            : Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.black,
+                leadingWidth: double.infinity,
+                leading: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 30),
+                      const Icon(Icons.phone, color: Colors.white),
+                      const SizedBox(width: 10),
+                      InkWell(
+                        onTap: () async {
+                          final url = Uri.parse('tel:201201424777');
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                          }
+                        },
+                        child: const Text(
                           "01201424777",
                           style: TextStyle(color: Colors.white),
                         ),
-                        const SizedBox(width: 30),
-                        const Icon(Icons.email_rounded, color: Colors.white),
-                        const SizedBox(width: 10),
-                        const Text(
+                      ),
+
+                      const SizedBox(width: 30),
+                      const Icon(Icons.email_rounded, color: Colors.white),
+                      const SizedBox(width: 10),
+                      InkWell(
+                        onTap: () async {
+                          final url = Uri.parse(
+                            'mailto:Beams.Elevators@gmail.com',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                          }
+                        },
+                        child: const Text(
                           "Beams.Elevators@gmail.com",
                           style: TextStyle(color: Colors.white),
                         ),
-                        const SizedBox(width: 30),
-                      ],
-                    ),
-                  ),
-                  actions: [
-                    IconButton(
-                      icon: Image.asset(
-                        'assets/images/icon-youtube.png',
-                        width: 20,
-                        height: 20,
-                        color: Colors.white,
                       ),
-                      onPressed: () {},
-                      tooltip: 'YouTube',
-                    ),
-                    IconButton(
-                      icon: Image.asset(
-                        'assets/images/icon-linkedin.png',
-                        width: 20,
-                        height: 20,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {},
-                      tooltip: 'LinkedIn',
-                    ),
-                    IconButton(
-                      icon: Image.asset(
-                        'assets/images/icon-facebook.png',
-                        width: 20,
-                        height: 20,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {},
-                      tooltip: 'Facebook',
-                    ),
-                    const SizedBox(width: 50),
-                  ],
-                  bottom: PreferredSize(
-                    preferredSize: const Size.fromHeight(70),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 90,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            image: DecorationImage(
-                              image: AssetImage("assets/images/beamslogo.png"),
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: Colors.white,
-                          height: 90,
-                          width: 120,
-                          child: Center(child: languageDropdown()),
-                        ),
-                        Container(
-                          height: 90,
-                          width:
-                              MediaQuery.of(context).size.width -
-                              120 -
-                              120,
-                          color: Colors.white,
-                          child: TabBar(
-                            onTap: (index) => navController.currentIndex.value = index,
-                            tabs: menuItems.map((item) => Tab(text: item)).toList(),
-                            labelColor: Colors.grey[400],
-                            unselectedLabelColor: Colors.black,
-                            indicatorColor: Colors.grey[400],
-                            labelStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            unselectedLabelStyle: TextStyle(fontSize: 14),
-                          ),
-                        ),
-                      ],
-                    ),
+                      const SizedBox(width: 30),
+                      // Removed languageDropdown from here
+                    ],
                   ),
                 ),
-                body: tabViews[navController.currentIndex.value],
-              )),
+                actions: [
+                  // Removed languageDropdown from here
+                  IconButton(
+                    icon: Image.asset(
+                      'assets/images/icon-youtube.png',
+                      width: 20,
+                      height: 20,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      final url = Uri.parse(
+                        'https://youtube.com/@beamselevators1951?si=OlAsD9XdgCptTnBK',
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                    tooltip: 'YouTube',
+                  ),
+                  IconButton(
+                    icon: Image.asset(
+                      'assets/images/icon-linkedin.png',
+                      width: 20,
+                      height: 20,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      final url = Uri.parse(
+                        'https://www.linkedin.com/in/beams-elevators-35a286386/',
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                    tooltip: 'LinkedIn',
+                  ),
+                  IconButton(
+                    icon: Image.asset(
+                      'assets/images/icon-facebook.png',
+                      width: 20,
+                      height: 20,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      final url = Uri.parse(
+                        'https://www.facebook.com/share/1A93QjvLvx/?mibextid=wwXIfr',
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                    tooltip: 'Facebook',
+                  ),
+                  const SizedBox(width: 50),
+                ],
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(70),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 90,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/beamslogo.png"),
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                      // Insert language dropdown here
+                      Container(
+                        color: Colors.white,
+                        height: 90,
+                        width: 120,
+                        child: Center(child: languageDropdown()),
+                      ),
+                      Container(
+                        height: 90,
+                        width:
+                            MediaQuery.of(context).size.width -
+                            120 -
+                            120, // adjust for logo and dropdown
+                        color: Colors.white,
+                        child: Obx(
+                          () => Row(
+                            children: List.generate(
+                              menuItems.length,
+                              (index) {
+                                final isSelected =
+                                    index == tabNavController.currentTabIndex.value;
+                                return Expanded(
+                                  child: InkWell(
+                                    onTap: () => tabNavController.navigateToTab(index),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          menuItems[index],
+                                          style: TextStyle(
+                                            color: isSelected
+                                                ? Colors.grey[400]
+                                                : Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: isSelected
+                                                ? FontWeight.bold
+                                                : FontWeight.normal,
+                                          ),
+                                        ),
+                                        if (isSelected)
+                                          Container(
+                                            height: 2,
+                                            width: 40,
+                                            color: Colors.grey[400],
+                                            margin: EdgeInsets.only(top: 8),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              body: Obx(() => tabViews[tabNavController.currentTabIndex.value]),
+            ),
         Obx(
           () =>
               contactController.isVisible.value
@@ -361,12 +497,7 @@ class _Tab_BarState extends State<Tab_Bar> {
                       child: Column(
                         children: [
                           IconButton(
-                            icon: Image.asset(
-                              'assets/images/whatsapp.png',
-                              width: 20,
-                              height: 20,
-                              // color: Colors.white,
-                            ),
+                            icon: Icon(Icons.chat, color: Colors.green),
                             onPressed: () async {
                               final url = Uri.parse(
                                 'https://wa.me/201204611333',

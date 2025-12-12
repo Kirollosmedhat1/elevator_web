@@ -120,7 +120,7 @@ class ImpAboutusSec extends StatelessWidget {
                 : MediaQuery.of(context).size.height * 0.06,
         vertical: MediaQuery.of(context).size.height * 0.05,
       ),
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.85,
       color: Colors.black,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

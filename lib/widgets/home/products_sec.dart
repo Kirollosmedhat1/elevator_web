@@ -151,7 +151,7 @@ class ProductsSec extends StatelessWidget {
                   shape: BoxShape.circle,
                   color:
                       index == controller.currentCardIndex.value
-                          ? Colors.white
+                          ? Colors.grey
                           : Colors.black,
                 ),
               );
@@ -167,7 +167,9 @@ class ProductsSec extends StatelessWidget {
     ProductsController controller,
   ) {
     const int productsPerPage = 4;
-    final totalPages = (controller.products.length / productsPerPage).ceil();
+    const int maxProducts = 8;
+    final limitedProducts = controller.products.take(maxProducts).toList();
+    final totalPages = (limitedProducts.length / productsPerPage).ceil();
 
     return Column(
       children: [
@@ -190,6 +192,7 @@ class ProductsSec extends StatelessWidget {
               Expanded(
                 child: PageView.builder(
                   controller: controller.pageController,
+                  physics: NeverScrollableScrollPhysics(),
                   onPageChanged: (index) {
                     controller.currentCardIndex.value = index;
                   },
@@ -198,9 +201,9 @@ class ProductsSec extends StatelessWidget {
                     final startIdx = pageIndex * productsPerPage;
                     final endIdx = (startIdx + productsPerPage).clamp(
                       0,
-                      controller.products.length,
+                      limitedProducts.length,
                     );
-                    final pageProducts = controller.products.sublist(
+                    final pageProducts = limitedProducts.sublist(
                       startIdx,
                       endIdx,
                     );
@@ -258,7 +261,7 @@ class ProductsSec extends StatelessWidget {
                   shape: BoxShape.circle,
                   color:
                       index == controller.currentCardIndex.value
-                          ? Colors.white
+                          ? Colors.grey
                           : Colors.black,
                 ),
               );
