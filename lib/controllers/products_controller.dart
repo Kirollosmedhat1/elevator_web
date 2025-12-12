@@ -71,10 +71,9 @@ class ProductsController extends GetxController {
     }
   }
 
-  /// Ensure products are loaded for current language; fetch if language changed
-  void ensureProductsForLang() {
-    final currentLang = Get.locale?.languageCode ?? 'en';
-    if (lastFetchedLang.value != currentLang) {
+  /// Ensure products are loaded for given language; fetch if different
+  void ensureProductsForLang(String lang) {
+    if (lastFetchedLang.value != lang) {
       fetchProducts();
     }
   }

@@ -4,7 +4,6 @@ import 'package:elevatorweb/widgets/page_name&photo.dart';
 import 'package:elevatorweb/controllers/products_controller.dart';
 import 'package:elevatorweb/view/product_details.dart';
 import 'package:get/get.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class Products_solutions extends StatelessWidget {
   const Products_solutions({super.key});
@@ -13,8 +12,9 @@ class Products_solutions extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProductsController productsController = Get.put(ProductsController());
     // Ensure products are refreshed when locale changes.
+    final String currentLang = Localizations.localeOf(context).languageCode;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      productsController.ensureProductsForLang();
+      productsController.ensureProductsForLang(currentLang);
     });
 
     return Scaffold(
@@ -124,29 +124,13 @@ class Products_solutions extends StatelessWidget {
                                           ),
                                           child:
                                               product.image.isNotEmpty
-                                                  ? CachedNetworkImage(
-                                                    imageUrl: product.image,
+                                                  ? Image.network(
+                                                    product.image,
                                                     fit: BoxFit.cover,
-                                                    placeholder:
-                                                        (
-                                                          context,
-                                                          url,
-                                                        ) => Container(
-                                                          color:
-                                                              Colors.grey[300],
-                                                          child: Center(
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                                  color: Color(
-                                                                    0xff1438de,
-                                                                  ),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                    errorWidget: (
+                                                    errorBuilder: (
                                                       context,
-                                                      url,
                                                       error,
+                                                      stackTrace,
                                                     ) {
                                                       return Container(
                                                         color: Colors.grey[300],
@@ -159,12 +143,28 @@ class Products_solutions extends StatelessWidget {
                                                         ),
                                                       );
                                                     },
-                                                    fadeInDuration: Duration(
-                                                      milliseconds: 300,
-                                                    ),
-                                                    fadeOutDuration: Duration(
-                                                      milliseconds: 100,
-                                                    ),
+                                                    loadingBuilder: (
+                                                      context,
+                                                      child,
+                                                      loadingProgress,
+                                                    ) {
+                                                      if (loadingProgress ==
+                                                          null)
+                                                        return child;
+                                                      return Center(
+                                                        child: CircularProgressIndicator(
+                                                          value:
+                                                              loadingProgress
+                                                                          .expectedTotalBytes !=
+                                                                      null
+                                                                  ? loadingProgress
+                                                                          .cumulativeBytesLoaded /
+                                                                      loadingProgress
+                                                                          .expectedTotalBytes!
+                                                                  : null,
+                                                        ),
+                                                      );
+                                                    },
                                                   )
                                                   : Container(
                                                     color: Colors.grey[300],

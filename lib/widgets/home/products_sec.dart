@@ -4,38 +4,12 @@ import 'package:elevatorweb/controllers/animation_controller.dart';
 import 'package:elevatorweb/controllers/products_controller.dart';
 import 'package:get/get.dart';
 
-class ProductsSec extends StatefulWidget {
+class ProductsSec extends StatelessWidget {
   const ProductsSec({super.key});
 
   @override
-  State<ProductsSec> createState() => _ProductsSecState();
-}
-
-class _ProductsSecState extends State<ProductsSec> {
-  late ProductsController impController;
-  Locale? lastLocale;
-
-  @override
-  void initState() {
-    super.initState();
-    impController = Get.put(ProductsController());
-    lastLocale = Get.locale;
-  }
-
-  @override
-  void didUpdateWidget(ProductsSec oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // Check if locale has changed
-    if (lastLocale != Get.locale) {
-      lastLocale = Get.locale;
-      // Refetch products for new language
-      impController.ensureProductsForLang();
-      setState(() {});
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final ProductsController impController = Get.put(ProductsController());
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal:
@@ -54,21 +28,19 @@ class _ProductsSecState extends State<ProductsSec> {
             padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width < 768 ? 10 : 0,
             ),
-            child: Obx(
-              () => RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'products'.tr,
-                      style: TextStyle(
-                        fontSize:
-                            MediaQuery.of(context).size.width < 768 ? 24 : 40,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'products'.tr,
+                    style: TextStyle(
+                      fontSize:
+                          MediaQuery.of(context).size.width < 768 ? 24 : 40,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -179,7 +151,7 @@ class _ProductsSecState extends State<ProductsSec> {
                   shape: BoxShape.circle,
                   color:
                       index == controller.currentCardIndex.value
-                          ? Colors.grey
+                          ? Colors.white
                           : Colors.black,
                 ),
               );
@@ -195,9 +167,7 @@ class _ProductsSecState extends State<ProductsSec> {
     ProductsController controller,
   ) {
     const int productsPerPage = 4;
-    const int maxProducts = 8;
-    final limitedProducts = controller.products.take(maxProducts).toList();
-    final totalPages = (limitedProducts.length / productsPerPage).ceil();
+    final totalPages = (controller.products.length / productsPerPage).ceil();
 
     return Column(
       children: [
@@ -220,7 +190,6 @@ class _ProductsSecState extends State<ProductsSec> {
               Expanded(
                 child: PageView.builder(
                   controller: controller.pageController,
-                  physics: NeverScrollableScrollPhysics(),
                   onPageChanged: (index) {
                     controller.currentCardIndex.value = index;
                   },
@@ -229,9 +198,9 @@ class _ProductsSecState extends State<ProductsSec> {
                     final startIdx = pageIndex * productsPerPage;
                     final endIdx = (startIdx + productsPerPage).clamp(
                       0,
-                      limitedProducts.length,
+                      controller.products.length,
                     );
-                    final pageProducts = limitedProducts.sublist(
+                    final pageProducts = controller.products.sublist(
                       startIdx,
                       endIdx,
                     );
@@ -289,7 +258,7 @@ class _ProductsSecState extends State<ProductsSec> {
                   shape: BoxShape.circle,
                   color:
                       index == controller.currentCardIndex.value
-                          ? Colors.grey
+                          ? Colors.white
                           : Colors.black,
                 ),
               );

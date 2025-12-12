@@ -57,10 +57,14 @@ class _ContactUsState extends State<ContactUs> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
+      builder: (context) => Center(
+        child: CircularProgressIndicator(),
+      ),
     );
 
     try {
+      print('📤 Submitting contact form to Supabase...');
+      
       // Submit to Supabase
       await SupabaseService().submitContactForm(
         name: _nameController.text.trim(),
@@ -72,16 +76,21 @@ class _ContactUsState extends State<ContactUs> {
         message: _messageController.text.trim(),
       );
 
+      print('✅ Contact form submitted successfully');
+      
       // Close loading indicator
-      Navigator.of(context).pop();
+      if (mounted) Navigator.of(context).pop();
 
       // Show success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('application_submitted'.tr),
-          backgroundColor: Colors.green,
-        ),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('application_submitted'.tr),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
 
       // Clear form
       _formKey.currentState!.reset();
@@ -95,16 +104,21 @@ class _ContactUsState extends State<ContactUs> {
       _cityController.clear();
       _messageController.clear();
     } catch (e) {
+      print('❌ Error submitting contact form: $e');
+      
       // Close loading indicator
-      Navigator.of(context).pop();
+      if (mounted) Navigator.of(context).pop();
 
       // Show error message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error submitting form: ${e.toString()}'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: ${'please_try_again'.tr}'),
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 4),
+          ),
+        );
+      }
     }
   }
 
