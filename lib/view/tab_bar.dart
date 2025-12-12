@@ -432,42 +432,44 @@ class _Tab_BarState extends State<Tab_Bar> {
                         color: Colors.white,
                         child: Obx(
                           () => Row(
-                            children: List.generate(
-                              menuItems.length,
-                              (index) {
-                                final isSelected =
-                                    index == tabNavController.currentTabIndex.value;
-                                return Expanded(
-                                  child: InkWell(
-                                    onTap: () => tabNavController.navigateToTab(index),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          menuItems[index],
-                                          style: TextStyle(
-                                            color: isSelected
-                                                ? Colors.grey[400]
-                                                : Colors.black,
-                                            fontSize: 14,
-                                            fontWeight: isSelected
-                                                ? FontWeight.bold
-                                                : FontWeight.normal,
-                                          ),
+                            children: List.generate(menuItems.length, (index) {
+                              final isSelected =
+                                  index ==
+                                  tabNavController.currentTabIndex.value;
+                              return Expanded(
+                                child: InkWell(
+                                  onTap:
+                                      () =>
+                                          tabNavController.navigateToTab(index),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        menuItems[index],
+                                        style: TextStyle(
+                                          color:
+                                              isSelected
+                                                  ? Colors.grey[400]
+                                                  : Colors.black,
+                                          fontSize: 14,
+                                          fontWeight:
+                                              isSelected
+                                                  ? FontWeight.bold
+                                                  : FontWeight.normal,
                                         ),
-                                        if (isSelected)
-                                          Container(
-                                            height: 2,
-                                            width: 40,
-                                            color: Colors.grey[400],
-                                            margin: EdgeInsets.only(top: 8),
-                                          ),
-                                      ],
-                                    ),
+                                      ),
+                                      if (isSelected)
+                                        Container(
+                                          height: 2,
+                                          width: 40,
+                                          color: Colors.grey[400],
+                                          margin: EdgeInsets.only(top: 8),
+                                        ),
+                                    ],
                                   ),
-                                );
-                              },
-                            ),
+                                ),
+                              );
+                            }),
                           ),
                         ),
                       ),

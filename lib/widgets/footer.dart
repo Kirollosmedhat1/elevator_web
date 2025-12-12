@@ -179,37 +179,53 @@ class Footer extends StatelessWidget {
 
                         SizedBox(height: 20),
 
-                        // Language Selector
-                        Row(
-                          children: [
-                            Container(
-                              width: 20,
-                              height: 15,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(2),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "🇬🇧",
-                                  style: TextStyle(fontSize: 10),
-                                ),
+                        // Language Selector Dropdown
+                        DropdownButton<Locale>(
+                          value: Get.locale ?? const Locale('en'),
+                          underline: SizedBox(),
+                          dropdownColor: Colors.black87,
+                          icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+                          items: const [
+                            DropdownMenuItem(
+                              value: Locale('en'),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    '🇬🇧',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    'English',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(width: 8),
-                            Text(
-                              "EN",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                            DropdownMenuItem(
+                              value: Locale('ar'),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    '🇸🇦',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    'العربية',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.white,
-                              size: 16,
                             ),
                           ],
+                          onChanged: (Locale? locale) {
+                            if (locale != null) {
+                              Get.updateLocale(locale);
+                            }
+                          },
                         ),
                       ],
                     ),
@@ -444,21 +460,52 @@ class Footer extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 12),
         ),
         SizedBox(height: 15),
-        Row(
-          children: [
-            Container(
-              width: 18,
-              height: 12,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(2),
+        DropdownButton<Locale>(
+          value: Get.locale ?? const Locale('en'),
+          underline: SizedBox(),
+          dropdownColor: Colors.black87,
+          icon: Icon(Icons.arrow_drop_down, color: Colors.white, size: 14),
+          items: const [
+            DropdownMenuItem(
+              value: Locale('en'),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '🇬🇧',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  SizedBox(width: 6),
+                  Text(
+                    'English',
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                ],
               ),
-              child: Center(child: Text("🇬🇧", style: TextStyle(fontSize: 8))),
             ),
-            SizedBox(width: 6),
-            Text("EN", style: TextStyle(color: Colors.white, fontSize: 12)),
-            Icon(Icons.arrow_drop_down, color: Colors.white, size: 14),
+            DropdownMenuItem(
+              value: Locale('ar'),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '🇸🇦',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  SizedBox(width: 6),
+                  Text(
+                    'العربية',
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
           ],
+          onChanged: (Locale? locale) {
+            if (locale != null) {
+              Get.updateLocale(locale);
+            }
+          },
         ),
       ],
     );
