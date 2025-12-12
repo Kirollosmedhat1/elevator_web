@@ -13,9 +13,8 @@ class Products_solutions extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProductsController productsController = Get.put(ProductsController());
     // Ensure products are refreshed when locale changes.
-    final String currentLang = Localizations.localeOf(context).languageCode;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      productsController.ensureProductsForLang(currentLang);
+      productsController.ensureProductsForLang();
     });
 
     return Scaffold(

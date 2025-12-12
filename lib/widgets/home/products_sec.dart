@@ -4,12 +4,38 @@ import 'package:elevatorweb/controllers/animation_controller.dart';
 import 'package:elevatorweb/controllers/products_controller.dart';
 import 'package:get/get.dart';
 
-class ProductsSec extends StatelessWidget {
+class ProductsSec extends StatefulWidget {
   const ProductsSec({super.key});
 
   @override
+  State<ProductsSec> createState() => _ProductsSecState();
+}
+
+class _ProductsSecState extends State<ProductsSec> {
+  late ProductsController impController;
+  Locale? lastLocale;
+
+  @override
+  void initState() {
+    super.initState();
+    impController = Get.put(ProductsController());
+    lastLocale = Get.locale;
+  }
+
+  @override
+  void didUpdateWidget(ProductsSec oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Check if locale has changed
+    if (lastLocale != Get.locale) {
+      lastLocale = Get.locale;
+      // Refetch products for new language
+      impController.ensureProductsForLang();
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final ProductsController impController = Get.put(ProductsController());
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal:
@@ -28,19 +54,21 @@ class ProductsSec extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width < 768 ? 10 : 0,
             ),
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'products'.tr,
-                    style: TextStyle(
-                      fontSize:
-                          MediaQuery.of(context).size.width < 768 ? 24 : 40,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+            child: Obx(
+              () => RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'products'.tr,
+                      style: TextStyle(
+                        fontSize:
+                            MediaQuery.of(context).size.width < 768 ? 24 : 40,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

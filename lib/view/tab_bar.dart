@@ -499,7 +499,11 @@ class _Tab_BarState extends State<Tab_Bar> {
                       child: Column(
                         children: [
                           IconButton(
-                            icon: Icon(Icons.chat, color: Colors.green),
+                           icon: Image.asset(
+                      'assets/images/icon-whatsapp.png',
+                      height: 20,
+                      width: 20,
+                    ),
                             onPressed: () async {
                               final url = Uri.parse(
                                 'https://wa.me/201204611333',

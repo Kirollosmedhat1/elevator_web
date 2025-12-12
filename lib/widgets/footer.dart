@@ -46,33 +46,8 @@ class Footer extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Logo and Company Name
-                        Row(
-                          children: [
-                            Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'sfe'.tr,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 15),
-                            Text(
+
+                        Text(
                               'saudi_first_elevators_caps'.tr,
                               style: TextStyle(
                                 color: Colors.white,
@@ -80,8 +55,7 @@ class Footer extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
+
                         SizedBox(height: 20),
 
                         // Company Description
@@ -184,17 +158,17 @@ class Footer extends StatelessWidget {
                           value: Get.locale ?? const Locale('en'),
                           underline: SizedBox(),
                           dropdownColor: Colors.black87,
-                          icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.white,
+                          ),
                           items: const [
                             DropdownMenuItem(
                               value: Locale('en'),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    '🇬🇧',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
+                                  Text('🇬🇧', style: TextStyle(fontSize: 14)),
                                   SizedBox(width: 8),
                                   Text(
                                     'English',
@@ -208,10 +182,7 @@ class Footer extends StatelessWidget {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    '🇸🇦',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
+                                  Text('🇸🇦', style: TextStyle(fontSize: 14)),
                                   SizedBox(width: 8),
                                   Text(
                                     'العربية',
@@ -230,33 +201,6 @@ class Footer extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  SizedBox(width: 40),
-
-                  // Column 3: Products
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'products_caps'.tr,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 20),
-
-                        Text(
-                          'elevators'.tr,
-                          style: TextStyle(color: Colors.white, fontSize: 14),
-                        ),
-                      ],
-                    ),
-                  ),
-
                   SizedBox(width: 40),
 
                   // Column 4: Branch Locations
@@ -339,30 +283,7 @@ class Footer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-                border: Border.all(color: Colors.white, width: 2),
-              ),
-              child: Center(
-                child: Text(
-                  'sfe'.tr,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: Text(
+        Text(
                 'saudi_first_elevators_caps'.tr,
                 style: TextStyle(
                   color: Colors.white,
@@ -370,9 +291,6 @@ class Footer extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ],
-        ),
         SizedBox(height: 15),
         Text(
           'company_desc'.tr,
@@ -471,10 +389,7 @@ class Footer extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    '🇬🇧',
-                    style: TextStyle(fontSize: 12),
-                  ),
+                  Text('🇬🇧', style: TextStyle(fontSize: 12)),
                   SizedBox(width: 6),
                   Text(
                     'English',
@@ -488,10 +403,7 @@ class Footer extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    '🇸🇦',
-                    style: TextStyle(fontSize: 12),
-                  ),
+                  Text('🇸🇦', style: TextStyle(fontSize: 12)),
                   SizedBox(width: 6),
                   Text(
                     'العربية',
