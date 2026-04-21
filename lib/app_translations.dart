@@ -44,7 +44,6 @@ class AppTranslations extends Translations {
       'company_desc':
           'Beams Elevators in the field of supply, installation, maintenance and modernization of elevators and escalators of all kinds. Electric elevators include: Elevators that work with a two-speed system, elevators that work with a variable speed system (VVVF), hydraulic elevators. Food elevators (for villas and restaurants), service elevators in buildings. Cargo elevators. Patient elevators (bed elevator).',
       'important_links': 'IMPORTANT LINKS',
-      'home': 'Home',
       'about_company': 'About Company',
       'products_and_solutions': 'Products and Solutions',
       'studio': 'Studio',
@@ -53,17 +52,10 @@ class AppTranslations extends Translations {
       'elevators': 'Elevators',
       'headings': 'HEADINGS',
       'main_branch':
-          'The main branch: Nasr City _ 50 Ali Amin Street (Mustafa El Nahas Extension)',
-      'october_branch':
-          'October branch: Building 421 Omar Ibn Al-Khattab Street, 6th of October City First Floor',
-      'mansoura_branch':
-          'Mansoura Branch: Suez Canal Street next to Al Ajami Pharmacy in Badr Tower',
+          '3 Tawfiq Khalil Street, 23A Sinan Street (formerly), Hadayek El Zaytoun, Cairo',
       'links': 'LINKS',
       'branches': 'BRANCHES',
-      'main_branch_short': 'Main: Nasr City, 50 Ali Amin Street',
-      'october_branch_short': 'October: Building 421, 6th of October City',
-      'mansoura_branch_short': 'Mansoura: Suez Canal Street, Badr Tower',
-
+      'main_branch_short': '3 Tawfiq Khalil Street, 23A Sinan Street (formerly), Hadayek El Zaytoun, Cairo',
       //about us page
       "Our_vision": "Our vision",
       "Our_vision_desc":
@@ -83,6 +75,24 @@ class AppTranslations extends Translations {
       'contact_form_subtitle':
           'Get in touch with us for any inquiries or support',
       'please_select_contact_time': 'Please select a preferred contact time',
+      'name': 'Name',
+      'phone_number': 'Phone Number',
+      'email': 'Email',
+      'governorate': 'Governorate',
+      'message': 'Message',
+      'please_select_governorate': 'Please select a governorate',
+      'this_field_required': 'This field is required',
+      'email_required': 'Email is required',
+      'enter_valid_email': 'Please enter a valid email',
+      'application_submitted': 'Application submitted successfully',
+      'please_try_again': 'Please try again',
+      'cairo': 'Cairo',
+      'giza': 'Giza',
+      'alexandria': 'Alexandria',
+      'dakahlia': 'Dakahlia',
+      'sharqia': 'Sharqia',
+      'qalyubia': 'Qalyubia',
+      'other': 'Other',
     },
     'ar': {
       'customer_reviews': 'آراء العملاء',
@@ -125,7 +135,6 @@ class AppTranslations extends Translations {
       'company_desc':
           'بيمز للمصاعد في مجال التوريد والتركيب والصيانة وتحديث المصاعد والسلالم الكهربائية من جميع الأنواع. تشمل المصاعد الكهربائية: المصاعد التي تعمل بنظام السرعتين، المصاعد التي تعمل بنظام السرعة المتغيرة (VVVF)، المصاعد الهيدروليكية. مصاعد الطعام (للفلل والمطاعم)، مصاعد الخدمة في المباني. مصاعد البضائع. مصاعد المرضى (مصعد سرير).',
       'important_links': 'روابط هامة',
-      'home': 'الرئيسية',
       'about_company': 'عن الشركة',
       'products_and_solutions': 'المنتجات والحلول',
       'studio': 'استوديو',
@@ -134,16 +143,10 @@ class AppTranslations extends Translations {
       'elevators': 'مصاعد',
       'headings': 'العناوين',
       'main_branch':
-          'الفرع الرئيسي: مدينة نصر _ 50 شارع علي أمين (امتداد مصطفى النحاس)',
-      'october_branch':
-          'فرع أكتوبر: مبنى 421 شارع عمر بن الخطاب، مدينة 6 أكتوبر، الدور الأول',
-      'mansoura_branch':
-          'فرع المنصورة: شارع قناة السويس بجوار صيدلية العجمي في برج بدر',
+          '٣ شارع توفيق خليل  ٢٣ أ شارع سنان سابقا - حدائق الزيتون - القاهرة',
       'links': 'روابط',
       'branches': 'الفروع',
-      'main_branch_short': 'الرئيسي: مدينة نصر، 50 شارع علي أمين',
-      'october_branch_short': 'أكتوبر: مبنى 421، مدينة 6 أكتوبر',
-      'mansoura_branch_short': 'المنصورة: شارع قناة السويس، برج بدر',
+      'main_branch_short': '٣ شارع توفيق خليل  ٢٣ أ شارع سنان سابقا - حدائق الزيتون - القاهرة',
       
       //about us page
       "Our_vision": "رؤيتنا",
@@ -163,6 +166,24 @@ class AppTranslations extends Translations {
       'confirm': 'تأكيد',
       'contact_form_subtitle': 'تواصل معنا لأي استفسارات أو دعم',
       'please_select_contact_time': 'يرجى اختيار موعد التواصل المناسب',
+      'name': 'الاسم',
+      'phone_number': 'رقم الهاتف',
+      'email': 'البريد الإلكتروني',
+      'governorate': 'المحافظة',
+      'message': 'الرسالة',
+      'please_select_governorate': 'يرجى اختيار المحافظة',
+      'this_field_required': 'هذا الحقل مطلوب',
+      'email_required': 'البريد الإلكتروني مطلوب',
+      'enter_valid_email': 'يرجى إدخال بريد إلكتروني صالح',
+      'application_submitted': 'تم إرسال الطلب بنجاح',
+      'please_try_again': 'يرجى المحاولة مرة أخرى',
+      'cairo': 'القاهرة',
+      'giza': 'الجيزة',
+      'alexandria': 'الإسكندرية',
+      'dakahlia': 'الدقهلية',
+      'sharqia': 'الشرقية',
+      'qalyubia': 'القليوبية',
+      'other': 'أخرى',
     },
   };
 }

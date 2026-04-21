@@ -24,12 +24,12 @@ class ImpAboutusSecController extends GetxController {
       "description": "five_year_warranty_desc".tr,
     },
     {
-      "image": "assets/images/8.png",
+      "image": "assets/images/8.jpg",
       "title": "after_sales_service".tr,
       "description": "after_sales_service_desc".tr,
     },
     {
-      "image": "assets/images/5.png",
+      "image": "assets/images/5.jpg",
       "title": "wide_variety_of_products".tr,
       "description": "wide_variety_of_products_desc".tr,
     },

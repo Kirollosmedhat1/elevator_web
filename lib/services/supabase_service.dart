@@ -3,6 +3,12 @@ import 'dart:typed_data';
 
 class SupabaseService {
   static SupabaseClient? _client;
+  static const List<String> _contactTableCandidates = <String>[
+    'contact_submissions',
+    'contact_us_submissions',
+    'contact_messages',
+    'contacts',
+  ];
 
   static Future<void> initialize({
     required String supabaseUrl,
@@ -31,20 +37,51 @@ class SupabaseService {
     required String? contactTime,
     required String message,
   }) async {
+    final payload = <String, dynamic>{
+      'name': name,
+      'phone': phone,
+      'email': email,
+      'governorate': governorate,
+      'city': city,
+      'contact_time': contactTime,
+      'message': message,
+      'created_at': DateTime.now().toIso8601String(),
+    };
+
     try {
-      await client.from('contact_submissions').insert({
-        'name': name,
-        'phone': phone,
-        'email': email,
-        'governorate': governorate,
-        'city': city,
-        'contact_time': contactTime,
-        'message': message,
-        'created_at': DateTime.now().toIso8601String(),
-      });
+      await _insertIntoFirstAvailableContactTable(payload);
     } catch (e) {
       throw Exception('Failed to submit contact form: $e');
     }
+  }
+
+  Future<void> _insertIntoFirstAvailableContactTable(
+    Map<String, dynamic> payload,
+  ) async {
+    for (final table in _contactTableCandidates) {
+      try {
+        await client.from(table).insert(payload);
+        return;
+      } catch (e) {
+        if (_isTableMissingError(e)) {
+          // Try the next candidate if this table does not exist.
+          continue;
+        }
+        rethrow;
+      }
+    }
+
+    throw Exception(
+      "No contact table found. Tried: ${_contactTableCandidates.join(', ')}. "
+      "Run 'supabase_schema.sql' in your Supabase SQL Editor, then refresh.",
+    );
+  }
+
+  bool _isTableMissingError(Object error) {
+    final message = error.toString();
+    return message.contains('PGRST205') ||
+        message.contains('Could not find the table') ||
+        message.contains('relation') && message.contains('does not exist');
   }
 
   // Careers Form Methods
@@ -157,6 +194,19 @@ class SupabaseService {
       return List<Map<String, dynamic>>.from(response);
     } catch (e) {
       throw Exception('Failed to fetch customer reviews: $e');
+    }
+  }
+
+  // Previous Work Methods
+  Future<List<Map<String, dynamic>>> getPreviousWork() async {
+    try {
+      final response = await client
+          .from('previous_work')
+          .select()
+          .order('created_at', ascending: false);
+      return List<Map<String, dynamic>>.from(response);
+    } catch (e) {
+      throw Exception('Failed to fetch previous work: $e');
     }
   }
 }

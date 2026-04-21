@@ -46,15 +46,14 @@ class Footer extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Text(
-                              'saudi_first_elevators_caps'.tr,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                          'saudi_first_elevators_caps'.tr,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
 
                         SizedBox(height: 20),
 
@@ -284,13 +283,13 @@ class Footer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-                'saudi_first_elevators_caps'.tr,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+          'saudi_first_elevators_caps'.tr,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         SizedBox(height: 15),
         Text(
           'company_desc'.tr,
@@ -437,10 +436,6 @@ class Footer extends StatelessWidget {
         ),
         SizedBox(height: 10),
         _buildBranchLocation('main_branch_short'.tr),
-        SizedBox(height: 8),
-        _buildBranchLocation('october_branch_short'.tr),
-        SizedBox(height: 8),
-        _buildBranchLocation('mansoura_branch_short'.tr),
       ],
     );
   }

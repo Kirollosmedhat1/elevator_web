@@ -121,9 +121,9 @@ class IntroSec extends StatelessWidget {
                 items:
                     [
                       "assets/images/elevator.png",
-                      "assets/images/3.png",
-                      "assets/images/4.png",
-                      "assets/images/5.png",
+                      "assets/images/3.jpg",
+                      "assets/images/4.jpg",
+                      "assets/images/5.jpg",
                     ].map((imgPath) {
                       return Builder(
                         builder: (BuildContext context) {

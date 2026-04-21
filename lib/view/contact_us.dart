@@ -1,7 +1,11 @@
+import 'package:elevatorweb/widgets/page_name&photo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:elevatorweb/widgets/footer.dart';
 import 'package:get/get.dart';
 import 'package:elevatorweb/services/supabase_service.dart';
+import 'package:elevatorweb/config/supabase_config.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
@@ -12,6 +16,7 @@ class ContactUs extends StatefulWidget {
 
 class _ContactUsState extends State<ContactUs> {
   final _formKey = GlobalKey<FormState>();
+  bool _isSubmitting = false;
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -38,6 +43,40 @@ class _ContactUsState extends State<ContactUs> {
     'evening',
   ];
 
+  static const String _contactTableSetupSql = '''
+CREATE TABLE IF NOT EXISTS contact_submissions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT NOT NULL,
+  governorate TEXT,
+  city TEXT NOT NULL,
+  contact_time TEXT,
+  message TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
+
+DO \$\$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM pg_policies
+    WHERE schemaname = 'public'
+      AND tablename = 'contact_submissions'
+      AND policyname = 'Allow public insert on contact_submissions'
+  ) THEN
+    CREATE POLICY "Allow public insert on contact_submissions"
+      ON contact_submissions
+      FOR INSERT
+      TO anon
+      WITH CHECK (true);
+  END IF;
+END
+\$\$;
+''';
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -49,22 +88,24 @@ class _ContactUsState extends State<ContactUs> {
   }
 
   Future<void> _submit() async {
+    if (_isSubmitting) return;
+
     final FormState? currentState = _formKey.currentState;
     if (currentState == null) return;
     if (!currentState.validate()) return;
+
+    setState(() => _isSubmitting = true);
 
     // Show loading indicator
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(
-        child: CircularProgressIndicator(),
-      ),
+      builder: (context) => Center(child: CircularProgressIndicator()),
     );
 
     try {
-      print('📤 Submitting contact form to Supabase...');
-      
+      debugPrint('Submitting contact form to Supabase...');
+
       // Submit to Supabase
       await SupabaseService().submitContactForm(
         name: _nameController.text.trim(),
@@ -76,8 +117,8 @@ class _ContactUsState extends State<ContactUs> {
         message: _messageController.text.trim(),
       );
 
-      print('✅ Contact form submitted successfully');
-      
+      debugPrint('Contact form submitted successfully');
+
       // Close loading indicator
       if (mounted) Navigator.of(context).pop();
 
@@ -104,8 +145,8 @@ class _ContactUsState extends State<ContactUs> {
       _cityController.clear();
       _messageController.clear();
     } catch (e) {
-      print('❌ Error submitting contact form: $e');
-      
+      debugPrint('Error submitting contact form: $e');
+
       // Close loading indicator
       if (mounted) Navigator.of(context).pop();
 
@@ -113,13 +154,52 @@ class _ContactUsState extends State<ContactUs> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error: ${'please_try_again'.tr}'),
+            content: Text('${'please_try_again'.tr}: $e'),
             backgroundColor: Colors.red,
             duration: Duration(seconds: 4),
           ),
         );
       }
+    } finally {
+      if (mounted) {
+        setState(() => _isSubmitting = false);
+      } else {
+        _isSubmitting = false;
+      }
     }
+  }
+
+  Future<void> _openSupabaseSqlEditor() async {
+    final Uri projectUri = Uri.parse(SupabaseConfig.supabaseUrl);
+    final String projectRef = projectUri.host.split('.').first;
+    final Uri dashboardUri = Uri.parse(
+      'https://supabase.com/dashboard/project/$projectRef/sql/new',
+    );
+
+    final bool opened = await launchUrl(
+      dashboardUri,
+      mode: LaunchMode.platformDefault,
+    );
+
+    if (!opened && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not open Supabase SQL editor'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  Future<void> _copyContactSetupSql() async {
+    await Clipboard.setData(const ClipboardData(text: _contactTableSetupSql));
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Contact table SQL copied. Paste it in Supabase SQL Editor.'),
+        backgroundColor: Colors.green,
+      ),
+    );
   }
 
   @override
@@ -130,6 +210,7 @@ class _ContactUsState extends State<ContactUs> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            PageNamePhoto(pagename: 'contact_us'.tr),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.05,
@@ -155,6 +236,8 @@ class _ContactUsState extends State<ContactUs> {
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(height: 32),
+                      _buildSupabaseSetupCard(),
+                      SizedBox(height: 24),
                       Card(
                         elevation: 2,
                         shape: RoundedRectangleBorder(
@@ -257,7 +340,7 @@ class _ContactUsState extends State<ContactUs> {
                                         Align(
                                           alignment: Alignment.centerRight,
                                           child: ElevatedButton(
-                                            onPressed: _submit,
+                                            onPressed: _isSubmitting ? null : _submit,
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor: Colors.blue[700],
                                               foregroundColor: Colors.white,
@@ -270,13 +353,22 @@ class _ContactUsState extends State<ContactUs> {
                                                     BorderRadius.circular(8),
                                               ),
                                             ),
-                                            child: Text(
-                                              'confirm'.tr,
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
+                                            child: _isSubmitting
+                                                ? SizedBox(
+                                                    width: 18,
+                                                    height: 18,
+                                                    child: CircularProgressIndicator(
+                                                      strokeWidth: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                                  )
+                                                : Text(
+                                                    'confirm'.tr,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
                                           ),
                                         ),
                                       ],
@@ -296,6 +388,49 @@ class _ContactUsState extends State<ContactUs> {
             Footer(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSupabaseSetupCard() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.amber.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.amber.shade700, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Supabase setup required',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          SizedBox(height: 8),
+          Text(
+            'If contact form submission fails because table is missing, copy SQL and run it in Supabase.',
+            style: TextStyle(color: Colors.black87),
+          ),
+          SizedBox(height: 12),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              OutlinedButton.icon(
+                onPressed: _copyContactSetupSql,
+                icon: Icon(Icons.copy),
+                label: Text('Copy contact table SQL'),
+              ),
+              ElevatedButton.icon(
+                onPressed: _openSupabaseSqlEditor,
+                icon: Icon(Icons.open_in_new),
+                label: Text('Open Supabase SQL Editor'),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
