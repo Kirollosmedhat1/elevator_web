@@ -1,11 +1,8 @@
 import 'package:elevatorweb/widgets/page_name&photo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:elevatorweb/widgets/footer.dart';
 import 'package:get/get.dart';
 import 'package:elevatorweb/services/supabase_service.dart';
-import 'package:elevatorweb/config/supabase_config.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
@@ -42,40 +39,6 @@ class _ContactUsState extends State<ContactUs> {
     'afternoon',
     'evening',
   ];
-
-  static const String _contactTableSetupSql = '''
-CREATE TABLE IF NOT EXISTS contact_submissions (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  name TEXT NOT NULL,
-  phone TEXT NOT NULL,
-  email TEXT NOT NULL,
-  governorate TEXT,
-  city TEXT NOT NULL,
-  contact_time TEXT,
-  message TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
-ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
-
-DO \$\$
-BEGIN
-  IF NOT EXISTS (
-    SELECT 1
-    FROM pg_policies
-    WHERE schemaname = 'public'
-      AND tablename = 'contact_submissions'
-      AND policyname = 'Allow public insert on contact_submissions'
-  ) THEN
-    CREATE POLICY "Allow public insert on contact_submissions"
-      ON contact_submissions
-      FOR INSERT
-      TO anon
-      WITH CHECK (true);
-  END IF;
-END
-\$\$;
-''';
 
   @override
   void dispose() {
@@ -169,39 +132,6 @@ END
     }
   }
 
-  Future<void> _openSupabaseSqlEditor() async {
-    final Uri projectUri = Uri.parse(SupabaseConfig.supabaseUrl);
-    final String projectRef = projectUri.host.split('.').first;
-    final Uri dashboardUri = Uri.parse(
-      'https://supabase.com/dashboard/project/$projectRef/sql/new',
-    );
-
-    final bool opened = await launchUrl(
-      dashboardUri,
-      mode: LaunchMode.platformDefault,
-    );
-
-    if (!opened && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not open Supabase SQL editor'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
-  }
-
-  Future<void> _copyContactSetupSql() async {
-    await Clipboard.setData(const ClipboardData(text: _contactTableSetupSql));
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Contact table SQL copied. Paste it in Supabase SQL Editor.'),
-        backgroundColor: Colors.green,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final double maxFormWidth = 800;
@@ -236,8 +166,6 @@ END
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(height: 32),
-                      _buildSupabaseSetupCard(),
-                      SizedBox(height: 24),
                       Card(
                         elevation: 2,
                         shape: RoundedRectangleBorder(
@@ -388,49 +316,6 @@ END
             Footer(),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildSupabaseSetupCard() {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.amber.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.amber.shade700, width: 1),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Supabase setup required',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'If contact form submission fails because table is missing, copy SQL and run it in Supabase.',
-            style: TextStyle(color: Colors.black87),
-          ),
-          SizedBox(height: 12),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [
-              OutlinedButton.icon(
-                onPressed: _copyContactSetupSql,
-                icon: Icon(Icons.copy),
-                label: Text('Copy contact table SQL'),
-              ),
-              ElevatedButton.icon(
-                onPressed: _openSupabaseSqlEditor,
-                icon: Icon(Icons.open_in_new),
-                label: Text('Open Supabase SQL Editor'),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

@@ -51,6 +51,7 @@ class AppTranslations extends Translations {
       'products_caps': 'PRODUCTS',
       'elevators': 'Elevators',
       'headings': 'HEADINGS',
+      'branch_location': 'Branch Location',
       'main_branch':
           '3 Tawfiq Khalil Street, 23A Sinan Street (formerly), Hadayek El Zaytoun, Cairo',
       'links': 'LINKS',
@@ -142,6 +143,7 @@ class AppTranslations extends Translations {
       'products_caps': 'المنتجات',
       'elevators': 'مصاعد',
       'headings': 'العناوين',
+      'branch_location': 'موقع الفرع',
       'main_branch':
           '٣ شارع توفيق خليل  ٢٣ أ شارع سنان سابقا - حدائق الزيتون - القاهرة',
       'links': 'روابط',

@@ -65,19 +65,27 @@ class _Tab_BarState extends State<Tab_Bar> {
     final isMobile = MediaQuery.of(context).size.width < 768;
     // Language dropdown widget
     Widget languageDropdown() {
-      return DropdownButton<Locale>(
-        value: Get.locale ?? const Locale('ar'),
-        icon: const Icon(Icons.language, color: Colors.white),
-        underline: SizedBox(),
-        items: const [
-          DropdownMenuItem(value: Locale('en'), child: Text('English')),
-          DropdownMenuItem(value: Locale('ar'), child: Text('العربية')),
-        ],
-        onChanged: (Locale? locale) {
-          if (locale != null) {
-            Get.updateLocale(locale);
-          }
-        },
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<Locale>(
+            value: Get.locale ?? const Locale('ar'),
+            icon: const Icon(Icons.keyboard_arrow_down, color: Colors.black),
+            items: const [
+              DropdownMenuItem(value: Locale('en'), child: Text('English')),
+              DropdownMenuItem(value: Locale('ar'), child: Text('العربية')),
+            ],
+            onChanged: (Locale? locale) {
+              if (locale != null) {
+                Get.updateLocale(locale);
+              }
+            },
+          ),
+        ),
       );
     }
 
@@ -160,40 +168,43 @@ class _Tab_BarState extends State<Tab_Bar> {
                 ],
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(70),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 90,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/beamslogo.png"),
-                            fit: BoxFit.contain,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/beamslogo.png"),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 90,
-                          color: Colors.white,
-                          child: Center(
-                            child: Obx(
-                              () => Text(
-                                menuItems[tabNavController
-                                    .currentTabIndex
-                                    .value],
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff0B415A),
+                        Expanded(
+                          child: Container(
+                            height: 90,
+                            color: Colors.white,
+                            child: Center(
+                              child: Obx(
+                                () => Text(
+                                  menuItems[tabNavController
+                                      .currentTabIndex
+                                      .value],
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff0B415A),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -403,77 +414,80 @@ class _Tab_BarState extends State<Tab_Bar> {
                 ],
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(70),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 90,
-                        width: 120,
-                        decoration: BoxDecoration(
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/beamslogo.png"),
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        // Insert language dropdown here
+                        Container(
                           color: Colors.white,
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/beamslogo.png"),
-                            fit: BoxFit.contain,
-                          ),
+                          height: 90,
+                          width: 120,
+                          child: Center(child: languageDropdown()),
                         ),
-                      ),
-                      // Insert language dropdown here
-                      Container(
-                        color: Colors.white,
-                        height: 90,
-                        width: 120,
-                        child: Center(child: languageDropdown()),
-                      ),
-                      Container(
-                        height: 90,
-                        width:
-                            MediaQuery.of(context).size.width -
-                            120 -
-                            120, // adjust for logo and dropdown
-                        color: Colors.white,
-                        child: Obx(
-                          () => Row(
-                            children: List.generate(menuItems.length, (index) {
-                              final isSelected =
-                                  index ==
-                                  tabNavController.currentTabIndex.value;
-                              return Expanded(
-                                child: InkWell(
-                                  onTap:
-                                      () =>
-                                          tabNavController.navigateToTab(index),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        menuItems[index],
-                                        style: TextStyle(
-                                          color:
-                                              isSelected
-                                                  ? Colors.grey[400]
-                                                  : Colors.black,
-                                          fontSize: 14,
-                                          fontWeight:
-                                              isSelected
-                                                  ? FontWeight.bold
-                                                  : FontWeight.normal,
+                        Container(
+                          height: 90,
+                          width:
+                              MediaQuery.of(context).size.width -
+                              120 -
+                              120, // adjust for logo and dropdown
+                          color: Colors.white,
+                          child: Obx(
+                            () => Row(
+                              children: List.generate(menuItems.length, (index) {
+                                final isSelected =
+                                    index ==
+                                    tabNavController.currentTabIndex.value;
+                                return Expanded(
+                                  child: InkWell(
+                                    onTap:
+                                        () =>
+                                            tabNavController.navigateToTab(index),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          menuItems[index],
+                                          style: TextStyle(
+                                            color:
+                                                isSelected
+                                                    ? Colors.grey[400]
+                                                    : Colors.black,
+                                            fontSize: 14,
+                                            fontWeight:
+                                                isSelected
+                                                    ? FontWeight.bold
+                                                    : FontWeight.normal,
+                                          ),
                                         ),
-                                      ),
-                                      if (isSelected)
-                                        Container(
-                                          height: 2,
-                                          width: 40,
-                                          color: Colors.grey[400],
-                                          margin: EdgeInsets.only(top: 8),
-                                        ),
-                                    ],
+                                        if (isSelected)
+                                          Container(
+                                            height: 2,
+                                            width: 40,
+                                            color: Colors.grey[400],
+                                            margin: EdgeInsets.only(top: 8),
+                                          ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            }),
+                                );
+                              }),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

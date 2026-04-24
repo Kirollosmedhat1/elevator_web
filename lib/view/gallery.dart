@@ -253,7 +253,7 @@ class _GalleryState extends State<Gallery> {
                 fit: StackFit.expand,
                 children: [
                   if (isVideo)
-                    // Video thumbnail
+                    // Video frame thumbnail (seek to 0.30s)
                     _buildVideoThumbnail(mediaUrl)
                   else
                     // Image
@@ -366,24 +366,7 @@ class _GalleryState extends State<Gallery> {
   }
 
   Widget _buildVideoThumbnail(String videoUrl) {
-    // For videos, we'll show a placeholder with play icon
-    // In a real app, you might want to extract a thumbnail from the video
-    return Container(
-      color: Colors.grey[900],
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.videocam, size: 48, color: Colors.white70),
-            SizedBox(height: 8),
-            Text(
-              'Video',
-              style: TextStyle(color: Colors.white70, fontSize: 12),
-            ),
-          ],
-        ),
-      ),
-    );
+    return _VideoFrameThumbnail(videoUrl: videoUrl);
   }
 
   void _showImageDialog(BuildContext context, String imageUrl, String? type) {
@@ -755,5 +738,94 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
     final minutes = d.inMinutes.remainder(60).toString().padLeft(2, '0');
     final seconds = d.inSeconds.remainder(60).toString().padLeft(2, '0');
     return '$minutes:$seconds';
+  }
+}
+
+class _VideoFrameThumbnail extends StatefulWidget {
+  const _VideoFrameThumbnail({required this.videoUrl});
+
+  final String videoUrl;
+
+  @override
+  State<_VideoFrameThumbnail> createState() => _VideoFrameThumbnailState();
+}
+
+class _VideoFrameThumbnailState extends State<_VideoFrameThumbnail> {
+  VideoPlayerController? _controller;
+  bool _ready = false;
+  bool _hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeFrame();
+  }
+
+  Future<void> _initializeFrame() async {
+    try {
+      final normalizedUrl = VideoHelper.getWebFriendlyUrl(widget.videoUrl.trim());
+      final controller = VideoPlayerController.networkUrl(
+        Uri.parse(normalizedUrl),
+      );
+      _controller = controller;
+
+      await controller.initialize().timeout(const Duration(seconds: 12));
+      await controller.setVolume(0);
+      await controller.seekTo(const Duration(milliseconds: 300));
+      await controller.pause();
+
+      if (mounted) {
+        setState(() {
+          _ready = true;
+        });
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _hasError = true;
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_ready && _controller != null && _controller!.value.isInitialized) {
+      return FittedBox(
+        fit: BoxFit.cover,
+        clipBehavior: Clip.hardEdge,
+        child: SizedBox(
+          width: _controller!.value.size.width,
+          height: _controller!.value.size.height,
+          child: VideoPlayer(_controller!),
+        ),
+      );
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xffECEFF1), Color(0xffCFD8DC)],
+        ),
+      ),
+      child: Center(
+        child:
+            _hasError
+                ? Icon(Icons.videocam_off, color: Colors.blueGrey[700], size: 36)
+                : SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+      ),
+    );
   }
 }

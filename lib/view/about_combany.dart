@@ -11,6 +11,7 @@ class AboutCombany extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isArabic = Get.locale?.languageCode == 'ar';
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -33,14 +34,15 @@ class AboutCombany extends StatelessWidget {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: RichText(
-                              textAlign: TextAlign.center,
+                              textAlign:
+                                  isArabic ? TextAlign.right : TextAlign.left,
                               text: TextSpan(
                                 children: [
                                   TextSpan(
                                     text: "Our_vision".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 24,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -92,7 +94,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_vision".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 30,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -100,7 +102,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_vision_desc".tr,
                                     style: TextStyle(
                                       fontSize: 15,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.w100,
                                       height: 1.5,
                                     ),
@@ -125,14 +127,15 @@ class AboutCombany extends StatelessWidget {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: RichText(
-                              textAlign: TextAlign.center,
+                              textAlign:
+                                  isArabic ? TextAlign.right : TextAlign.left,
                               text: TextSpan(
                                 children: [
                                   TextSpan(
                                     text: "Our_message".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 24,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -176,7 +179,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_message".tr + "\n",
                                     style: TextStyle(
                                       fontSize: 30,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -184,7 +187,7 @@ class AboutCombany extends StatelessWidget {
                                     text: "Our_message_desc".tr,
                                     style: TextStyle(
                                       fontSize: 15,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.w100,
                                       height: 1.5,
                                     ),

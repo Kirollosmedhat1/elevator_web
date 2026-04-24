@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elevatorweb/controllers/tab_navigation_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -217,14 +218,27 @@ class Footer extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20),
-
                         _buildBranchLocation('main_branch'.tr),
-                        SizedBox(height: 15),
-
-                        _buildBranchLocation('october_branch'.tr),
-                        SizedBox(height: 15),
-
-                        _buildBranchLocation('mansoura_branch'.tr),
+                        SizedBox(height: 12),
+                        OutlinedButton.icon(
+                          onPressed: _openBranchLocation,
+                          icon: Icon(
+                            Icons.map_outlined,
+                            color: Colors.white,
+                            size: 18,
+                          ),
+                          label: Text(
+                            'branch_location'.tr,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: Colors.white70),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 10,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -276,6 +290,16 @@ class Footer extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> _openBranchLocation() async {
+    final branchLocationUrl = Uri.parse(
+      'https://maps.app.goo.gl/sFEDMedYvbwAucCm9?g_st=awb',
+    );
+
+    if (await canLaunchUrl(branchLocationUrl)) {
+      await launchUrl(branchLocationUrl, mode: LaunchMode.externalApplication);
+    }
   }
 
   Widget _buildMobileCompanyInfo(BuildContext context) {
